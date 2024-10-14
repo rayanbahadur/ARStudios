@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: High_PipelineAsset
   m_EditorClassIdentifier: 
   k_AssetVersion: 12
-  k_AssetPreviousVersion: 11
+  k_AssetPreviousVersion: 12
   m_RendererType: 1
   m_RendererData: {fileID: 0}
   m_RendererDataList:
