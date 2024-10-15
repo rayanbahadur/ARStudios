@@ -1,7 +1,56 @@
 # ARStudios
 
-## Getting Started
+# **Escape Room: Fire Trap Prototype Details**
+<details>
+<summary>Click to expand</summary>
 
+## **Level Description**
+The escape room is designed around the following key features:
+1. **Phone Call Puzzle**: The player receives a phone call upon entering, which presents a riddle. Solving this riddle provides the **first digit** of a 4-digit code.
+2. **Pressure Valve Puzzle**: The player must interact with a series of pressure valves. Turning the correct sequence of valves releases steam, revealing the **second digit** of the code.
+3. **Floor Hatch Puzzle**: The player must find a wrench to open a floor hatch. Inside is a wiring puzzle that, once solved, reveals the **third digit**.
+4. **Combination Lock**: The player inputs the 4-digit code into a control panel to unlock the exit door.
+
+**Note**: As time passes, the room's temperature rises, creating urgency for the player to solve the puzzles quickly. Failing to escape in time results in the player's death.
+
+---
+
+## **Gameplay Flow**
+1. **Starting the Game**:
+   - Upon entering the room, the player hears a phone ringing.
+   - Answering the phone presents the **riddle** (displayed as text), which must be solved to gain the **first digit** of the code.
+   
+2. **Pressure Valve Puzzle**:
+   - After solving the riddle, the player must approach the pressure valves on the right wall.
+   - Turning the valves in the correct sequence reveals the **second digit** via a steam message on a nearby surface.
+
+3. **Floor Hatch Puzzle**:
+   - The player finds a wrench and uses it to open the floor hatch.
+   - Inside, they must solve a wiring puzzle that lights up the control panel, providing the **third digit**.
+
+4. **Combination Lock**:
+   - After gathering all four digits, the player enters the combination on the control panel.
+   - The correct combination unlocks the door, allowing the player to escape.
+
+---
+
+
+## **Development Team**
+This prototype has been broken down into these Epics:
+- **Game Environment**
+- **Player Interaction & Controls**
+- **Puzzle Mechanics**
+- **Heat & Timer System**
+- **Project Organization & Documentation**
+- **Gameplay Video**
+
+---
+</details>
+
+# Getting Started
+
+<details>
+   <summary>Click to Expand</summary>
 ### Prerequisites
 - **GitHub Desktop**: Ensure you have [GitHub Desktop](https://desktop.github.com/) installed. We’ll be using it to clone the repository, create branches, and manage pull requests.
 - **Unity**: Make sure the correct version of Unity is installed, as specified in [Lab 1](https://qmplus.qmul.ac.uk/mod/resource/view.php?id=2088344).
@@ -64,3 +113,4 @@ For any bugs or feature requests:
 1. Create a new issue in the **Issues** tab.
 2. Assign the issue to yourself or another team member.
 3. Add the issue to the appropriate section of the **Projects Board**.
+</details>
