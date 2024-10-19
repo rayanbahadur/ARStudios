@@ -59,9 +59,8 @@ public class TimerScript : MonoBehaviour
         // When the time runs out
         if (currentTime <= 0)
         {
-            Time.timeScale = 0; // Stops the game
-            displayTimeText.text = "GAME OVER";
-            gameOverEvent.Invoke(); // Future death/game over functionality
+            currentTime = 0; // Set to zero to avoid negative values
+            gameOverEvent.Invoke(); // Invoke the game over event
         }
     }
 }
