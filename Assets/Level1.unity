@@ -6237,6 +6237,7 @@ MonoBehaviour:
   gameOverEvent:
     m_PersistentCalls:
       m_Calls: []
+  interactionPrompt: {fileID: 738524479}
 --- !u!1 &1177539402
 GameObject:
   m_ObjectHideFlags: 0
