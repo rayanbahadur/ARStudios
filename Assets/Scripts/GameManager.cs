@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject gameOverUI; // Reference to the Game Over UI
     public UnityEvent gameOverEvent; // UnityEvent to invoke on game over
+    public GameObject interactionPrompt;
 
     private TimerScript timerScript;
 
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     public void HandleGameOver()
     {
         gameOverUI.SetActive(true); // Activate the Game Over UI
+        interactionPrompt.SetActive(false); 
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None; // Unlock the cursor

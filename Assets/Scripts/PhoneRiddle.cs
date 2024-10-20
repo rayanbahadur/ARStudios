@@ -20,7 +20,9 @@ public class PhoneRiddle : MonoBehaviour
     private FirstPersonController firstPersonController; // Reference to the First Person Controller
     private (string riddle, string[] answers, string correctAnswer) currentRiddle;
     private RingingTextAnimation ringingTextAnimation;
-    private myControls inputActions; // New input actions like ATM script
+    private myControls inputActions; 
+    private TimerScript timerScript; 
+
 
     private void Awake()
     {
@@ -31,7 +33,7 @@ public class PhoneRiddle : MonoBehaviour
     {
         firstPersonController = FindFirstObjectByType<FirstPersonController>(); // Find the FirstPersonController in the scene
         ringingTextAnimation = FindFirstObjectByType<RingingTextAnimation>(); // Find the RingingTextAnimation script in the scene
-
+        timerScript = FindFirstObjectByType<TimerScript>();
         riddleUI.SetActive(false); // Hide the riddle UI at the start
         SetupRiddle("I stand between first and last, Divide the even, hold me fast. When pressure builds and pipes align, You'll find the next, just in time. What am I?", 
         new string[] { "1", "5", "9", "4" }, "4");
@@ -112,7 +114,9 @@ public class PhoneRiddle : MonoBehaviour
         else
         {
             Debug.Log("Wrong answer! Try again.");
+            timerScript.ReduceTime(30f);
             riddleUI.SetActive(false); // Hide the riddle UI
+            interactionPrompt.SetActive(true);
             firstPersonController.enabled = true; // Re-enable the FirstPersonController
             ringingText.SetActive(true);
             ringingTextAnimation.StartCoroutine("TypeText");
