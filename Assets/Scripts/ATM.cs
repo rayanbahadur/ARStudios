@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro; 
 
 public class ATM : MonoBehaviour
 {
     public GameObject atmScreen;
-
+    public GameObject interactionPrompt; 
+    public TextMeshProUGUI interactionText;
     myControls inputActions;
 
     public UnityEvent myAction;
@@ -19,22 +21,30 @@ public class ATM : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-            LeanTween.scale(atmScreen, Vector3.one, 2).setEaseInBounce();
+        {
+            interactionText.text = $"Press 'E' to interact with {gameObject.name}"; 
+            interactionPrompt.SetActive(true); 
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-            LeanTween.scale(atmScreen, Vector3.zero, 2).setEaseInBounce();
+        {
+            interactionPrompt.SetActive(false); 
+        }
     }
-
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Player is in range of ATM.");
             if (inputActions.Player.ActionKey.WasPerformedThisFrame())
+            {
+                Debug.Log("Action key pressed THROUGH inputActions.");
                 myAction.Invoke();
+            }
         }
     }
 
@@ -47,6 +57,4 @@ public class ATM : MonoBehaviour
     {
         inputActions.Player.Disable();
     }
-
-
 }

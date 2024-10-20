@@ -26,6 +26,7 @@ public class PuzzleManager : MonoBehaviour
 
     public void BlueATM()
     {
+        Debug.Log("BLUE");
         blueCounter++;
 
         switch (blueCounter)
@@ -57,6 +58,7 @@ public class PuzzleManager : MonoBehaviour
 
     public void purpleATM()
     {
+        Debug.Log("PURPLE");
         purpleCounter++;
 
         switch (purpleCounter)
@@ -88,6 +90,7 @@ public class PuzzleManager : MonoBehaviour
 
     public void redATM()
     {
+        Debug.Log("RED");
         redCounter++;
 
         switch (redCounter)
