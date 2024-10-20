@@ -256,7 +256,7 @@ public partial class @myControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardMouse"",
                     ""action"": ""ActionKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
