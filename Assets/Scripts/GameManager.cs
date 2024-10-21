@@ -9,8 +9,10 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverUI; // Reference to the Game Over UI
     public UnityEvent gameOverEvent; // UnityEvent to invoke on game over
     public GameObject interactionPrompt;
+    public GameObject difficultyUI;
 
-    private TimerScript timerScript;
+
+    public TimerScript timerScript;
 
     private void Start()
     {
@@ -34,6 +36,19 @@ public class GameManager : MonoBehaviour
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None; // Unlock the cursor
+    }
+
+    // Call this method from DifficultySelector when difficulty is selected
+    public void OnDifficultySelected()
+    {
+        difficultyUI.SetActive(false);
+        timerScript.StartTimer();
+
+        // Lock the cursor again for gameplay
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        interactionPrompt.SetActive(true); // Enable game interactions
     }
 
     public void RestartGame()
