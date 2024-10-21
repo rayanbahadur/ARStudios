@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
+using UnityEngine.Events;
 
 public class EnemyFollow : MonoBehaviour
 {
@@ -21,9 +22,16 @@ public class EnemyFollow : MonoBehaviour
     public float distanceBehindPlayer = 0f; // Distance to spawn behind the player
     private bool isChasing = false; // Flag to check if the enemy should chase
 
+    public UnityEvent gameOverEvent;
+
+    private float enemySpeed; // Variable to hold the enemy's speed
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        // Set enemy speed based on difficulty
+        SetEnemySpeed(DifficultySelector.selectedDifficulty);
 
         // Position the enemy behind the player initially
         PositionBehindPlayer();
@@ -38,8 +46,29 @@ public class EnemyFollow : MonoBehaviour
         if (isChasing && player != null && agent != null)
         {
             agent.SetDestination(player.position);
-            Debug.Log($"Enemy moving towards player at position: {player.position}"); // Debug statement
         }
+    }
+
+    // Function to set enemy speed based on selected difficulty
+    private void SetEnemySpeed(string difficulty)
+    {
+        switch (difficulty)
+        {
+            case "Easy":
+                enemySpeed = 1.5f;
+                Debug.Log("Easy");
+                break;
+            case "Hard":
+                enemySpeed = 3.0f;
+                Debug.Log("Hard");
+                break;
+            default:
+                enemySpeed = 2.0f;
+                Debug.Log("Medium");
+                break;
+        }
+
+        agent.speed = enemySpeed; // Assign the speed to the NavMeshAgent
     }
 
     // Coroutine to handle the countdown
@@ -73,7 +102,6 @@ public class EnemyFollow : MonoBehaviour
     void StartChasing()
     {
         isChasing = true;
-        Debug.Log("Enemy has started chasing the player."); // Debug statement
     }
 
     // Function to position the enemy behind the player
@@ -95,8 +123,7 @@ public class EnemyFollow : MonoBehaviour
     // Function to handle player death
     private void PlayerDies()
     {
-        Debug.Log("Player has died!");
-        player.gameObject.SetActive(false);
+        gameOverEvent.Invoke();
     }
 
     // Update the color of the countdown text based on the remaining time
@@ -106,7 +133,7 @@ public class EnemyFollow : MonoBehaviour
         {
             countdownText.color = SAFE_COLOR;
         }
-        else if (currentCountdown > 3f) 
+        else if (currentCountdown > 3f)
         {
             countdownText.color = WARNING_COLOR;
         }
@@ -119,5 +146,4 @@ public class EnemyFollow : MonoBehaviour
             countdownText.color = FLASH_COLOR;
         }
     }
-
 }
