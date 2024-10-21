@@ -39,10 +39,9 @@ public class ATM : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player is in range of ATM.");
             if (inputActions.Player.ActionKey.WasPerformedThisFrame())
             {
-                Debug.Log("Action key pressed THROUGH inputActions.");
+                Debug.Log("Action key pressed!");
                 myAction.Invoke();
             }
         }
