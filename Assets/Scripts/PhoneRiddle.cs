@@ -16,6 +16,7 @@ public class PhoneRiddle : MonoBehaviour
     public GameObject interactionPrompt; 
     public TextMeshProUGUI interactionText;
     public GameObject ringingText;
+    public JournalSystem journalSystem;
 
     private FirstPersonController firstPersonController; // Reference to the First Person Controller
     private (string riddle, string[] answers, string correctAnswer) currentRiddle;
@@ -110,6 +111,7 @@ public class PhoneRiddle : MonoBehaviour
             this.enabled = false; // Deactivate this script
             Cursor.lockState = CursorLockMode.Locked; // Lock the cursor again
             Cursor.visible = false; // Hide the cursor
+            journalSystem.AddClue("PHONE CALL: 4");
         }
         else
         {
