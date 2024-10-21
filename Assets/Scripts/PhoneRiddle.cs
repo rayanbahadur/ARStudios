@@ -21,42 +21,45 @@ public class PhoneRiddle : MonoBehaviour
     private FirstPersonController firstPersonController; // Reference to the First Person Controller
     private (string riddle, string[] answers, string correctAnswer) currentRiddle;
     private RingingTextAnimation ringingTextAnimation;
-    private bool playerInRange; // Track if the player is in range
+    private myControls inputActions; 
+    private TimerScript timerScript; 
+
+
+    private void Awake()
+    {
+        inputActions = new myControls(); // Initialize input actions
+    }
 
     private void Start()
     {
         firstPersonController = FindFirstObjectByType<FirstPersonController>(); // Find the FirstPersonController in the scene
         ringingTextAnimation = FindFirstObjectByType<RingingTextAnimation>(); // Find the RingingTextAnimation script in the scene
-
+        timerScript = FindFirstObjectByType<TimerScript>();
         riddleUI.SetActive(false); // Hide the riddle UI at the start
         SetupRiddle("I stand between first and last, Divide the even, hold me fast. When pressure builds and pipes align, You'll find the next, just in time. What am I?", 
         new string[] { "1", "5", "9", "4" }, "4");
-    }
-
-    private void Update()
-    {
-        // Check for player input to start the riddle
-        if (Input.GetKeyDown(KeyCode.E) && playerInRange && !riddleUI.activeSelf) // Check if riddle UI is not active and player is in range
-        {
-            Debug.Log("Action key pressed PHONE.");
-            StartRiddle(); 
-            interactionPrompt.SetActive(false);
-        }
-
-        // Check if 'ESC' is pressed to exit the riddle UI
-        if (Input.GetKeyDown(KeyCode.Escape) && riddleUI.activeSelf)
-        {
-            ExitRiddle();
-        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !riddleUI.activeSelf && this.isActiveAndEnabled) // Ensure the script is active
         {
-            playerInRange = true; // Player is in range
             interactionText.text = $"Press 'E' to interact with {gameObject.name}";
             interactionPrompt.SetActive(true);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // Check for action key press using the new input system (same as ATM)
+            if (inputActions.Player.ActionKey.WasPerformedThisFrame() && !riddleUI.activeSelf)
+            {
+                Debug.Log("Action key pressed PHONE.");
+                StartRiddle(); 
+                interactionPrompt.SetActive(false);
+            }
         }
     }
 
@@ -64,7 +67,6 @@ public class PhoneRiddle : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = false; // Player is out of range
             interactionPrompt.SetActive(false);
         }
     }
@@ -114,7 +116,9 @@ public class PhoneRiddle : MonoBehaviour
         else
         {
             Debug.Log("Wrong answer! Try again.");
+            timerScript.ReduceTime(30f);
             riddleUI.SetActive(false); // Hide the riddle UI
+            interactionPrompt.SetActive(true);
             firstPersonController.enabled = true; // Re-enable the FirstPersonController
             ringingText.SetActive(true);
             ringingTextAnimation.StartCoroutine("TypeText");
@@ -132,5 +136,15 @@ public class PhoneRiddle : MonoBehaviour
         ringingTextAnimation.StartCoroutine("TypeText");
         Cursor.lockState = CursorLockMode.Locked; // Lock the cursor again
         Cursor.visible = false; // Hide the cursor
+    }
+
+    public void OnEnable()
+    {
+        inputActions.Player.Enable();
+    }
+
+    public void OnDisable()
+    {
+        inputActions.Player.Disable();
     }
 }

@@ -63,4 +63,9 @@ public class TimerScript : MonoBehaviour
             gameOverEvent.Invoke(); // Invoke the game over event
         }
     }
+    
+    public void ReduceTime(float amount)
+    {
+        currentTime = Mathf.Max(currentTime - amount, 0); // Clamp the time to a minimum of 0
+    }
 }
