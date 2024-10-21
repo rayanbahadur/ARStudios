@@ -9,6 +9,7 @@ public class PuzzleManager : MonoBehaviour
     public GameObject[] puzzlePieceHolder1;
     public GameObject[] puzzlePieceHolder2;
     public GameObject[] puzzlePieceHolder3;
+    public JournalSystem journalSystem;
     public UnityEvent chickenDinner;
 
     private int blueCounter;
@@ -20,6 +21,7 @@ public class PuzzleManager : MonoBehaviour
         if (puzzlePieceHolder1[0].activeInHierarchy && puzzlePieceHolder2[1].activeInHierarchy && puzzlePieceHolder3[2].activeInHierarchy)
         {
             Debug.Log("You win!!");
+            journalSystem.AddClue("VALVE: 8");
             chickenDinner.Invoke();
         }
     }
