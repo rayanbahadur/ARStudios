@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - Hammer
+  - KeypadButton
   layers:
   - Default
   - TransparentFX
