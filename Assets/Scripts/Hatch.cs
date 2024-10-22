@@ -7,6 +7,7 @@ public class Hatch : MonoBehaviour
 {
     private bool isPlayerInRange = false;
     public TextMeshProUGUI hatchMessage; // Reference to the TextMeshPro Text element
+    public JournalSystem journalSystem;
 
     private void Update()
     {
@@ -28,6 +29,7 @@ public class Hatch : MonoBehaviour
                 Destroy(gameObject);
                 Debug.Log("Hidden hatch broken with the hammer.");
                 hatchMessage.text = ""; // Clear the message
+                journalSystem.AddClue("HATCH: 8");
             }
             else
             {
