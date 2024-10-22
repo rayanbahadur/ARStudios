@@ -111,7 +111,7 @@ public class PhoneRiddle : MonoBehaviour
             this.enabled = false; // Deactivate this script
             Cursor.lockState = CursorLockMode.Locked; // Lock the cursor again
             Cursor.visible = false; // Hide the cursor
-            journalSystem.AddClue("PHONE CALL: 4");
+            journalSystem.AddClue("PHONE: 4");
         }
         else
         {
