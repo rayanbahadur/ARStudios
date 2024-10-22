@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent gameOverEvent; // UnityEvent to invoke on game over
     public GameObject interactionPrompt;
     public GameObject difficultyUI;
-
+    public GameObject Crosshair; // Reference to the Crosshair GameObject
 
     public TimerScript timerScript;
 
@@ -32,10 +32,16 @@ public class GameManager : MonoBehaviour
     public void HandleGameOver()
     {
         gameOverUI.SetActive(true); // Activate the Game Over UI
-        interactionPrompt.SetActive(false); 
+        interactionPrompt.SetActive(false);
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None; // Unlock the cursor
+
+        // Disable the crosshair
+        if (Crosshair != null)
+        {
+            Crosshair.SetActive(false);
+        }
     }
 
     // Call this method from DifficultySelector when difficulty is selected
@@ -48,7 +54,12 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        interactionPrompt.SetActive(true); // Enable game interactions
+
+        // Enable the crosshair
+        if (Crosshair != null)
+        {
+            Crosshair.SetActive(true);
+        }
     }
 
     public void RestartGame()
@@ -56,5 +67,5 @@ public class GameManager : MonoBehaviour
         // Reload the current active scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
 }
+
