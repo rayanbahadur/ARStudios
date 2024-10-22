@@ -4,6 +4,7 @@ using UnityEngine.AI;
 using TMPro;
 using UnityEngine.Events;
 
+
 public class EnemyFollow : MonoBehaviour
 {
     public Transform player;
@@ -25,6 +26,8 @@ public class EnemyFollow : MonoBehaviour
     public UnityEvent gameOverEvent;
 
     private float enemySpeed; // Variable to hold the enemy's speed
+
+    public Material enemyMaterial;
 
     void Start()
     {
@@ -55,14 +58,17 @@ public class EnemyFollow : MonoBehaviour
         switch (difficulty)
         {
             case "Easy":
+                enemyMaterial.color = Color.green;
                 enemySpeed = 1.5f;
                 Debug.Log("Easy");
                 break;
             case "Hard":
+                enemyMaterial.color = Color.red;
                 enemySpeed = 3.0f;
                 Debug.Log("Hard");
                 break;
             default:
+                enemyMaterial.color = new Color(1f, 0.5f, 0f);
                 enemySpeed = 2.0f;
                 Debug.Log("Medium");
                 break;
