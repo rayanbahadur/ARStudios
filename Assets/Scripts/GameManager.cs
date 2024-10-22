@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        interactionPrompt.SetActive(true); // Enable game interactions
 
         // Enable the crosshair
         if (Crosshair != null)
