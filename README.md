@@ -23,3 +23,7 @@ Welcome to Fragmented Reality! This game is hosted online and can be played dire
 Enjoy the game! If you have any feedback or encounter any issues, feel free to reach out.
 
 Happy gaming! 🎮
+
+---
+## GitHub Issues
+[Backlog](https://github.com/users/rayanbahadur/projects/3)
