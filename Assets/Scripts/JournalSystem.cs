@@ -17,4 +17,10 @@ public class JournalSystem : MonoBehaviour
             journalText.text += "\n" + clue;  // Append to existing text
         }
     }
+    public void ClearJournal()
+    {
+        journalText.text = "";
+        cluesSet.Clear();
+        //cluesList.Clear();
+    }
 }
