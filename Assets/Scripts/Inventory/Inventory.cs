@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
     public GameObject InventoryItem;
     public Transform HandPosition; // Reference to the hand position prefab
 
-    private GameObject currentHandItem; // To keep track of the current item in hand
+    public GameObject currentHandItem; // To keep track of the current item in hand
 
     private void Awake()
     {
