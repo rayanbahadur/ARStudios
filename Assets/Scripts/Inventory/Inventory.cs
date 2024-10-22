@@ -80,6 +80,7 @@ public class Inventory : MonoBehaviour
                 Item selectedItem = Items[slotIndex - 1];
                 Debug.Log($"Slot {slotIndex} selected with item: {selectedItem.itemName}");
                 DisplayItemInHand(selectedItem);
+
             }
             else
             {
@@ -104,6 +105,24 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    //private void DisplayItemInHand(Item item)
+    //{
+    //    // Destroy the current item in hand if there is one
+    //    if (currentHandItem != null)
+    //    {
+    //        Destroy(currentHandItem);
+    //        Debug.Log("Current hand item destroyed.");
+    //    }
+
+    //    // Instantiate the new item and set it as a child of the hand position
+    //    currentHandItem = Instantiate(item.itemPrefab, HandPosition);
+
+    //    // Reset local position, rotation, and scale
+    //    currentHandItem.transform.localPosition = Vector3.zero;
+    //    currentHandItem.transform.localRotation = Quaternion.identity;
+    //    Debug.Log($"Item displayed in hand: {item.itemName}");
+    //}
+
     private void DisplayItemInHand(Item item)
     {
         // Destroy the current item in hand if there is one
@@ -113,10 +132,20 @@ public class Inventory : MonoBehaviour
             Debug.Log("Current hand item destroyed.");
         }
 
-        // Instantiate the new item and set it as a child of the hand position
-        currentHandItem = Instantiate(item.itemPrefab, HandPosition);
-        currentHandItem.transform.localPosition = Vector3.zero; 
+        // Instantiate the new item
+        currentHandItem = Instantiate(item.itemPrefab);
+
+        // Set the parent to HandPosition
+        currentHandItem.transform.SetParent(HandPosition, false);
+
+        // Reset local position, rotation, and scale
+        currentHandItem.transform.localPosition = Vector3.zero;
         currentHandItem.transform.localRotation = Quaternion.identity;
+
+        // Ensure the item is visible
+        currentHandItem.SetActive(true);
+
         Debug.Log($"Item displayed in hand: {item.itemName}");
     }
+
 }
