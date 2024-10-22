@@ -112,7 +112,7 @@ public class EnemyFollow : MonoBehaviour
     }
 
     // Trigger detection when the enemy touches the player
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
