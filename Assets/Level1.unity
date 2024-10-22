@@ -3189,6 +3189,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 400377538}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &408066312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7099896196824969478, guid: b0b58608657e85940b19aa84c1dbf0bb, type: 3}
+  m_PrefabInstance: {fileID: 84019571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &448588007
 GameObject:
   m_ObjectHideFlags: 0
@@ -7207,12 +7212,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f55bb7da276fc44ab1313948dac8b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverUI: {fileID: 0}
+  gameOverUI: {fileID: 408066312}
   gameOverEvent:
     m_PersistentCalls:
       m_Calls: []
   interactionPrompt: {fileID: 738524479}
   difficultyUI: {fileID: 1256358603}
+  Crosshair: {fileID: 1575467690}
   timerScript: {fileID: 1825423367}
 --- !u!1 &1177539402
 GameObject:
