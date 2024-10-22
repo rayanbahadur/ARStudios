@@ -16,9 +16,10 @@ public class HintSystem : MonoBehaviour
     void Start()
     {
         // Initialize the array with three hints
-        hints[0] = "Hint 1: Approach the buttons.";
-        hints[1] = "Hint 2: Try different combinations of shapes.";
-        hints[2] = "Hint 3: Sphere, Cylinder, Cube";
+        hints[0] = "Hint 1: Approach the Actuator.";
+        hints[1] = "Hint 2: Look for different combinations of shapes.";
+        hints[2] = "Hint 3: Answer the Phone.";
+        //hints[3] = "Hint 4: Pick up the hammer";
 
         // Initially hide the hint message
         hint.text = "";

@@ -21,8 +21,8 @@ public class PuzzleManager : MonoBehaviour
         if (puzzlePieceHolder1[0].activeInHierarchy && puzzlePieceHolder2[1].activeInHierarchy && puzzlePieceHolder3[2].activeInHierarchy)
         {
             Debug.Log("You win!!");
-            journalSystem.AddClue("VALVE: 8");
-            chickenDinner.Invoke();
+            journalSystem.AddClue("VALVE: 2");
+            //chickenDinner.Invoke();
         }
     }
 
@@ -30,6 +30,11 @@ public class PuzzleManager : MonoBehaviour
     {
         Debug.Log("BLUE");
         blueCounter++;
+
+        if (blueCounter >= 3)
+        {
+            blueCounter = 0;
+        }
 
         switch (blueCounter)
         {
@@ -48,20 +53,20 @@ public class PuzzleManager : MonoBehaviour
                 puzzlePieceHolder1[1].SetActive(false);
                 puzzlePieceHolder1[2].SetActive(true);
                 break;
-            case 3:
-                puzzlePieceHolder1[0].SetActive(true);
-                puzzlePieceHolder1[1].SetActive(false);
-                puzzlePieceHolder1[2].SetActive(false);
-                blueCounter = 0;
-                break;
-
         }
+
+        Winner(); // Check for a win after updating
     }
 
     public void purpleATM()
     {
         Debug.Log("PURPLE");
         purpleCounter++;
+
+        if (purpleCounter >= 3)
+        {
+            purpleCounter = 0;
+        }
 
         switch (purpleCounter)
         {
@@ -80,20 +85,20 @@ public class PuzzleManager : MonoBehaviour
                 puzzlePieceHolder2[1].SetActive(false);
                 puzzlePieceHolder2[2].SetActive(true);
                 break;
-            case 3:
-                puzzlePieceHolder2[0].SetActive(true);
-                puzzlePieceHolder2[1].SetActive(false);
-                puzzlePieceHolder2[2].SetActive(false);
-                purpleCounter = 0;
-                break;
-
         }
+
+        Winner(); // Check for a win after updating
     }
 
     public void redATM()
     {
         Debug.Log("RED");
         redCounter++;
+
+        if (redCounter >= 3)
+        {
+            redCounter = 0;
+        }
 
         switch (redCounter)
         {
@@ -112,13 +117,9 @@ public class PuzzleManager : MonoBehaviour
                 puzzlePieceHolder3[1].SetActive(false);
                 puzzlePieceHolder3[2].SetActive(true);
                 break;
-            case 3:
-                puzzlePieceHolder3[0].SetActive(true);
-                puzzlePieceHolder3[1].SetActive(false);
-                puzzlePieceHolder3[2].SetActive(false);
-                redCounter = 0;
-                break;
-
         }
+
+        Winner(); // Check for a win after updating
     }
+
 }
