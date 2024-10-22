@@ -29,9 +29,13 @@ public class EnemyFollow : MonoBehaviour
 
     public Material enemyMaterial;
 
+    private Renderer mazeEnemyRenderer;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        mazeEnemyRenderer = GetComponent<Renderer>();
 
         // Set enemy speed based on difficulty
         SetEnemySpeed(DifficultySelector.selectedDifficulty);
@@ -58,17 +62,17 @@ public class EnemyFollow : MonoBehaviour
         switch (difficulty)
         {
             case "Easy":
-                enemyMaterial.color = Color.green;
+                mazeEnemyRenderer.material.SetColor("_BaseColor", Color.green);
                 enemySpeed = 1.5f;
                 Debug.Log("Easy");
                 break;
             case "Hard":
-                enemyMaterial.color = Color.red;
+                mazeEnemyRenderer.material.SetColor("_BaseColor", Color.red);
                 enemySpeed = 3.0f;
                 Debug.Log("Hard");
                 break;
             default:
-                enemyMaterial.color = new Color(1f, 0.5f, 0f);
+                mazeEnemyRenderer.material.SetColor("_BaseColor", new Color(1f, 0.5f, 0f));
                 enemySpeed = 2.0f;
                 Debug.Log("Medium");
                 break;
