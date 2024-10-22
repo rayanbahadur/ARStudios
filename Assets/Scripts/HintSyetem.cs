@@ -6,7 +6,7 @@ using TMPro;
 public class HintSystem : MonoBehaviour
 {
     public TMP_Text hint;  // Reference to the TextMeshPro UI component
-    public string[] hints = new string[4];  // Array of hints
+    public string[] hints = new string[3];  // Array of hints
     public float hintInterval = 30f;  // Time in seconds before showing "Press H for a hint"
     public float hintDisplayTime = 5f;  // Time in seconds to display the hint message
     private int currentHintIndex = 0;  // Tracks which hint is currently being displayed
@@ -19,7 +19,7 @@ public class HintSystem : MonoBehaviour
         hints[0] = "Hint 1: Approach the Actuator.";
         hints[1] = "Hint 2: Look for different combinations of shapes.";
         hints[2] = "Hint 3: Answer the Phone.";
-        hints[3] = "Hint 4: Pick up the hammer";
+        //hints[3] = "Hint 4: Pick up the hammer";
 
         // Initially hide the hint message
         hint.text = "";
