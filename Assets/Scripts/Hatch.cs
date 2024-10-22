@@ -27,9 +27,10 @@ public class Hatch : MonoBehaviour
             {
                 // Destroy the hidden hatch
                 Destroy(gameObject);
+                journalSystem.AddClue("HATCH: 8");
                 Debug.Log("Hidden hatch broken with the hammer.");
                 hatchMessage.text = ""; // Clear the message
-                journalSystem.AddClue("HATCH: 8");
+
             }
             else
             {

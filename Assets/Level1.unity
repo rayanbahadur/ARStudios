@@ -1110,6 +1110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hatchMessage: {fileID: 2059889031}
+  journalSystem: {fileID: 1057062170}
 --- !u!64 &255095794
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1723,7 +1724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6293056489207918171, guid: 1d49eb2cdb3fe9149a0f2d1e66e1df39, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6980998125577034431, guid: 1d49eb2cdb3fe9149a0f2d1e66e1df39, type: 3}
       propertyPath: m_SizeDelta.x
