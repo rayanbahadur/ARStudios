@@ -13,8 +13,16 @@ public class HintSystem : MonoBehaviour
     private float hintTimer;  // Timer to control when the hint message shows
     private bool hintMessageVisible = false;  // Flag to check if the "Press H" message is showing
 
+    private myControls inputActions;
+
+    void Awake()
+    {
+        inputActions = new myControls();
+    }
+
     void Start()
     {
+        inputActions.Enable();
         // Initialize the array with three hints
         hints[0] = "Hint 1: Approach the Actuator.";
         hints[1] = "Hint 2: Look for different combinations of shapes.";
@@ -40,7 +48,7 @@ public class HintSystem : MonoBehaviour
         }
 
         // If the player presses the 'H' key, show the next hint
-        if (Input.GetKeyDown(KeyCode.H))
+        if (inputActions.Player.HintKey.WasPerformedThisFrame())
         {
             ShowHint();
         }

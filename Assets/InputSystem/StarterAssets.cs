@@ -71,6 +71,15 @@ public partial class @myControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HintKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""c96908f6-67c1-4a6f-99da-bf3127dc7100"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -260,6 +269,17 @@ public partial class @myControls: IInputActionCollection2, IDisposable
                     ""action"": ""ActionKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b9b0968-c1c1-4c90-acc1-95cd0ce76e7b"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""HintKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -321,6 +341,7 @@ public partial class @myControls: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_ActionKey = m_Player.FindAction("ActionKey", throwIfNotFound: true);
+        m_Player_HintKey = m_Player.FindAction("HintKey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -387,6 +408,7 @@ public partial class @myControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_ActionKey;
+    private readonly InputAction m_Player_HintKey;
     public struct PlayerActions
     {
         private @myControls m_Wrapper;
@@ -396,6 +418,7 @@ public partial class @myControls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @ActionKey => m_Wrapper.m_Player_ActionKey;
+        public InputAction @HintKey => m_Wrapper.m_Player_HintKey;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -420,6 +443,9 @@ public partial class @myControls: IInputActionCollection2, IDisposable
             @ActionKey.started += instance.OnActionKey;
             @ActionKey.performed += instance.OnActionKey;
             @ActionKey.canceled += instance.OnActionKey;
+            @HintKey.started += instance.OnHintKey;
+            @HintKey.performed += instance.OnHintKey;
+            @HintKey.canceled += instance.OnHintKey;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -439,6 +465,9 @@ public partial class @myControls: IInputActionCollection2, IDisposable
             @ActionKey.started -= instance.OnActionKey;
             @ActionKey.performed -= instance.OnActionKey;
             @ActionKey.canceled -= instance.OnActionKey;
+            @HintKey.started -= instance.OnHintKey;
+            @HintKey.performed -= instance.OnHintKey;
+            @HintKey.canceled -= instance.OnHintKey;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -499,5 +528,6 @@ public partial class @myControls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnActionKey(InputAction.CallbackContext context);
+        void OnHintKey(InputAction.CallbackContext context);
     }
 }
