@@ -80,6 +80,7 @@ public class Inventory : MonoBehaviour
                 Item selectedItem = Items[slotIndex - 1];
                 Debug.Log($"Slot {slotIndex} selected with item: {selectedItem.itemName}");
                 DisplayItemInHand(selectedItem);
+
             }
             else
             {
@@ -115,7 +116,9 @@ public class Inventory : MonoBehaviour
 
     //    // Instantiate the new item and set it as a child of the hand position
     //    currentHandItem = Instantiate(item.itemPrefab, HandPosition);
-    //    currentHandItem.transform.localPosition = Vector3.zero; 
+
+    //    // Reset local position, rotation, and scale
+    //    currentHandItem.transform.localPosition = Vector3.zero;
     //    currentHandItem.transform.localRotation = Quaternion.identity;
     //    Debug.Log($"Item displayed in hand: {item.itemName}");
     //}
@@ -129,34 +132,20 @@ public class Inventory : MonoBehaviour
             Debug.Log("Current hand item destroyed.");
         }
 
-        // Instantiate the new item and set it as a child of the hand position
-        currentHandItem = Instantiate(item.itemPrefab, HandPosition);
+        // Instantiate the new item
+        currentHandItem = Instantiate(item.itemPrefab);
+
+        // Set the parent to HandPosition
+        currentHandItem.transform.SetParent(HandPosition, false);
+
+        // Reset local position, rotation, and scale
         currentHandItem.transform.localPosition = Vector3.zero;
         currentHandItem.transform.localRotation = Quaternion.identity;
 
         // Ensure the item is visible
         currentHandItem.SetActive(true);
 
-        // Debug information
         Debug.Log($"Item displayed in hand: {item.itemName}");
-        Debug.Log($"Item position: {currentHandItem.transform.position}");
-        Debug.Log($"Item rotation: {currentHandItem.transform.rotation}");
-        Debug.Log($"Item scale: {currentHandItem.transform.localScale}");
-        Debug.Log($"Item layer: {LayerMask.LayerToName(currentHandItem.layer)}");
-
-        // Check if MeshRenderer is enabled
-        MeshRenderer meshRenderer = currentHandItem.GetComponent<MeshRenderer>();
-        if (meshRenderer != null)
-        {
-            Debug.Log($"MeshRenderer is present and enabled: {meshRenderer.enabled}");
-        }
-        else
-        {
-            Debug.LogError("MeshRenderer component is missing on the hammer prefab.");
-        }
-
-        // Check if the item is active
-        Debug.Log($"Item active state: {currentHandItem.activeSelf}");
     }
 
 }

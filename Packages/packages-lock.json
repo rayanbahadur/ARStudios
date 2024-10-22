@@ -94,9 +94,9 @@
       "source": "builtin",
       "dependencies": {
         "com.unity.mathematics": "1.2.1",
-        "com.unity.burst": "1.8.4",
-        "com.unity.render-pipelines.core": "15.0.6",
-        "com.unity.shadergraph": "15.0.6"
+        "com.unity.burst": "1.8.9",
+        "com.unity.render-pipelines.core": "15.0.7",
+        "com.unity.shadergraph": "15.0.7"
       }
     },
     "com.unity.searcher": {
@@ -111,7 +111,7 @@
       "depth": 0,
       "source": "builtin",
       "dependencies": {
-        "com.unity.render-pipelines.core": "15.0.6",
+        "com.unity.render-pipelines.core": "15.0.7",
         "com.unity.searcher": "4.9.2"
       }
     },
