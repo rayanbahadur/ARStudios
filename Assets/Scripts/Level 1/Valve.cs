@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro; 
 
-public class ATM : MonoBehaviour
+public class Valve : MonoBehaviour
 {
     public GameObject atmScreen;
     public GameObject interactionPrompt; 
