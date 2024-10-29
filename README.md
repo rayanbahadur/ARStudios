@@ -1,6 +1,8 @@
-# Fragmented Reality - AR Studios
+<img width="204" alt="Group 15 (1)" src="https://github.com/user-attachments/assets/70a81915-2b19-46b4-982c-af9068157a01">
 
-Welcome to Fragmented Reality! This game is hosted online and can be played directly in your browser. Follow the steps below to start playing:
+# Fractured Reality - AR Studios
+
+Welcome to Fractured Reality! This game is hosted online and can be played directly in your browser. Follow the steps below to start playing:
 
 ## How to Play:
 
