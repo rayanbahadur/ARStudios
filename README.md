@@ -1,4 +1,5 @@
-<img width="204" alt="Group 15 (1)" src="https://github.com/user-attachments/assets/70a81915-2b19-46b4-982c-af9068157a01">
+
+<img width="150" alt="Group 15 (1)" src="https://github.com/user-attachments/assets/123adcd7-c8bb-47f9-aa3b-bbfd2a01b25a">
 
 # Fractured Reality - AR Studios
 
