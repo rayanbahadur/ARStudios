@@ -27,6 +27,7 @@ public class MainMenuController : MonoBehaviour
     public string levelToLoad;
     [SerializeField] private GameObject noSavedGameDialog = null;
 
+
     private void Start()
     {
         // Load saved settings or set default values
@@ -60,6 +61,11 @@ public class MainMenuController : MonoBehaviour
         {
             noSavedGameDialog.SetActive(true);
         }
+    }
+
+    public void SetDifficulty(string DifficultyValue) {
+        PlayerPrefs.SetString("Difficulty", DifficultyValue);
+        StartCoroutine(ConfirmationBox());
     }
 
     public void SetMusic()

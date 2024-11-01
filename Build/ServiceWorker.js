@@ -1,4 +1,4 @@
-const cacheName = "AR Studios-Fragmented Reality-0.9";
+const cacheName = "AR Studios-Fractured Reality-1";
 const contentToCache = [
     "Build/Build.loader.js",
     "Build/Build.framework.js",
