@@ -38,7 +38,7 @@ public class EnemyFollow : MonoBehaviour
         mazeEnemyRenderer = GetComponent<Renderer>();
 
         // Set enemy speed based on difficulty
-        SetEnemySpeed(DifficultySelector.selectedDifficulty);
+        SetEnemySpeed(PlayerPrefs.GetString("Difficulty"));
 
         // Position the enemy behind the player initially
         PositionBehindPlayer();

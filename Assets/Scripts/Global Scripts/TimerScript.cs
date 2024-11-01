@@ -81,7 +81,7 @@ public class TimerScript : MonoBehaviour
     public float AdjustDifficultySettings()
     {
         // Start the timer based on difficulty, but it will remain paused until difficulty is chosen
-        string difficulty = DifficultySelector.selectedDifficulty;
+        string difficulty = PlayerPrefs.GetString("Difficulty");
         float adjustedTimer = START_TIME;
 
         switch (difficulty)
