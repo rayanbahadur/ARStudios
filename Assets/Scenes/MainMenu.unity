@@ -1179,9 +1179,13 @@ MonoBehaviour:
   soundEffectsSlider: {fileID: 1093147538}
   captionsToggle: {fileID: 2040362023}
   confirmationPrompt: {fileID: 1500244212}
-  _newGameLevel: 
-  levelToLoad: 
-  noSavedGameDialog: {fileID: 0}
+  levelButtons:
+  - {fileID: 882609465}
+  - {fileID: 1214124372}
+  - {fileID: 1117426580}
+  - {fileID: 118568695}
+  - {fileID: 213841198}
+  - {fileID: 194671876}
 --- !u!4 &390184220
 Transform:
   m_ObjectHideFlags: 0
