@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+// This script is attached to the hidden hatch object in the scene
+// It allows the player to break the hatch with the hammer item
+// The player must be in range and hold the hammer to break the hatch
+// The script also displays a message to the player when they are in range
+// and holding the hammer to break the hatch
+// The script also adds a clue to the journal when the hatch is broken
+// The script is attached to the hidden hatch object in the scene
 
 public class Hatch : MonoBehaviour
 {
