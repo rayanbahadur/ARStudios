@@ -21,13 +21,14 @@ public class LevelChange : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Get the current scene index
-            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
             // Check if there is a next level
-            if (currentSceneIndex + 1 < SceneManager.sceneCountInBuildSettings)
+            if (currentSceneIndex < SceneManager.sceneCountInBuildSettings)
             {
+                PlayerPrefs.SetString("SavedLevel", currentSceneIndex.ToString());
                 // Load the next level
-                SceneManager.LoadScene(currentSceneIndex + 1);
+                SceneManager.LoadScene(currentSceneIndex);
             }
             else
             {
