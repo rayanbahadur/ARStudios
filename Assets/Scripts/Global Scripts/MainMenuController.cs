@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Reflection;
 using TMPro;
@@ -23,9 +24,10 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject confirmationPrompt = null;
 
     [Header("Levels To Load")]
-    public string _newGameLevel;
-    public string levelToLoad;
-    [SerializeField] private GameObject noSavedGameDialog = null;
+    private int levelToLoad;
+    [SerializeField] private Button[] levelButtons = null;
+
+
 
 
     private void Start()
@@ -42,26 +44,43 @@ public class MainMenuController : MonoBehaviour
 
         // Bind captions toggle directly to PlayerPrefs
         captionsToggle.onValueChanged.AddListener(value => PlayerPrefs.SetInt("Captions", value ? 1 : 0));
-    }
-
-
-    public void NewGameDialogYes()
-    {
-        SceneManager.LoadScene(_newGameLevel);
-    }
-
-    public void LoadGameDialogYes()
-    {
         if (PlayerPrefs.HasKey("SavedLevel"))
         {
-            levelToLoad = PlayerPrefs.GetString("SavedLevel");
-            SceneManager.LoadScene(levelToLoad);
+            levelToLoad = int.Parse(PlayerPrefs.GetString("SavedLevel"));
+
         }
         else
         {
-            noSavedGameDialog.SetActive(true);
+            levelToLoad = 1;
+        }
+        SetButtonInteractivity();
+    }
+
+    private void SetButtonInteractivity()
+    {
+        for (int i = 0; i < levelButtons.Length; i++)
+        {
+            levelButtons[i].interactable = (i + 1) <= levelToLoad;
+            int levelIndex = i + 1;
+            levelButtons[i].onClick.RemoveAllListeners();
+            levelButtons[i].onClick.AddListener(() => SceneManager.LoadScene("Level " + levelIndex));
+        }
+
+    }
+
+    public void NewGameDialogYes()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+
+        // Check if there is a next level
+        if (currentSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            PlayerPrefs.SetString("SavedLevel", currentSceneIndex.ToString());
+            // Load the next level
+            SceneManager.LoadScene(currentSceneIndex);
         }
     }
+
 
     public void SetDifficulty(string DifficultyValue) {
         PlayerPrefs.SetString("Difficulty", DifficultyValue);
@@ -94,6 +113,7 @@ public class MainMenuController : MonoBehaviour
         {
             musicSlider.value = soundEffectsSlider.value = defaultAudio;
             musicTextValue.text = soundEffectsTextValue.text = defaultAudio.ToString("0.0");
+            captionsToggle.isOn = false;
             AudioApply();
         }
     }
