@@ -5424,6 +5424,10 @@ PrefabInstance:
       propertyPath: SprintSpeed
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8395869207675918883, guid: 949a2f702051af9408020480aad1700e, type: 3}
+      propertyPath: RotationSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 8395869207675918884, guid: 949a2f702051af9408020480aad1700e, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -6747,8 +6751,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
-  m_SizeDelta: {x: 530, y: 50}
+  m_AnchoredPosition: {x: 0, y: -69.26514}
+  m_SizeDelta: {x: 530, y: 88.5303}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1751048893
 MonoBehaviour:
