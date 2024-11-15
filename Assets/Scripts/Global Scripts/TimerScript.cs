@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using TMPro;
 
 public class TimerScript : MonoBehaviour
 {
@@ -30,41 +28,37 @@ public class TimerScript : MonoBehaviour
 
     void Update()
     {
-        // Only run the timer if the game is not paused (difficulty has been selected)
-        if (Time.timeScale > 0)
+        currentTime -= Time.deltaTime;
+
+        // Calculate minutes, seconds, and milliseconds
+        int minutes = Mathf.FloorToInt(currentTime / 60);
+        int seconds = Mathf.FloorToInt(currentTime % 60);
+        int milliseconds = Mathf.FloorToInt((currentTime * 100) % 100);
+
+        // Display the timer text in the format MM:SS:MS
+        displayTimeText.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
+
+        // Color transitions: SAFE_COLOR -> WARNING_COLOR -> DANGER_COLOR
+        if (currentTime > WARNING_TIME) // More than 2.5 minutes
         {
-            currentTime -= Time.deltaTime;
+            displayTimeText.color = SAFE_COLOR;
+        }
+        else if (currentTime > DANGER_TIME) // Between 2.5 minutes and 1 minute
+        {
+            displayTimeText.color = Color.Lerp(SAFE_COLOR, WARNING_COLOR, (START_TIME - currentTime) / (WARNING_TIME - DANGER_TIME));
+        }
+        else // Final minute
+        {
+            // Flash red for urgency
+            displayTimeText.color = Color.Lerp(WARNING_COLOR, DANGER_COLOR, (WARNING_TIME - currentTime) / (WARNING_TIME - DANGER_TIME));
+            displayTimeText.color = Color.Lerp(FLASH_COLOR, Color.white, Mathf.PingPong(Time.time * 2, 1f));
+        }
 
-            // Calculate minutes, seconds, and milliseconds
-            int minutes = Mathf.FloorToInt(currentTime / 60);
-            int seconds = Mathf.FloorToInt(currentTime % 60);
-            int milliseconds = Mathf.FloorToInt((currentTime * 100) % 100);
-
-            // Display the timer text in the format MM:SS:MS
-            displayTimeText.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
-
-            // Color transitions: SAFE_COLOR -> WARNING_COLOR -> DANGER_COLOR
-            if (currentTime > WARNING_TIME) // More than 2.5 minutes
-            {
-                displayTimeText.color = SAFE_COLOR;
-            }
-            else if (currentTime > DANGER_TIME) // Between 2.5 minutes and 1 minute
-            {
-                displayTimeText.color = Color.Lerp(SAFE_COLOR, WARNING_COLOR, (START_TIME - currentTime) / (WARNING_TIME - DANGER_TIME));
-            }
-            else // Final minute
-            {
-                // Flash red for urgency
-                displayTimeText.color = Color.Lerp(WARNING_COLOR, DANGER_COLOR, (WARNING_TIME - currentTime) / (WARNING_TIME - DANGER_TIME));
-                displayTimeText.color = Color.Lerp(FLASH_COLOR, Color.white, Mathf.PingPong(Time.time * 2, 1f));
-            }
-
-            // When the time runs out
-            if (currentTime <= 0)
-            {
-                currentTime = 0; // Set to zero to avoid negative values
-                gameOverEvent.Invoke(); // Invoke the game over event
-            }
+        // When the time runs out
+        if (currentTime <= 0)
+        {
+            currentTime = 0; // Set to zero to avoid negative values
+            gameOverEvent.Invoke(); // Invoke the game over event
         }
     }
     public void StartTimer()
