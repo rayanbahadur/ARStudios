@@ -151,7 +151,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionPrompt: {fileID: 0}
-  difficultyUI: {fileID: 0}
+  Crosshair: {fileID: 0}
   timerScript: {fileID: 0}
 --- !u!1 &2460254652192570611
 GameObject:
