@@ -6,11 +6,13 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Game Over")]
     public GameObject gameOverUI; // Reference to the Game Over UI
     public UnityEvent gameOverEvent; // UnityEvent to invoke on game over
+    [Header("Interaction")]
     public GameObject interactionPrompt;
     public GameObject Crosshair; // Reference to the Crosshair GameObject
-
+    [Header("Timer")]
     public TimerScript timerScript;
 
     private void Start()
@@ -49,4 +51,3 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
-
