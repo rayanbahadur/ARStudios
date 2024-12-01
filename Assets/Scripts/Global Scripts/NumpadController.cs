@@ -1,20 +1,71 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
+using StarterAssets;
 
 public class NumpadController : MonoBehaviour
 {
     public RandomNumberGenerator numberGenerator;
+
+    [Header("Numpad UI")]
+    public GameObject numpadUI;
     public TextMeshProUGUI inputField;
+
+    [Header("Interaction Settings")]
+    public GameObject interactionPrompt;
+    public TextMeshProUGUI interactionText;
+
+    private FirstPersonController firstPersonController; // Reference to the First Person Controller
+    private myControls inputActions;
+
     private int[] correctNumbers;
+    private void Awake()
+    {
+        inputActions = new myControls(); // Initialize input actions
+        inputActions.Player.Enable();
+    }
 
     void Start()
     {
+        firstPersonController = FindFirstObjectByType<FirstPersonController>(); // Find the FirstPersonController in the scene
         correctNumbers = numberGenerator.GetGeneratedNumbers(); // Get the correct numbers from the generator
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && !numpadUI.activeSelf && this.isActiveAndEnabled)
+        {
+            interactionText.text = $"Press 'E' to interact with {gameObject.name}";
+            interactionPrompt.SetActive(true);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if(inputActions.Player.ActionKey.triggered && !numpadUI.activeSelf)
+            {
+                numpadUI.SetActive(true);
+                interactionPrompt.SetActive(false);
+                EventSystem.current.SetSelectedGameObject(null); // Deselect any selected UI element
+                firstPersonController.enabled = false; // Disable movement
+                Cursor.lockState = CursorLockMode.None; // Unlock the cursor
+                Cursor.visible = true; // Show the cursor
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            interactionPrompt.SetActive(false);
+        }
     }
 
     public void OnNumpadButtonPressed(string number)
     {
-        Debug.Log("Button " + number + " pressed!");
         // Append the number to the input field
         inputField.text += number;
 
@@ -51,5 +102,10 @@ public class NumpadController : MonoBehaviour
     void UnlockBox()
     {
         Debug.Log("Lockbox opened!");
+        numpadUI.SetActive(false);
+        firstPersonController.enabled = true; // Enable movement
+        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor
+        Cursor.visible = false; // Hide the cursor
+
     }
 }
