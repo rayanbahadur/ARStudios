@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 322969909244090206}
   m_Layer: 0
   m_Name: Key_Rusty
-  m_TagString: Untagged
+  m_TagString: Key
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
