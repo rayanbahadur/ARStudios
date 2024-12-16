@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI; // For handling UI
+using TMPro;
 
 public class RealitySwitch : MonoBehaviour
 {
@@ -9,12 +11,15 @@ public class RealitySwitch : MonoBehaviour
     public GameObject fracturedReality;   // Parent object for Fractured Reality
     public Volume fracturedPostProcess;   // Post-processing volume for fractured reality
     public Camera playerCamera;           // Player's camera
-
+    public TextMeshProUGUI promptText;               // UI text for the initial prompt
+    public TextMeshProUGUI keyText;                  // UI text for the key objective
+    public float keyTextDuration = 10f;    // Duration to show the "Find the Key" text
     public float transitionDuration = 1.0f; // Time for the camera animation
 
-    private bool isFractured = false;     // Track current reality state
-    private Coroutine cameraAnimationCoroutine;
-    private Coroutine transitionCoroutine;
+    public bool isFractured = false;     // Track current reality state
+    private bool hasPressedZ = false;     // Track if the player has toggled fractured reality
+    public Coroutine cameraAnimationCoroutine;
+    public Coroutine transitionCoroutine;
 
     private void Start()
     {
@@ -22,12 +27,42 @@ public class RealitySwitch : MonoBehaviour
         fracturedPostProcess.weight = 0;    // Disable fractured post-processing
         normalReality.SetActive(true);      // Enable Normal Reality objects
         fracturedReality.SetActive(false); // Disable Fractured Reality objects
+
+        // Show the initial prompt
+        if (promptText != null)
+        {
+            promptText.text = "Press Z to enter the fractured reality!";
+            promptText.gameObject.SetActive(true);
+        }
+
+        if (keyText != null)
+        {
+            keyText.gameObject.SetActive(false); // Hide the key text initially
+        }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z)) // Press 'Z' to toggle
+        if (Input.GetKeyDown(KeyCode.Z))
         {
+            if (!hasPressedZ) // First-time toggle
+            {
+                hasPressedZ = true;
+
+                // Hide the initial prompt
+                if (promptText != null)
+                {
+                    promptText.gameObject.SetActive(false);
+                }
+
+                // Show "Find the Key" message for a few seconds
+                if (keyText != null)
+                {
+                    StartCoroutine(ShowKeyText());
+                }
+            }
+
+            // Toggle the fractured reality
             isFractured = !isFractured;
             if (transitionCoroutine != null)
             {
@@ -37,7 +72,17 @@ public class RealitySwitch : MonoBehaviour
         }
     }
 
-    private IEnumerator SmoothTransition(bool toFractured)
+    private IEnumerator ShowKeyText()
+    {
+        if (keyText != null)
+        {
+            keyText.gameObject.SetActive(true); // Show the "Find the Key" message
+            yield return new WaitForSeconds(keyTextDuration);
+            keyText.gameObject.SetActive(false); // Hide it after the duration
+        }
+    }
+
+    public IEnumerator SmoothTransition(bool toFractured)
     {
         float timeElapsed = 0f;
         float startWeight = fracturedPostProcess.weight;
