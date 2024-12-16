@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using StarterAssets;
+using UnityEngine.UI;
 
 public class NumpadController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class NumpadController : MonoBehaviour
     private myControls inputActions;
 
     private int[] correctNumbers;
+    private Outline outline;
     private void Awake()
     {
         inputActions = new myControls(); // Initialize input actions
@@ -29,6 +31,8 @@ public class NumpadController : MonoBehaviour
     {
         firstPersonController = FindFirstObjectByType<FirstPersonController>(); // Find the FirstPersonController in the scene
         correctNumbers = numberGenerator.GetGeneratedNumbers(); // Get the correct numbers from the generator
+        outline = gameObject.GetComponent<Outline>();
+        outline.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,6 +41,7 @@ public class NumpadController : MonoBehaviour
         {
             interactionText.text = $"Press 'E' to interact with {gameObject.name}";
             interactionPrompt.SetActive(true);
+            outline.enabled = true;
         }
     }
 
@@ -48,6 +53,7 @@ public class NumpadController : MonoBehaviour
             {
                 numpadUI.SetActive(true);
                 interactionPrompt.SetActive(false);
+                outline.enabled = false;
                 EventSystem.current.SetSelectedGameObject(null); // Deselect any selected UI element
                 firstPersonController.enabled = false; // Disable movement
                 Cursor.lockState = CursorLockMode.None; // Unlock the cursor
@@ -61,6 +67,7 @@ public class NumpadController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             interactionPrompt.SetActive(false);
+            outline.enabled = false;
         }
     }
 
