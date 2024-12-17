@@ -8,6 +8,7 @@ TagManager:
   - Hammer
   - KeypadButton
   - Key
+  - Fire
   layers:
   - Default
   - TransparentFX

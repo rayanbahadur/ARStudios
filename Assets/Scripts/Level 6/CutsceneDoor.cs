@@ -5,7 +5,7 @@ public class CutsceneDoor : MonoBehaviour
 {
     public RealitySwitch realitySwitch; // Reference to the RealitySwitch script
     public Transform player;            // Reference to the player transform
-    public float painDuration = 20.0f;   // Duration of the pain effect
+    public GameObject fire;             // Reference to the fire GameObject
     public float doorOpenAngle = 90f;   // Angle to open the door
     public float doorOpenDuration = 0.5f; // Duration to open the door
 
@@ -17,6 +17,17 @@ public class CutsceneDoor : MonoBehaviour
             if (!realitySwitch.isFractured)
             {
                 StartCoroutine(ForceFracturedReality());
+            }
+
+            // Activate the fire object
+            if (fire != null)
+            {
+                fire.SetActive(true);
+                Debug.Log("Fire activated.");
+            }
+            else
+            {
+                Debug.LogWarning("Fire reference is missing.");
             }
         }
     }
@@ -34,27 +45,7 @@ public class CutsceneDoor : MonoBehaviour
         // Open the door violently
         StartCoroutine(OpenDoor());
 
-        // Move the player's head violently to simulate pain
-        float timeElapsed = 0f;
-        while (timeElapsed < painDuration)
-        {
-            float swayX = Mathf.Sin(Time.time * 20f) * 0.5f;  // Rapid horizontal sway
-            float swayY = Mathf.Cos(Time.time * 20f) * 0.5f;  // Rapid vertical sway
-            float tiltZ = Mathf.Sin(Time.time * 15f) * 10f;   // Rapid Z-axis tilt
-
-            // Apply sway to player position
-            player.localPosition = new Vector3(swayX, swayY, player.localPosition.z);
-
-            // Apply tilt to player rotation
-            player.localRotation = Quaternion.Euler(0, 0, tiltZ);
-
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        // Reset player position and rotation after the pain effect
-        player.localPosition = Vector3.zero;
-        player.localRotation = Quaternion.identity;
+        yield return null;
     }
 
     private IEnumerator OpenDoor()
