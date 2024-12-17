@@ -9,6 +9,14 @@ public class CutsceneDoor : MonoBehaviour
     public float doorOpenAngle = 90f;   // Angle to open the door
     public float doorOpenDuration = 0.5f; // Duration to open the door
 
+    private BoxCollider triggerCollider; // Reference to the door's box collider that serves as a trigger
+
+    private void Start()
+    {
+        // Get the door's box collider component
+        triggerCollider = GetComponent<BoxCollider>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -62,5 +70,11 @@ public class CutsceneDoor : MonoBehaviour
         }
 
         transform.localRotation = targetRotation;
+
+        // Disable the door's trigger collider to prevent further triggering
+        if (triggerCollider != null)
+        {
+            triggerCollider.enabled = false;
+        }
     }
 }

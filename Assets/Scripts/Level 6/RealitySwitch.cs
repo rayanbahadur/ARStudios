@@ -13,13 +13,15 @@ public class RealitySwitch : MonoBehaviour
     public Camera playerCamera;           // Player's camera
     public TextMeshProUGUI promptText;               // UI text for the initial prompt
     public TextMeshProUGUI keyText;                  // UI text for the key objective
-    public float keyTextDuration = 10f;    // Duration to show the "Find the Key" text
-    public float transitionDuration = 1.0f; // Time for the camera animation
+    public float keyTextDuration = 30f;    // Duration to show the "Find the Key" text
+    public float transitionDuration = 2.0f; // Time for the camera animation
+    public Image blackoutImage;            // UI Image for blackout effect
 
     public bool isFractured = false;     // Track current reality state
     private bool hasPressedZ = false;     // Track if the player has toggled fractured reality
-    public Coroutine cameraAnimationCoroutine;
     public Coroutine transitionCoroutine;
+
+    private ColorAdjustments colorAdjustments;
 
     private void Start()
     {
@@ -38,6 +40,18 @@ public class RealitySwitch : MonoBehaviour
         if (keyText != null)
         {
             keyText.gameObject.SetActive(false); // Hide the key text initially
+        }
+
+        // Get the color adjustments effect from the post-processing volume
+        if (fracturedPostProcess.profile.TryGet(out ColorAdjustments colorAdjustmentsEffect))
+        {
+            colorAdjustments = colorAdjustmentsEffect;
+        }
+
+        // Ensure the blackout image is fully transparent at the start
+        if (blackoutImage != null)
+        {
+            blackoutImage.color = new Color(0, 0, 0, 0);
         }
     }
 
@@ -85,75 +99,49 @@ public class RealitySwitch : MonoBehaviour
     public IEnumerator SmoothTransition(bool toFractured)
     {
         float timeElapsed = 0f;
+        float halfDuration = transitionDuration / 2;
         float startWeight = fracturedPostProcess.weight;
         float endWeight = toFractured ? 1f : 0f;
 
-        // Enable the target reality at the start of the transition
+        // Phase 1: Fade to black
+        while (timeElapsed < halfDuration)
+        {
+            float t = timeElapsed / halfDuration;
+            blackoutImage.color = new Color(0, 0, 0, Mathf.Lerp(0, 1, t));
+
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the blackout image is fully opaque
+        blackoutImage.color = new Color(0, 0, 0, 1);
+
+        // Enable the target reality at the midpoint of the transition
         if (toFractured)
         {
             fracturedReality.SetActive(true);
+            normalReality.SetActive(false);
         }
         else
         {
             normalReality.SetActive(true);
+            fracturedReality.SetActive(false);
         }
 
-        while (timeElapsed < transitionDuration)
+        // Phase 2: Fade to clear and adjust post-processing
+        timeElapsed = 0f;
+        while (timeElapsed < halfDuration)
         {
-            float t = timeElapsed / transitionDuration;
+            float t = timeElapsed / halfDuration;
+            blackoutImage.color = new Color(0, 0, 0, Mathf.Lerp(1, 0, t));
             fracturedPostProcess.weight = Mathf.Lerp(startWeight, endWeight, t);
 
             timeElapsed += Time.deltaTime;
             yield return null;
         }
 
+        // Ensure the blackout image is fully transparent
+        blackoutImage.color = new Color(0, 0, 0, 0);
         fracturedPostProcess.weight = endWeight;
-
-        // Disable the other reality at the end of the transition
-        if (toFractured)
-        {
-            normalReality.SetActive(false);
-        }
-        else
-        {
-            fracturedReality.SetActive(false);
-        }
-
-        // Start or stop the camera animation based on the current reality
-        if (toFractured)
-        {
-            cameraAnimationCoroutine = StartCoroutine(AnimateCamera());
-        }
-        else if (cameraAnimationCoroutine != null)
-        {
-            StopCoroutine(cameraAnimationCoroutine);
-            ResetCamera();
-        }
-    }
-
-    private IEnumerator AnimateCamera()
-    {
-        while (true)
-        {
-            // Simulate a swaying motion by adjusting position and rotation
-            float swayX = Mathf.Sin(Time.time * 5f) * 0.5f;  // Horizontal sway
-            float swayY = Mathf.Cos(Time.time * 5f) * 0.5f;  // Vertical sway
-            float tiltZ = Mathf.Sin(Time.time * 3f) * 10f;   // Z-axis tilt for disorientation
-
-            // Apply sway to camera position
-            playerCamera.transform.localPosition = new Vector3(swayX, swayY, playerCamera.transform.localPosition.z);
-
-            // Apply tilt to camera rotation
-            playerCamera.transform.localRotation = Quaternion.Euler(0, 0, tiltZ);
-
-            yield return null;
-        }
-    }
-
-    private void ResetCamera()
-    {
-        // Reset camera to its original state
-        playerCamera.transform.localPosition = Vector3.zero;
-        playerCamera.transform.localRotation = Quaternion.identity;
     }
 }

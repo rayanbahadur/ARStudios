@@ -43,7 +43,7 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.4
+    m_Value: 0
   contrast:
     m_OverrideState: 0
     m_Value: 0
@@ -205,7 +205,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: -0.409
   xMultiplier:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   yMultiplier:
     m_OverrideState: 0
