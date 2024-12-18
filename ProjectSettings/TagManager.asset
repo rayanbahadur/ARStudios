@@ -7,6 +7,8 @@ TagManager:
   - CinemachineTarget
   - Hammer
   - KeypadButton
+  - Key
+  - Fire
   - BlackCrate
   - BlueCrate
   - BrownCrate
@@ -29,7 +31,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - vlight
   - 
   - 
   - 

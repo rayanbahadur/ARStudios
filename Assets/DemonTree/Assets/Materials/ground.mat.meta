@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 140f05b8a66a5fe49926328c6a6ddc41
+timeCreated: 1432650568
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86461
+  packageName: Demon Tree
+  packageVersion: 1.0
+  assetPath: Assets/DemonTree/Assets/Materials/ground.mat
+  uploadId: 173258

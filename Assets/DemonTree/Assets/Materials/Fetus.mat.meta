@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: aa9a5dc96d123a545afc3985b2f73211
+timeCreated: 1490231284
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86461
+  packageName: Demon Tree
+  packageVersion: 1.0
+  assetPath: Assets/DemonTree/Assets/Materials/Fetus.mat
+  uploadId: 173258

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: db34782fd751b1c44a7370553029cca4
+timeCreated: 1490979240
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86461
+  packageName: Demon Tree
+  packageVersion: 1.0
+  assetPath: Assets/DemonTree/Assets/Animators/Demon.controller
+  uploadId: 173258

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 819cbbaeb2626f548baa51b260d2bb46
+timeCreated: 1490981216
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86461
+  packageName: Demon Tree
+  packageVersion: 1.0
+  assetPath: Assets/DemonTree/Assets/Animators/Cocoon.controller
+  uploadId: 173258
