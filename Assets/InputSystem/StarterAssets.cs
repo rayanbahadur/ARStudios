@@ -80,6 +80,15 @@ public partial class @myControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LMouseClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""84c47025-9d8d-4095-911c-b35678f65cd0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -280,6 +289,28 @@ public partial class @myControls: IInputActionCollection2, IDisposable
                     ""action"": ""HintKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1a8a3d3-0751-4760-a89f-1ae81035266a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LMouseClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""907ba058-a173-4495-8bca-934399fc6192"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""LMouseClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -342,6 +373,7 @@ public partial class @myControls: IInputActionCollection2, IDisposable
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_ActionKey = m_Player.FindAction("ActionKey", throwIfNotFound: true);
         m_Player_HintKey = m_Player.FindAction("HintKey", throwIfNotFound: true);
+        m_Player_LMouseClick = m_Player.FindAction("LMouseClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -409,6 +441,7 @@ public partial class @myControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_ActionKey;
     private readonly InputAction m_Player_HintKey;
+    private readonly InputAction m_Player_LMouseClick;
     public struct PlayerActions
     {
         private @myControls m_Wrapper;
@@ -419,6 +452,7 @@ public partial class @myControls: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @ActionKey => m_Wrapper.m_Player_ActionKey;
         public InputAction @HintKey => m_Wrapper.m_Player_HintKey;
+        public InputAction @LMouseClick => m_Wrapper.m_Player_LMouseClick;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -446,6 +480,9 @@ public partial class @myControls: IInputActionCollection2, IDisposable
             @HintKey.started += instance.OnHintKey;
             @HintKey.performed += instance.OnHintKey;
             @HintKey.canceled += instance.OnHintKey;
+            @LMouseClick.started += instance.OnLMouseClick;
+            @LMouseClick.performed += instance.OnLMouseClick;
+            @LMouseClick.canceled += instance.OnLMouseClick;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -468,6 +505,9 @@ public partial class @myControls: IInputActionCollection2, IDisposable
             @HintKey.started -= instance.OnHintKey;
             @HintKey.performed -= instance.OnHintKey;
             @HintKey.canceled -= instance.OnHintKey;
+            @LMouseClick.started -= instance.OnLMouseClick;
+            @LMouseClick.performed -= instance.OnLMouseClick;
+            @LMouseClick.canceled -= instance.OnLMouseClick;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -529,5 +569,6 @@ public partial class @myControls: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnActionKey(InputAction.CallbackContext context);
         void OnHintKey(InputAction.CallbackContext context);
+        void OnLMouseClick(InputAction.CallbackContext context);
     }
 }

@@ -15,12 +15,12 @@ public class NumpadController : MonoBehaviour
     [Header("Interaction Settings")]
     public GameObject interactionPrompt;
     public TextMeshProUGUI interactionText;
+    public Outline outline;
 
     private FirstPersonController firstPersonController; // Reference to the First Person Controller
     private myControls inputActions;
 
     private int[] correctNumbers;
-    private Outline outline;
     private void Awake()
     {
         inputActions = new myControls(); // Initialize input actions
@@ -31,15 +31,14 @@ public class NumpadController : MonoBehaviour
     {
         firstPersonController = FindFirstObjectByType<FirstPersonController>(); // Find the FirstPersonController in the scene
         correctNumbers = numberGenerator.GetGeneratedNumbers(); // Get the correct numbers from the generator
-        outline = gameObject.GetComponent<Outline>();
-        outline.enabled = false;
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !numpadUI.activeSelf && this.isActiveAndEnabled)
         {
-            interactionText.text = $"Press 'E' to interact with {gameObject.name}";
+            interactionText.text = $"Press 'E' to open lockbox";
             interactionPrompt.SetActive(true);
             outline.enabled = true;
         }
@@ -49,15 +48,15 @@ public class NumpadController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if(inputActions.Player.ActionKey.triggered && !numpadUI.activeSelf)
+            if (inputActions.Player.ActionKey.triggered)
             {
-                numpadUI.SetActive(true);
-                interactionPrompt.SetActive(false);
-                outline.enabled = false;
-                EventSystem.current.SetSelectedGameObject(null); // Deselect any selected UI element
-                firstPersonController.enabled = false; // Disable movement
-                Cursor.lockState = CursorLockMode.None; // Unlock the cursor
-                Cursor.visible = true; // Show the cursor
+                if (!numpadUI.activeSelf)
+                {
+                    ToggleNumpadUI(true);
+                }
+                else {
+                    ToggleNumpadUI(false);
+                }
             }
         }
     }
@@ -114,5 +113,20 @@ public class NumpadController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked; // Lock the cursor
         Cursor.visible = false; // Hide the cursor
 
+    }
+
+
+    private void ToggleNumpadUI(bool state) {
+        numpadUI.SetActive(state); // Hide the numpad UI
+        firstPersonController.enabled = !state; // Re-enable player movement
+        Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked; // Lock the cursor
+        Cursor.visible = state; // Hide the cursor
+        interactionPrompt.SetActive(!state);
+        outline.enabled = !state;
+
+        if (!state)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
     }
 }
