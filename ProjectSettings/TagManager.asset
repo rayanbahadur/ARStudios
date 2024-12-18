@@ -9,6 +9,21 @@ TagManager:
   - KeypadButton
   - Key
   - Fire
+  - BlackCrate
+  - BlueCrate
+  - BrownCrate
+  - RedCrate
+  - LBrownCrate
+  - WoodCrate
+  - PurpleCrate
+  - BedCrate
+  - GreyCrate
+  - CellCrate
+  - MetalCrate
+  - CorridorCrate
+  - MatrixCrate
+  - VentCrate
+  - GlassCrate
   layers:
   - Default
   - TransparentFX
