@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 8303bab90cc194438be6a20410f9c5c2
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 2037
+  packageName: V-Light Volumetric Lights
+  packageVersion: 1.3.1
+  assetPath: Assets/VLights/Shaders/Light/VLightHelperArea.cginc
+  uploadId: 300437

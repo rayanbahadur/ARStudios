@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: fba27a6fca09246dab46cfb730cd71b2
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 2037
+  packageName: V-Light Volumetric Lights
+  packageVersion: 1.3.1
+  assetPath: Assets/VLights/Shaders/Light/Legacy/VolumeLightPoint.shader
+  uploadId: 300437

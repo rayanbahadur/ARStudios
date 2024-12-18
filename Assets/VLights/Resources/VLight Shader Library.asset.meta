@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7747d300c01744201b6feaaa4716d88b
+timeCreated: 1468025833
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 2037
+  packageName: V-Light Volumetric Lights
+  packageVersion: 1.3.1
+  assetPath: Assets/VLights/Resources/VLight Shader Library.asset
+  uploadId: 300437

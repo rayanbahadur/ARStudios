@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1a75500d937b846d38ca93a2943b57c6
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 2037
+  packageName: V-Light Volumetric Lights
+  packageVersion: 1.3.1
+  assetPath: Assets/VLights/Scripts/VLight/VLightManager.cs
+  uploadId: 300437

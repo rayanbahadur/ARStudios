@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: bf05a9ffc06b5c64ea4eba604fcaf133
+DefaultImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 2037
+  packageName: V-Light Volumetric Lights
+  packageVersion: 1.3.1
+  assetPath: Assets/VLights/Scenes/light attenuation parameters.unity
+  uploadId: 300437

@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: dd36a29b2d153244ba3d06d8217c876c
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 2037
+  packageName: V-Light Volumetric Lights
+  packageVersion: 1.3.1
+  assetPath: Assets/VLights/Materials/VLights Default Point Light.mat
+  uploadId: 300437
