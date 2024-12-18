@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 169767bee1a967a46b71e1d953d97723
+timeCreated: 1491835706
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86461
+  packageName: Demon Tree
+  packageVersion: 1.0
+  assetPath: Assets/DemonTree/Assets/Prefabs/Ground.prefab
+  uploadId: 173258

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ec29202fb26c34d40b5a2f8e4afdfcd1
+timeCreated: 1490224590
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86461
+  packageName: Demon Tree
+  packageVersion: 1.0
+  assetPath: Assets/DemonTree/Demo/DemonTree.unity
+  uploadId: 173258

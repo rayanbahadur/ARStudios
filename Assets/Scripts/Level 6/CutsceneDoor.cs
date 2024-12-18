@@ -21,10 +21,15 @@ public class CutsceneDoor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Force the user into fractured reality
+            // Force the user into fractured reality if not already in it
             if (!realitySwitch.isFractured)
             {
                 StartCoroutine(ForceFracturedReality());
+            }
+            else
+            {
+                // Open the door if already in fractured reality
+                StartCoroutine(OpenDoor());
             }
 
             // Activate the fire object

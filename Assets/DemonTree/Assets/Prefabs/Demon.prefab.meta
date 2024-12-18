@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e57ff2a222c0ed44ea41cc22b40f0b81
+timeCreated: 1491835465
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86461
+  packageName: Demon Tree
+  packageVersion: 1.0
+  assetPath: Assets/DemonTree/Assets/Prefabs/Demon.prefab
+  uploadId: 173258

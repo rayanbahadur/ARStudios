@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a43cebbd54f77c04785806d2edd24f78
+timeCreated: 1490225003
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86461
+  packageName: Demon Tree
+  packageVersion: 1.0
+  assetPath: Assets/DemonTree/Assets/Materials/Tree.mat
+  uploadId: 173258
