@@ -59,47 +59,49 @@ public class Death : MonoBehaviour
     {
         Vector3 directionToPlayer = playerTransform.position - demonHead.position;
         RaycastHit hit;
+        float sphereRadius = 0.1f; // Adjust the radius as needed
 
         Debug.DrawRay(demonHead.position, directionToPlayer, Color.red, 1.0f); // Draw the ray in the scene view for debugging
 
-        // Perform raycast to check for obstructions
-        if (Physics.Raycast(demonHead.position, directionToPlayer, out hit, Mathf.Infinity, obstructionMask))
+        // Perform spherecast to check for obstructions
+        if (Physics.SphereCast(demonHead.position, sphereRadius, directionToPlayer, out hit, Mathf.Infinity, obstructionMask))
         {
-            Debug.Log("Raycast hit: " + hit.collider.name); // Debug log to see what the raycast hits
+            Debug.Log("SphereCast hit: " + hit.collider.name); // Debug log to see what the spherecast hits
 
             if (hit.collider.CompareTag("Player"))
             {
-                Debug.Log("Raycast hit the player directly. Player is visible to the demon.");
+                Debug.Log("SphereCast hit the player directly. Player is visible to the demon.");
                 return true; // Player is visible
             }
             else
             {
-                Debug.Log("Raycast hit an obstruction: " + hit.collider.name);
+                Debug.Log("SphereCast hit an obstruction: " + hit.collider.name);
                 return false; // Player is obstructed
             }
         }
         else
         {
-            Debug.Log("Raycast did not hit anything.");
+            Debug.Log("SphereCast did not hit anything.");
         }
 
-        // Perform a separate raycast specifically for the player
+        // Perform a separate spherecast specifically for the player
         int playerLayer = LayerMask.NameToLayer("Player"); // Assuming the player is on the Default layer
         LayerMask playerLayerMask = 1 << playerLayer;
 
-        if (Physics.Raycast(demonHead.position, directionToPlayer, out hit, Mathf.Infinity, playerLayerMask))
+        if (Physics.SphereCast(demonHead.position, sphereRadius, directionToPlayer, out hit, Mathf.Infinity, playerLayerMask))
         {
-            Debug.Log("Separate raycast for player hit: " + hit.collider.name); // Debug log to see what the separate raycast hits
+            Debug.Log("Separate SphereCast for player hit: " + hit.collider.name); // Debug log to see what the separate spherecast hits
 
             if (hit.collider.CompareTag("Player"))
             {
-                Debug.Log("Separate raycast hit the player directly. Player is visible to the demon.");
+                Debug.Log("Separate SphereCast hit the player directly. Player is visible to the demon.");
                 return true; // Player is visible
             }
         }
 
         return false; // Player is not visible
     }
+
 
     // Method to handle game over logic
     private void HandleGameOver()
