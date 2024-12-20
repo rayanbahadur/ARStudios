@@ -22,6 +22,12 @@ public class RealitySwitch : MonoBehaviour
     public Coroutine transitionCoroutine;
 
     private ColorAdjustments colorAdjustments;
+    private myControls inputActions;
+
+    private void Awake()
+    {
+        inputActions = new myControls(); // Initialize input actions
+    }
 
     private void Start()
     {
@@ -57,7 +63,7 @@ public class RealitySwitch : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (inputActions.Player.ToggleReality.WasPerformedThisFrame())
         {
             if (!hasPressedZ) // First-time toggle
             {
@@ -143,5 +149,15 @@ public class RealitySwitch : MonoBehaviour
         // Ensure the blackout image is fully transparent
         blackoutImage.color = new Color(0, 0, 0, 0);
         fracturedPostProcess.weight = endWeight;
+    }
+
+    public void OnEnable()
+    {
+        inputActions.Player.Enable();
+    }
+
+    public void OnDisable()
+    {
+        inputActions.Player.Disable();
     }
 }

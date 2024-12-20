@@ -13,6 +13,12 @@ public class OpenDoor : MonoBehaviour
     private bool isOpen = false;
     private Quaternion closedRotation;
     private Quaternion openRotation;
+    private myControls inputActions;
+
+    private void Awake()
+    {
+        inputActions = new myControls(); // Initialize input actions
+    }
 
     private void Start()
     {
@@ -23,7 +29,7 @@ public class OpenDoor : MonoBehaviour
     private void Update()
     {
         // Check for interaction input (E key) only if the player is in range and the door is not already open
-        if (isPlayerInRange && !isOpen && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerInRange && !isOpen && inputActions.Player.ActionKey.WasPerformedThisFrame())
         {
             TryOpenDoor();
         }
@@ -84,4 +90,15 @@ public class OpenDoor : MonoBehaviour
             doorMessage.text = ""; // Clear the message
         }
     }
+
+    public void OnEnable()
+    {
+        inputActions.Player.Enable();
+    }
+
+    public void OnDisable()
+    {
+        inputActions.Player.Disable();
+    }
+
 }
