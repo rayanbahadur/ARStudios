@@ -301,6 +301,17 @@ public partial class @myControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""21a02010-e1f3-4aa5-bb72-efa42a3cf937"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""ToggleReality"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""a1a8a3d3-0751-4760-a89f-1ae81035266a"",
                     ""path"": """",
                     ""interactions"": """",
@@ -318,17 +329,6 @@ public partial class @myControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
                     ""action"": ""LMouseClick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""21a02010-e1f3-4aa5-bb72-efa42a3cf937"",
-                    ""path"": ""<Keyboard>/z"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
-                    ""action"": ""ToggleReality"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }

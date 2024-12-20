@@ -39,7 +39,7 @@ public class RealitySwitch : MonoBehaviour
         // Show the initial prompt
         if (promptText != null)
         {
-            promptText.text = "Press Z to enter the fractured reality!";
+            promptText.text = "Press Z to switch between realities!";
             promptText.gameObject.SetActive(true);
         }
 
