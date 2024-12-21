@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 using StarterAssets;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class NumpadController : MonoBehaviour
 {
@@ -17,8 +18,14 @@ public class NumpadController : MonoBehaviour
     public TextMeshProUGUI interactionText;
     public Outline outline;
 
+    [Header("Success")]
+    [SerializeField] public Item Item;
+    [SerializeField] public PlayableDirector UnlockLockbox;
+
     private FirstPersonController firstPersonController; // Reference to the First Person Controller
     private myControls inputActions;
+    private Collider lockboxCollider;
+    private AudioSource audioSource;
 
     private int[] correctNumbers;
     private void Awake()
@@ -31,6 +38,8 @@ public class NumpadController : MonoBehaviour
     {
         firstPersonController = FindFirstObjectByType<FirstPersonController>(); // Find the FirstPersonController in the scene
         correctNumbers = numberGenerator.GetGeneratedNumbers(); // Get the correct numbers from the generator
+        audioSource = GetComponent<AudioSource>();
+
     }
 
 
@@ -105,15 +114,49 @@ public class NumpadController : MonoBehaviour
         UnlockBox();
     }
 
-    void UnlockBox()
+    public void UnlockBox()
     {
-        Debug.Log("Lockbox opened!");
-        numpadUI.SetActive(false);
-        firstPersonController.enabled = true; // Enable movement
-        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor
-        Cursor.visible = false; // Hide the cursor
 
+        float soundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", 1.0f);
+
+        // Play the unlock sound with the specified volume
+        if (audioSource != null)
+        {
+            audioSource.volume = soundEffectVolume; // Set volume from PlayerPrefs
+            audioSource.Play();
+        }
+
+        // Disable the numpad UI
+        numpadUI.SetActive(false);
+
+        // Show Timeline Cutscene Animation
+        if (UnlockLockbox != null)
+        {
+            UnlockLockbox.Play();
+
+            // Subscribe to the stopped event
+            UnlockLockbox.stopped += director =>
+            {
+                // Actions to perform after the Timeline finishes
+                PostTimelineActions();
+            };
+        }
+        else
+        {
+            // Perform actions immediately if no Timeline is assigned
+            PostTimelineActions();
+        }
     }
+
+    private void PostTimelineActions()
+    {
+
+        // Turn off Lockbox Collider
+        lockboxCollider = GetComponent<BoxCollider>();
+        if (lockboxCollider != null) { lockboxCollider.enabled = false; }
+    }
+
+
 
 
     private void ToggleNumpadUI(bool state) {

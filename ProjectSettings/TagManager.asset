@@ -25,11 +25,12 @@ TagManager:
   - VentCrate
   - GlassCrate
   - Port
+  - Screwdriver
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ignore Bake
   - Water
   - UI
   - vlight
