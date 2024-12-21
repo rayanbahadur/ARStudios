@@ -30,10 +30,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ignore Bake
+  - Player
   - Water
   - UI
-  - vlight
+  - Obstruction
   - 
   - 
   - 

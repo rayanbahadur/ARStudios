@@ -89,6 +89,15 @@ public partial class @myControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleReality"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c1ec3c0-8d30-4f71-ae93-cd7a3f991e7e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -292,6 +301,17 @@ public partial class @myControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""21a02010-e1f3-4aa5-bb72-efa42a3cf937"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""ToggleReality"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""a1a8a3d3-0751-4760-a89f-1ae81035266a"",
                     ""path"": """",
                     ""interactions"": """",
@@ -374,6 +394,7 @@ public partial class @myControls: IInputActionCollection2, IDisposable
         m_Player_ActionKey = m_Player.FindAction("ActionKey", throwIfNotFound: true);
         m_Player_HintKey = m_Player.FindAction("HintKey", throwIfNotFound: true);
         m_Player_LMouseClick = m_Player.FindAction("LMouseClick", throwIfNotFound: true);
+        m_Player_ToggleReality = m_Player.FindAction("ToggleReality", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -442,6 +463,7 @@ public partial class @myControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ActionKey;
     private readonly InputAction m_Player_HintKey;
     private readonly InputAction m_Player_LMouseClick;
+    private readonly InputAction m_Player_ToggleReality;
     public struct PlayerActions
     {
         private @myControls m_Wrapper;
@@ -453,6 +475,7 @@ public partial class @myControls: IInputActionCollection2, IDisposable
         public InputAction @ActionKey => m_Wrapper.m_Player_ActionKey;
         public InputAction @HintKey => m_Wrapper.m_Player_HintKey;
         public InputAction @LMouseClick => m_Wrapper.m_Player_LMouseClick;
+        public InputAction @ToggleReality => m_Wrapper.m_Player_ToggleReality;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -483,6 +506,9 @@ public partial class @myControls: IInputActionCollection2, IDisposable
             @LMouseClick.started += instance.OnLMouseClick;
             @LMouseClick.performed += instance.OnLMouseClick;
             @LMouseClick.canceled += instance.OnLMouseClick;
+            @ToggleReality.started += instance.OnToggleReality;
+            @ToggleReality.performed += instance.OnToggleReality;
+            @ToggleReality.canceled += instance.OnToggleReality;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -508,6 +534,9 @@ public partial class @myControls: IInputActionCollection2, IDisposable
             @LMouseClick.started -= instance.OnLMouseClick;
             @LMouseClick.performed -= instance.OnLMouseClick;
             @LMouseClick.canceled -= instance.OnLMouseClick;
+            @ToggleReality.started -= instance.OnToggleReality;
+            @ToggleReality.performed -= instance.OnToggleReality;
+            @ToggleReality.canceled -= instance.OnToggleReality;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -570,5 +599,6 @@ public partial class @myControls: IInputActionCollection2, IDisposable
         void OnActionKey(InputAction.CallbackContext context);
         void OnHintKey(InputAction.CallbackContext context);
         void OnLMouseClick(InputAction.CallbackContext context);
+        void OnToggleReality(InputAction.CallbackContext context);
     }
 }
