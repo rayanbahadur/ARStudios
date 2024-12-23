@@ -9,6 +9,7 @@ public class OpenDoor : MonoBehaviour
     public TextMeshPro doorMessage; // Reference to the TextMeshPro Text element
     public float openAngle = 70f; // Angle to open the door
     public float openSpeed = 2f; // Speed at which the door opens
+    public RealitySwitch realitySwitch; // Reference to the RealitySwitch script
 
     private bool isOpen = false;
     private Quaternion closedRotation;
@@ -77,6 +78,12 @@ public class OpenDoor : MonoBehaviour
                 Inventory.Instance.currentHandItem.CompareTag("Key"))
             {
                 doorMessage.text = "Press E to open the door";
+
+                // Disable the "Find the Key" text
+                if (realitySwitch != null && realitySwitch.keyText != null)
+                {
+                    realitySwitch.keyText.gameObject.SetActive(false);
+                }
             }
         }
     }
@@ -100,5 +107,4 @@ public class OpenDoor : MonoBehaviour
     {
         inputActions.Player.Disable();
     }
-
 }

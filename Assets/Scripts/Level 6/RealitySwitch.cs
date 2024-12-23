@@ -13,7 +13,6 @@ public class RealitySwitch : MonoBehaviour
     public Camera playerCamera;           // Player's camera
     public TextMeshProUGUI promptText;               // UI text for the initial prompt
     public TextMeshProUGUI keyText;                  // UI text for the key objective
-    public float keyTextDuration = 30f;    // Duration to show the "Find the Key" text
     public float transitionDuration = 2.0f; // Time for the camera animation
     public Image blackoutImage;            // UI Image for blackout effect
 
@@ -75,10 +74,10 @@ public class RealitySwitch : MonoBehaviour
                     promptText.gameObject.SetActive(false);
                 }
 
-                // Show "Find the Key" message for a few seconds
+                // Show "Find the Key" message
                 if (keyText != null)
                 {
-                    StartCoroutine(ShowKeyText());
+                    keyText.gameObject.SetActive(true);
                 }
             }
 
@@ -89,16 +88,6 @@ public class RealitySwitch : MonoBehaviour
                 StopCoroutine(transitionCoroutine);
             }
             transitionCoroutine = StartCoroutine(SmoothTransition(isFractured));
-        }
-    }
-
-    private IEnumerator ShowKeyText()
-    {
-        if (keyText != null)
-        {
-            keyText.gameObject.SetActive(true); // Show the "Find the Key" message
-            yield return new WaitForSeconds(keyTextDuration);
-            keyText.gameObject.SetActive(false); // Hide it after the duration
         }
     }
 
