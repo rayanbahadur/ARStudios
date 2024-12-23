@@ -24,8 +24,6 @@ TagManager:
   - MatrixCrate
   - VentCrate
   - GlassCrate
-  - Port
-  - Screwdriver
   layers:
   - Default
   - TransparentFX

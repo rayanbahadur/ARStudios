@@ -98,15 +98,6 @@ public partial class @myControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Crouch"",
-                    ""type"": ""Button"",
-                    ""id"": ""410b88b1-fd1b-4a41-8d1c-6bd3026d731e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -340,17 +331,6 @@ public partial class @myControls: IInputActionCollection2, IDisposable
                     ""action"": ""LMouseClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""244b5881-b9b9-447a-9a83-97f69046b865"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -415,7 +395,6 @@ public partial class @myControls: IInputActionCollection2, IDisposable
         m_Player_HintKey = m_Player.FindAction("HintKey", throwIfNotFound: true);
         m_Player_LMouseClick = m_Player.FindAction("LMouseClick", throwIfNotFound: true);
         m_Player_ToggleReality = m_Player.FindAction("ToggleReality", throwIfNotFound: true);
-        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -485,7 +464,6 @@ public partial class @myControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_HintKey;
     private readonly InputAction m_Player_LMouseClick;
     private readonly InputAction m_Player_ToggleReality;
-    private readonly InputAction m_Player_Crouch;
     public struct PlayerActions
     {
         private @myControls m_Wrapper;
@@ -498,7 +476,6 @@ public partial class @myControls: IInputActionCollection2, IDisposable
         public InputAction @HintKey => m_Wrapper.m_Player_HintKey;
         public InputAction @LMouseClick => m_Wrapper.m_Player_LMouseClick;
         public InputAction @ToggleReality => m_Wrapper.m_Player_ToggleReality;
-        public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -532,9 +509,6 @@ public partial class @myControls: IInputActionCollection2, IDisposable
             @ToggleReality.started += instance.OnToggleReality;
             @ToggleReality.performed += instance.OnToggleReality;
             @ToggleReality.canceled += instance.OnToggleReality;
-            @Crouch.started += instance.OnCrouch;
-            @Crouch.performed += instance.OnCrouch;
-            @Crouch.canceled += instance.OnCrouch;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -563,9 +537,6 @@ public partial class @myControls: IInputActionCollection2, IDisposable
             @ToggleReality.started -= instance.OnToggleReality;
             @ToggleReality.performed -= instance.OnToggleReality;
             @ToggleReality.canceled -= instance.OnToggleReality;
-            @Crouch.started -= instance.OnCrouch;
-            @Crouch.performed -= instance.OnCrouch;
-            @Crouch.canceled -= instance.OnCrouch;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -629,6 +600,5 @@ public partial class @myControls: IInputActionCollection2, IDisposable
         void OnHintKey(InputAction.CallbackContext context);
         void OnLMouseClick(InputAction.CallbackContext context);
         void OnToggleReality(InputAction.CallbackContext context);
-        void OnCrouch(InputAction.CallbackContext context);
     }
 }
