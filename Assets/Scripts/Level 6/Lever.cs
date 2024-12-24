@@ -45,4 +45,11 @@ public class Lever : MonoBehaviour
         float distance = Vector3.Distance(playerTransform.position, transform.position);
         return distance <= activationDistance;
     }
+
+    // Method to reset the lever
+    public void ResetLever()
+    {
+        leverHandle.localRotation = Quaternion.Euler(0, 0, 0);
+        isActivated = false;
+    }
 }

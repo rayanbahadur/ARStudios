@@ -48,4 +48,14 @@ public class LeverManager : MonoBehaviour
         }
         Debug.Log("All levers activated. Gate opened!");
     }
+
+    // Method to reset all levers
+    public void ResetLevers()
+    {
+        foreach (Lever lever in levers)
+        {
+            lever.ResetLever();
+        }
+        Debug.Log("All levers have been reset.");
+    }
 }

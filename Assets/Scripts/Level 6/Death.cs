@@ -1,29 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Death : MonoBehaviour
 {
-    [Header("Game Over")]
-    public GameObject gameOverUI; // Reference to the Game Over UI
-    public GameObject interactionPrompt;
-    public GameObject Crosshair; // Reference to the Crosshair GameObject
-    public GameObject blackoutScreen; // Reference to the Blackout Screen GameObject
-    public GameObject inventory; // Reference to the Inventory GameObject
-
     [Header("Demon Light Settings")]
     public Transform demonHead; // Origin of the raycast (demon's head)
     public LayerMask obstructionMask; // Layers that can block the demon light
     public bool isDemonLight = false; // Toggle for objects that represent the demon light
 
-    private void Start()
-    {
-        // Ensure the Game Over UI is hidden at the start
-        if (gameOverUI != null)
-        {
-            gameOverUI.SetActive(false);
-        }
-    }
+    [Header("Fade UI Settings")]
+    public Image fadeImage; // Reference to the Image component for fading
+    public float fadeDuration = 1.0f; // Duration of the fade effect
 
     private void OnTriggerEnter(Collider other)
     {
@@ -38,18 +27,18 @@ public class Death : MonoBehaviour
             {
                 if (IsPlayerVisible(other.transform))
                 {
-                    HandleGameOver();
-                    Debug.Log("Player was visible to the demon. Game Over triggered.");
+                    StartCoroutine(HandleRespawn(other.gameObject));
+                    Debug.Log("Player was visible to the demon. Respawn triggered.");
                 }
                 else
                 {
-                    Debug.Log("Player is obstructed from the demon light. No Game Over.");
+                    Debug.Log("Player is obstructed from the demon light. No respawn.");
                 }
             }
             else
             {
-                // Handle Game Over for non-demon light triggers
-                HandleGameOver();
+                // Handle respawn for non-demon light triggers
+                StartCoroutine(HandleRespawn(other.gameObject));
             }
         }
     }
@@ -102,63 +91,59 @@ public class Death : MonoBehaviour
         return false; // Player is not visible
     }
 
-
-    // Method to handle game over logic
-    private void HandleGameOver()
+    // Method to handle respawn logic with fade effect
+    private IEnumerator HandleRespawn(GameObject player)
     {
-        if (gameOverUI != null)
+        if (fadeImage != null)
         {
-            gameOverUI.SetActive(true); // Activate the Game Over UI
-            Debug.Log("Game Over UI activated.");
+            fadeImage.gameObject.SetActive(true); // Activate the fade image
+
+            // Fade in
+            yield return StartCoroutine(Fade(0, 1));
+
+            // Respawn the player at the last checkpoint
+            Vector3 checkpointPosition = CheckpointManager.Instance.GetLastCheckpointPosition();
+            player.transform.position = checkpointPosition;
+            Debug.Log("Player respawned at: " + checkpointPosition);
+
+            // Reset all levers
+            LeverManager.Instance.ResetLevers();
+
+            // Fade out
+            yield return StartCoroutine(Fade(1, 0));
+
+            fadeImage.gameObject.SetActive(false); // Deactivate the fade image
         }
         else
         {
-            Debug.LogError("Game Over UI is not assigned.");
+            Debug.LogWarning("FadeImage reference is missing.");
+        }
+    }
+
+    // Coroutine to handle the fade effect
+    private IEnumerator Fade(float startAlpha, float endAlpha)
+    {
+        float elapsedTime = 0;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
+            SetAlpha(alpha);
+            yield return null;
         }
 
-        if (interactionPrompt != null)
-        {
-            interactionPrompt.SetActive(false);
-            Debug.Log("Interaction prompt deactivated.");
-        }
-        else
-        {
-            Debug.LogError("Interaction prompt is not assigned.");
-        }
+        SetAlpha(endAlpha);
+    }
 
-        if (blackoutScreen != null)
+    // Method to set the alpha value of the fade image
+    private void SetAlpha(float alpha)
+    {
+        if (fadeImage != null)
         {
-            blackoutScreen.SetActive(false);
-            Debug.Log("Blackout screen deactivated.");
-        }
-        else
-        {
-            Debug.LogError("Blackout screen is not assigned.");
-        }
-
-        if (inventory != null)
-        {
-            inventory.SetActive(false);
-            Debug.Log("Inventory deactivated.");
-        }
-        else
-        {
-            Debug.LogError("Inventory is not assigned.");
-        }
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None; // Unlock the cursor
-        Debug.Log("Cursor unlocked and made visible.");
-
-        // Disable the crosshair
-        if (Crosshair != null)
-        {
-            Crosshair.SetActive(false);
-            Debug.Log("Crosshair deactivated.");
-        }
-        else
-        {
-            Debug.LogError("Crosshair is not assigned.");
+            Color color = fadeImage.color;
+            color.a = alpha;
+            fadeImage.color = color;
         }
     }
 }
