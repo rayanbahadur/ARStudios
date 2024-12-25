@@ -11,6 +11,11 @@ public class OpenVent : MonoBehaviour
     [SerializeField] private GameObject poster;
     [SerializeField] private TMP_Text ventMessage;
 
+    [Header("Interaction Settings")]
+    public GameObject interactionPrompt;
+    public TextMeshProUGUI interactionText;
+    public Outline outline;
+
     private FirstPersonController firstPersonController;
     private myControls inputActions;
     private Collider ventCollider;
@@ -23,6 +28,7 @@ public class OpenVent : MonoBehaviour
     void Start()
     {
         ventMessage.gameObject.SetActive(false); // Ensure vent message is hidden at the start
+        outline.enabled = false;
     }
 
     // Update is called once per frame
@@ -46,5 +52,18 @@ public class OpenVent : MonoBehaviour
         ventMessage.gameObject.SetActive(true);
 
         this.enabled = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (isPosterDeactivated)
+        {
+            outline.enabled = true;
+            if (!isScrewdriverInHand)
+            {
+                interactionText.text = "Screwed Shut";
+                interactionPrompt.SetActive(true);
+            }
+        }
     }
 }
