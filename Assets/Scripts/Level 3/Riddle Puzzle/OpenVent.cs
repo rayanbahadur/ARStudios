@@ -21,14 +21,14 @@ public class OpenVent : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {
         ventMessage.gameObject.SetActive(false); // Ensure vent message is hidden at the start
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isPosterDeactivated && isScrewdriverInHand && Input.GetKeyDown(KeyCode.E)) // Check for the interaction key
+        if (isPosterDeactivated && isScrewdriverInHand && inputActions.Player.LMouseClick.triggered)
         {
             OpenVentAction();
         }
@@ -39,14 +39,12 @@ public class OpenVent : MonoBehaviour
         // Play the animation
         if (unlockLockbox != null)
         {
-            //unlockLockbox.SetGenericBinding(unlockLockbox.playableAsset, gameObject);
             unlockLockbox.Play();
         }
 
         // Display the vent message
         ventMessage.gameObject.SetActive(true);
 
-        //// Optional: Disable further interaction
-        //this.enabled = false;
+        this.enabled = false;
     }
 }
