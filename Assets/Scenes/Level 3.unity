@@ -10937,14 +10937,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicTracks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 5acaee2ecb1c1b04a88f6cbdc91490ec, type: 3}
+  - {fileID: 8300000, guid: c14a055abf8925e41b01ad4534a4d8c4, type: 3}
+  - {fileID: 8300000, guid: 7ec97fec3a51b1445bca90ce58a8835f, type: 3}
+  - {fileID: 8300000, guid: e769668eb6dfd8f4fae4f42cd3a66fab, type: 3}
+  - {fileID: 8300000, guid: 3dcbff08149c8384abe0567d8dae3fce, type: 3}
+  - {fileID: 8300000, guid: b5078fe729f98c6478db9bd9deb0beaa, type: 3}
+  - {fileID: 8300000, guid: aa9a4382c50ca9544a99d95fa1e26e67, type: 3}
+  - {fileID: 8300000, guid: 0b3e6c1ab731f8849a19ec057a186c48, type: 3}
   audioSource: {fileID: 1371451891}
   startDelay: 3
 --- !u!82 &1371451891
@@ -14637,6 +14637,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1882207254
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 6ed1f3867c5dd874691147656a974d33, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.397298
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ed1f3867c5dd874691147656a974d33, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.4798365
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ed1f3867c5dd874691147656a974d33, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.050495625
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ed1f3867c5dd874691147656a974d33, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ed1f3867c5dd874691147656a974d33, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ed1f3867c5dd874691147656a974d33, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ed1f3867c5dd874691147656a974d33, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ed1f3867c5dd874691147656a974d33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ed1f3867c5dd874691147656a974d33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ed1f3867c5dd874691147656a974d33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6ed1f3867c5dd874691147656a974d33, type: 3}
+      propertyPath: m_Name
+      value: ventsystem
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6ed1f3867c5dd874691147656a974d33, type: 3}
 --- !u!1 &1899496470
 GameObject:
   m_ObjectHideFlags: 0
@@ -17205,7 +17262,7 @@ Transform:
   m_GameObject: {fileID: 4560715797430706951}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7069834, y: -0.0000060897155, z: -0.000006091841, w: -0.70723015}
-  m_LocalPosition: {x: -0.01, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17980,6 +18037,8 @@ GameObject:
   - component: {fileID: 5397971388144424474}
   - component: {fileID: 5397971388144424475}
   - component: {fileID: 5397971388144424476}
+  - component: {fileID: 5397971388144424477}
+  - component: {fileID: 5397971388144424478}
   m_Layer: 0
   m_Name: Vent Lid
   m_TagString: Untagged
@@ -18339,6 +18398,9 @@ MonoBehaviour:
   unlockLockbox: {fileID: 1400259355}
   poster: {fileID: 3677942797040768403}
   ventMessage: {fileID: 534200281}
+  interactionPrompt: {fileID: 589983941}
+  interactionText: {fileID: 589983943}
+  outline: {fileID: 5397971388144424477}
 --- !u!95 &5397971388144424475
 Animator:
   serializedVersion: 7
@@ -18457,6 +18519,45 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5397971388144424477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4560715797430706951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0.2509804, g: 1, b: 0.2509804, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!65 &5397971388144424478
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4560715797430706951}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.008639999, y: 0.012400734, z: 0.006990548}
+  m_Center: {x: -0.014, y: 0.008335226, z: -0.0054452857}
 --- !u!33 &5454857738719323013
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -19733,3 +19834,4 @@ SceneRoots:
   - {fileID: 351815801}
   - {fileID: 2056367858}
   - {fileID: 1371451892}
+  - {fileID: 1882207254}
