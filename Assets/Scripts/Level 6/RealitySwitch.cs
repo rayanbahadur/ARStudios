@@ -23,6 +23,10 @@ public class RealitySwitch : MonoBehaviour
     private ColorAdjustments colorAdjustments;
     private myControls inputActions;
 
+    [Header("Audio Settings")]
+    public AudioClip switchSound;         // Audio clip to play when switching realities
+    public AudioSource audioSource;       // Audio source to play the switch sound
+
     private void Awake()
     {
         inputActions = new myControls(); // Initialize input actions
@@ -97,6 +101,12 @@ public class RealitySwitch : MonoBehaviour
         float halfDuration = transitionDuration / 2;
         float startWeight = fracturedPostProcess.weight;
         float endWeight = toFractured ? 1f : 0f;
+
+        // Play the switch sound
+        if (audioSource != null && switchSound != null)
+        {
+            audioSource.PlayOneShot(switchSound);
+        }
 
         // Phase 1: Fade to black
         while (timeElapsed < halfDuration)

@@ -14,6 +14,18 @@ public class Death : MonoBehaviour
     public Image fadeImage; // Reference to the Image component for fading
     public float fadeDuration = 1.0f; // Duration of the fade effect
 
+    [Header("Audio Settings")]
+    public AudioClip deathSound; // Sound clip to play when the player dies
+    public AudioSource deathAudioSource; // Public AudioSource to assign from the scene
+
+    private void Start()
+    {
+        if (deathAudioSource == null)
+        {
+            Debug.LogWarning("Death AudioSource is not assigned. Please assign an AudioSource in the Inspector.");
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("OnTriggerEnter called with: " + other.tag); // Debug log to check trigger entry
@@ -97,6 +109,12 @@ public class Death : MonoBehaviour
         if (fadeImage != null)
         {
             fadeImage.gameObject.SetActive(true); // Activate the fade image
+
+            // Play the death sound
+            if (deathSound != null && deathAudioSource != null)
+            {
+                deathAudioSource.PlayOneShot(deathSound);
+            }
 
             // Fade in
             yield return StartCoroutine(Fade(0, 1));

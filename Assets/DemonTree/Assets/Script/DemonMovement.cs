@@ -36,6 +36,10 @@ public class DemonMovement : MonoBehaviour
 
         // Initialize the initial position
         initialPosition = transform.position;
+
+        // Retrieve the difficulty level and apply the multiplier
+        string difficulty = PlayerPrefs.GetString("Difficulty");
+        ApplyDifficultyMultiplier(difficulty);
     }
 
     // Update is called once per frame
@@ -57,6 +61,26 @@ public class DemonMovement : MonoBehaviour
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        }
+    }
+
+    // Method to apply the difficulty multiplier to the circle speed
+    private void ApplyDifficultyMultiplier(string difficulty)
+    {
+        switch (difficulty)
+        {
+            case "Easy":
+                circleSpeed *= 0.75f; // 75% of the original speed
+                break;
+            case "Normal":
+                circleSpeed *= 1.0f; // 100% of the original speed
+                break;
+            case "Hard":
+                circleSpeed *= 1.5f; // 150% of the original speed
+                break;
+            default:
+                Debug.LogWarning("Unknown difficulty level: " + difficulty);
+                break;
         }
     }
 }
