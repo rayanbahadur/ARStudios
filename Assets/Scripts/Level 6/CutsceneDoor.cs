@@ -8,6 +8,7 @@ public class CutsceneDoor : MonoBehaviour
     public GameObject fire;             // Reference to the fire GameObject
     public float doorOpenAngle = 90f;   // Angle to open the door
     public float doorOpenDuration = 0.5f; // Duration to open the door
+    public StaircaseText staircaseText; // Reference to the StaircaseText script
 
     private BoxCollider triggerCollider; // Reference to the door's box collider that serves as a trigger
 
@@ -41,6 +42,12 @@ public class CutsceneDoor : MonoBehaviour
             else
             {
                 Debug.LogWarning("Fire reference is missing.");
+            }
+
+            // Deactivate the staircase text
+            if (staircaseText != null && staircaseText.staircaseMessage != null)
+            {
+                staircaseText.staircaseMessage.gameObject.SetActive(false);
             }
         }
     }
@@ -83,3 +90,4 @@ public class CutsceneDoor : MonoBehaviour
         }
     }
 }
+
