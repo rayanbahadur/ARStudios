@@ -3,42 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Manages interactions with a poster in the game, including highlighting and hiding the poster when clicked.
+/// </summary>
 public class HidePoster : MonoBehaviour
 {
-    [SerializeField] private Outline outline; // Outline for highlighting interactable objects
-    [SerializeField] private GameObject poster;
+    [Header("References")]
+    [SerializeField] private Outline outline; // Component to highlight the interactable poster
+    [SerializeField] private GameObject poster; // The poster GameObject to be hidden
 
+    // Input action map for player controls
     private myControls inputActions;
 
     private void Awake()
     {
+        // Initialise input actions
         inputActions = new myControls();
     }
 
     private void Start()
     {
+        // Disable the outline at the start
         outline.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        // Check if the player enters the trigger zone
         if (other.CompareTag("Player"))
         {
-            outline.enabled = true; // Highlight the poster
+            outline.enabled = true; // Enable the highlight
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        // Check if the player exits the trigger zone
         if (other.CompareTag("Player"))
         {
-            outline.enabled = false; // Stop highlighting
+            outline.enabled = false; // Disable the highlight
         }
     }
 
     private void OnMouseClick(InputAction.CallbackContext context)
     {
-        // Create a ray from the camera to the mouse position
+        // Create a ray from the camera through the mouse position
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
 

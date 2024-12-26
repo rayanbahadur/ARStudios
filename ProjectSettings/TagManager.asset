@@ -26,6 +26,7 @@ TagManager:
   - GlassCrate
   - Port
   - Screwdriver
+  - Vent
   layers:
   - Default
   - TransparentFX

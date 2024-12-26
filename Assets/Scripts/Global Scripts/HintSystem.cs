@@ -5,13 +5,21 @@ using TMPro;
 
 public class HintSystem : MonoBehaviour
 {
+    [Header("Hint System")]
     public TMP_Text hint;  // Reference to the TextMeshPro UI component
     public string[] hints = new string[3];  // Array of hints
     public float hintInterval = 30f;  // Time in seconds before showing "Press H for a hint"
     public float hintDisplayTime = 5f;  // Time in seconds to display the hint message
+
+    [Header("Max Hints")]
+    public int hardHintVal = 1;
+    public int mediumHintVal = 3;
+
+
     private int currentHintIndex = 0;  // Tracks which hint is currently being displayed
     private float hintTimer;  // Timer to control when the hint message shows
     private bool hintMessageVisible = false;  // Flag to check if the "Press H" message is showing
+    private int maxHintsToShow; // Max hints based on difficulty
 
     private myControls inputActions;
 
@@ -23,14 +31,12 @@ public class HintSystem : MonoBehaviour
     void Start()
     {
         inputActions.Enable();
-        // Initialize the array with three hints
-        hints[0] = "Hint 1: Approach the Actuator.";
-        hints[1] = "Hint 2: Look for different combinations of shapes.";
-        hints[2] = "Hint 3: Answer the Phone.";
-        //hints[3] = "Hint 4: Pick up the hammer";
 
         // Initially hide the hint message
         hint.text = "";
+
+        // Set the number of hints based on the difficulty level
+        SetHintsBasedOnDifficulty();
 
         // Start the timer at the interval duration
         hintTimer = 0f; // Start at 0 to ensure it kicks in after the first frame.
@@ -54,6 +60,28 @@ public class HintSystem : MonoBehaviour
         }
     }
 
+    void SetHintsBasedOnDifficulty()
+    {
+        string difficulty = PlayerPrefs.GetString("Difficulty", "Easy"); // Default to "Easy" if not set
+
+        switch (difficulty)
+        {
+            case "Hard":
+                maxHintsToShow = hardHintVal;
+                break;
+            case "Medium":
+                maxHintsToShow = mediumHintVal;
+                break;
+            case "Easy":
+                maxHintsToShow = hints.Length;  // Show all hints
+                break;
+            default:
+                maxHintsToShow = hints.Length;  // Default to showing all hints
+                break;
+        }
+    }
+
+
     // Function to show the "Press H for a hint" message
     void ShowHintMessage()
     {
@@ -74,7 +102,7 @@ public class HintSystem : MonoBehaviour
     // Show the next hint in the array
     void ShowHint()
     {
-        if (currentHintIndex < hints.Length)
+        if (currentHintIndex < maxHintsToShow)
         {
             hint.text = hints[currentHintIndex];
             currentHintIndex++;
