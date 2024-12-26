@@ -5,46 +5,51 @@ using StarterAssets;
 using UnityEngine.UI;
 using UnityEngine.Playables;
 
+/// <summary>
+/// Handles interactions with a numpad UI for unlocking a lockbox in the game. 
+/// Includes input validation, UI management, and unlocking mechanics.
+/// </summary>
 public class NumpadController : MonoBehaviour
 {
-    public RandomNumberGenerator numberGenerator;
-
     [Header("Numpad UI")]
-    public GameObject numpadUI;
-    public TextMeshProUGUI inputField;
+    [SerializeField] private GameObject numpadUI; // The UI panel for the numpad
+    [SerializeField] private TextMeshProUGUI inputField; // Text field for displaying user input
 
     [Header("Interaction Settings")]
-    public GameObject interactionPrompt;
-    public TextMeshProUGUI interactionText;
-    public Outline outline;
+    [SerializeField] private GameObject interactionPrompt; // Prompt displayed to the player for interaction
+    [SerializeField] private TextMeshProUGUI interactionText; // Text of the interaction prompt
+    [SerializeField] private Outline outline; // Outline effect for highlighting interactable objects
 
     [Header("Success")]
-    [SerializeField] public Item Item;
-    [SerializeField] public PlayableDirector UnlockLockbox;
+    [SerializeField] private Item item; // Item awarded upon success
+    [SerializeField] private PlayableDirector unlockLockbox; // Timeline director for the unlock cutscene
+
+    [Header("Dependencies")]
+    [SerializeField] private RandomNumberGenerator numberGenerator; // Script to generate the correct number sequence
 
     private FirstPersonController firstPersonController; // Reference to the First Person Controller
-    private myControls inputActions;
-    private Collider lockboxCollider;
-    private AudioSource audioSource;
+    private myControls inputActions; // Input action map
+    private Collider lockboxCollider; // Collider for the lockbox
+    private AudioSource audioSource; // Audio source for sound effects
 
-    private int[] correctNumbers;
+    private int[] correctNumbers; // Array holding the correct code sequence
+
     private void Awake()
     {
-        inputActions = new myControls(); // Initialize input actions
+        inputActions = new myControls(); // Initialise input actions
         inputActions.Player.Enable();
     }
 
-    void Start()
+    private void Start()
     {
         firstPersonController = FindFirstObjectByType<FirstPersonController>(); // Find the FirstPersonController in the scene
         correctNumbers = numberGenerator.GetGeneratedNumbers(); // Get the correct numbers from the generator
         audioSource = GetComponent<AudioSource>();
-
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
+        // Display interaction prompt when the player enters the trigger zone
         if (other.CompareTag("Player") && !numpadUI.activeSelf && this.isActiveAndEnabled)
         {
             interactionText.text = "Press 'E' to open lockbox";
@@ -55,23 +60,19 @@ public class NumpadController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        // Toggle the numpad UI when the player presses the action key
         if (other.CompareTag("Player"))
         {
             if (inputActions.Player.ActionKey.triggered)
             {
-                if (!numpadUI.activeSelf)
-                {
-                    ToggleNumpadUI(true);
-                }
-                else {
-                    ToggleNumpadUI(false);
-                }
+                ToggleNumpadUI(!numpadUI.activeSelf);
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        // Hide interaction prompt when the player exits the trigger zone
         if (other.CompareTag("Player"))
         {
             interactionPrompt.SetActive(false);
@@ -81,10 +82,10 @@ public class NumpadController : MonoBehaviour
 
     public void OnNumpadButtonPressed(string number)
     {
-        // Append the number to the input field
+        // Append the pressed number to the input field
         inputField.text += number;
 
-        // Check the code after each input
+        // Check the code once input length matches the correct code length
         if (inputField.text.Length == correctNumbers.Length)
         {
             CheckCode();
@@ -97,9 +98,9 @@ public class NumpadController : MonoBehaviour
         inputField.text = "";
     }
 
-    void CheckCode()
+    private void CheckCode()
     {
-        // Check if the input matches the correct numbers
+        // Verify if the input matches the correct code
         for (int i = 0; i < correctNumbers.Length; i++)
         {
             if (inputField.text[i].ToString() != correctNumbers[i].ToString())
@@ -110,63 +111,54 @@ public class NumpadController : MonoBehaviour
             }
         }
 
-        // If all numbers match, unlock the box
+        // Unlock the box if the code is correct
         UnlockBox();
     }
 
-    public void UnlockBox()
+    private void UnlockBox()
     {
         ToggleNumpadUI(false);
 
         float soundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", 1.0f);
 
-        // Play the unlock sound with the specified volume
+        // Play the unlock sound
         if (audioSource != null)
         {
-            audioSource.volume = soundEffectVolume; // Set volume from PlayerPrefs
+            audioSource.volume = soundEffectVolume;
             audioSource.Play();
         }
 
-        // Disable the numpad UI
         numpadUI.SetActive(false);
 
-        // Show Timeline Cutscene Animation
-        if (UnlockLockbox != null)
+        if (unlockLockbox != null)
         {
-            UnlockLockbox.Play();
-
-            // Subscribe to the stopped event
-            UnlockLockbox.stopped += director =>
-            {
-                // Actions to perform after the Timeline finishes
-                PostTimelineActions();
-            };
+            unlockLockbox.Play();
+            unlockLockbox.stopped += director => PostTimelineActions(); // Actions after the Timeline ends
         }
         else
         {
-            // Perform actions immediately if no Timeline is assigned
-            PostTimelineActions();
+            PostTimelineActions(); // Immediate actions if no Timeline is assigned
         }
     }
 
     private void PostTimelineActions()
     {
-
-        // Turn off Lockbox Collider
+        // Disable the lockbox collider and hide interaction prompts
         lockboxCollider = GetComponent<BoxCollider>();
-        if (lockboxCollider != null) { lockboxCollider.enabled = false; }
+        if (lockboxCollider != null) lockboxCollider.enabled = false;
+
         interactionPrompt.SetActive(false);
         outline.enabled = false;
     }
 
+    private void ToggleNumpadUI(bool state)
+    {
+        // Toggle the visibility of the numpad UI and adjust player controls
+        numpadUI.SetActive(state);
+        firstPersonController.enabled = !state;
+        Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = state;
 
-
-
-    private void ToggleNumpadUI(bool state) {
-        numpadUI.SetActive(state); // Hide the numpad UI
-        firstPersonController.enabled = !state; // Re-enable player movement
-        Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked; // Lock the cursor
-        Cursor.visible = state; // Hide the cursor
         interactionPrompt.SetActive(!state);
         outline.enabled = !state;
 

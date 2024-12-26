@@ -5,42 +5,47 @@ using UnityEngine;
 using UnityEngine.Playables;
 using TMPro;
 
+/// <summary>
+/// Handles the interaction with a vent, including checking conditions (poster removed, screwdriver equipped),
+/// playing animations, and displaying messages.
+/// </summary>
 public class OpenVent : MonoBehaviour
 {
-    [SerializeField] private PlayableDirector unlockLockbox;
-    [SerializeField] private GameObject poster;
-    [SerializeField] private TMP_Text ventMessage;
+    [Header("Dependencies")]
+    [SerializeField] private PlayableDirector unlockLockbox; // Playable Director for the vent animation
+    [SerializeField] private GameObject poster; // The poster that must be deactivated to interact with the vent
+    [SerializeField] private TMP_Text ventMessage; // Text message displayed after opening the vent
 
     [Header("Interaction Settings")]
-    public GameObject interactionPrompt;
-    public TextMeshProUGUI interactionText;
-    public Outline outline;
+    [SerializeField] private GameObject interactionPrompt; // Prompt shown when player interacts with the vent
+    [SerializeField] private TextMeshProUGUI interactionText; // Text for the interaction prompt
+    [SerializeField] private Outline outline; // Outline to highlight the vent when interactable
 
-    private FirstPersonController firstPersonController;
-    private myControls inputActions;
-    private Collider ventCollider;
+    private FirstPersonController firstPersonController; // Reference to the first-person controller
+    private myControls inputActions; // Input actions for player interaction
+    private Collider ventCollider; // Collider for the vent
 
-    private bool isPosterDeactivated => !poster.activeInHierarchy;
-    private bool isScrewdriverInHand => Inventory.Instance != null && Inventory.Instance.currentHandItem != null &&
-                                        Inventory.Instance.currentHandItem.CompareTag("Screwdriver");
+    private bool isPosterDeactivated => !poster.activeInHierarchy; // Checks if the poster is removed
+    private bool isScrewdriverInHand =>
+        Inventory.Instance != null &&
+        Inventory.Instance.currentHandItem != null &&
+        Inventory.Instance.currentHandItem.CompareTag("Screwdriver"); // Checks if the player has a screwdriver equipped
 
-    void Awake()
+    private void Awake()
     {
-        inputActions = new myControls();
+        inputActions = new myControls(); // Initialise input actions
         inputActions.Player.Enable();
     }
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         ventMessage.gameObject.SetActive(false); // Ensure vent message is hidden at the start
-        outline.enabled = false;
+        outline.enabled = false; // Disable outline at the start
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        // Check conditions to open the vent and perform the action
         if (isPosterDeactivated && isScrewdriverInHand && inputActions.Player.LMouseClick.triggered)
         {
             OpenVentAction();
@@ -49,7 +54,7 @@ public class OpenVent : MonoBehaviour
 
     private void OpenVentAction()
     {
-        // Play the animation
+        // Play the unlock animation
         if (unlockLockbox != null)
         {
             unlockLockbox.Play();
@@ -58,6 +63,7 @@ public class OpenVent : MonoBehaviour
         // Display the vent message
         ventMessage.gameObject.SetActive(true);
 
+        // Disable this script to prevent further interactions
         this.enabled = false;
     }
 
@@ -65,9 +71,10 @@ public class OpenVent : MonoBehaviour
     {
         if (isPosterDeactivated)
         {
-            outline.enabled = true;
+            outline.enabled = true; // Highlight the vent
             if (!isScrewdriverInHand)
             {
+                // Show interaction prompt if the screwdriver is not equipped
                 interactionText.text = "Screwed Shut";
                 interactionPrompt.SetActive(true);
             }
@@ -76,6 +83,10 @@ public class OpenVent : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (interactionPrompt.activeSelf) { interactionPrompt.SetActive(false); }
+        // Hide interaction prompt when the player exits the trigger zone
+        if (interactionPrompt.activeSelf)
+        {
+            interactionPrompt.SetActive(false);
+        }
     }
 }
