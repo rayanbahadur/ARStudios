@@ -24,6 +24,13 @@ public class OpenVent : MonoBehaviour
     private bool isScrewdriverInHand => Inventory.Instance != null && Inventory.Instance.currentHandItem != null &&
                                         Inventory.Instance.currentHandItem.CompareTag("Screwdriver");
 
+    void Awake()
+    {
+        inputActions = new myControls();
+        inputActions.Player.Enable();
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,5 +72,10 @@ public class OpenVent : MonoBehaviour
                 interactionPrompt.SetActive(true);
             }
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (interactionPrompt.activeSelf) { interactionPrompt.SetActive(false); }
     }
 }

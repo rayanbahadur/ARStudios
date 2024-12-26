@@ -155,6 +155,8 @@ public class NumpadController : MonoBehaviour
         // Turn off Lockbox Collider
         lockboxCollider = GetComponent<BoxCollider>();
         if (lockboxCollider != null) { lockboxCollider.enabled = false; }
+        interactionPrompt.SetActive(false);
+        outline.enabled = false;
     }
 
 
