@@ -47,7 +47,7 @@ public class NumpadController : MonoBehaviour
     {
         if (other.CompareTag("Player") && !numpadUI.activeSelf && this.isActiveAndEnabled)
         {
-            interactionText.text = $"Press 'E' to open lockbox";
+            interactionText.text = "Press 'E' to open lockbox";
             interactionPrompt.SetActive(true);
             outline.enabled = true;
         }
