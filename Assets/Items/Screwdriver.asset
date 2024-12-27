@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Screwdriver
   m_EditorClassIdentifier: 
   itemName: Screwdriver
-  icon: {fileID: 21300000, guid: 6f8b61dd1247d474f977f922d7b578fc, type: 3}
+  icon: {fileID: 21300000, guid: cc1178529a3b95e4aa0e6fca5be1dc8d, type: 3}
   itemPrefab: {fileID: 6116181032295063589, guid: f4db0f3bc9c953448922ae5ca2d0dba7, type: 3}
