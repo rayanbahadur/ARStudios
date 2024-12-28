@@ -8,7 +8,6 @@ public class Detection : MonoBehaviour
     public UnityEvent gameOverEvent;
 
     private Light spotLight; // Reference to the Spotlight component
-    private string playerTag;
 
     void Start()
     {
@@ -20,23 +19,12 @@ public class Detection : MonoBehaviour
             return;
         }
 
-        // Find the player's tag
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            playerTag = player.tag;
-        }
-        else
-        {
-            Debug.LogError("Player GameObject with tag 'Player' not found.");
-        }
-
         // Set the initial spotlight color to searchingColor
         spotLight.color = searchingColor;
     }
     void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag(playerTag))
+        if (other.CompareTag("Player"))
         {
             Vector3 direction = other.transform.position - transform.position;
             RaycastHit hit;
@@ -49,7 +37,7 @@ public class Detection : MonoBehaviour
             {
                 Debug.Log(hit.collider.tag);
 
-                if (hit.collider.CompareTag(playerTag))
+                if (hit.collider.CompareTag("PlayerCapsule"))
                 {
                     // Change the spotlight color to red (spotted)
                     spotLight.color = spottedColor;

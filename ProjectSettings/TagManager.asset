@@ -27,6 +27,7 @@ TagManager:
   - Port
   - Screwdriver
   - Vent
+  - PlayerCapsule
   layers:
   - Default
   - TransparentFX
