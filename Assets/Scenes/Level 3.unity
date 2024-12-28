@@ -1520,64 +1520,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 171189314}
   m_CullTransparentMesh: 1
---- !u!1001 &180739013
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: bd261896b5c52f24982328cd24d5376b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -12.842814
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd261896b5c52f24982328cd24d5376b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.2749999
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd261896b5c52f24982328cd24d5376b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 8.531432
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd261896b5c52f24982328cd24d5376b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd261896b5c52f24982328cd24d5376b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd261896b5c52f24982328cd24d5376b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd261896b5c52f24982328cd24d5376b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd261896b5c52f24982328cd24d5376b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd261896b5c52f24982328cd24d5376b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bd261896b5c52f24982328cd24d5376b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: bd261896b5c52f24982328cd24d5376b, type: 3}
-      propertyPath: m_Name
-      value: cone
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 8164078558771037576, guid: bd261896b5c52f24982328cd24d5376b, type: 3}
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bd261896b5c52f24982328cd24d5376b, type: 3}
 --- !u!1 &193370091
 GameObject:
   m_ObjectHideFlags: 0
@@ -2109,7 +2051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &241340206
 Transform:
   m_ObjectHideFlags: 0
@@ -8311,6 +8253,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   searchingColor: {r: 0.15686275, g: 0.654902, b: 0.27058825, a: 1}
   spottedColor: {r: 0.86274517, g: 0.20784315, b: 0.27058825, a: 1}
+  gameOverEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 229678692}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: HandleGameOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &977215942
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17447,37 +17404,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2118995295
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bd261896b5c52f24982328cd24d5376b, type: 3}
-  m_PrefabInstance: {fileID: 180739013}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2118995296}
-  m_Layer: 0
-  m_Name: cone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2118995296
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bd261896b5c52f24982328cd24d5376b, type: 3}
-  m_PrefabInstance: {fileID: 180739013}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118995295}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.842814, y: -2.2749999, z: 8.531432}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2131856898
 GameObject:
   m_ObjectHideFlags: 0
@@ -20774,4 +20700,3 @@ SceneRoots:
   - {fileID: 295868334}
   - {fileID: 2114693845}
   - {fileID: 1705953548}
-  - {fileID: 180739013}

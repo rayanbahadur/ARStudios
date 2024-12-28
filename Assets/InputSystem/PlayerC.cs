@@ -8,7 +8,6 @@ public class PlayerC : MonoBehaviour
 
     public float defaultScaleY = 1; // The default Y scale when not crouched
     public float crouchScaleY = 0.5f; // The Y scale when crouched
-    public UnityEvent gameOverEvent;
 
     private bool isCrouching = false; // Tracks if the player is currently crouching
     private bool isInsideVent = false; // Tracks if the player is inside a vent
