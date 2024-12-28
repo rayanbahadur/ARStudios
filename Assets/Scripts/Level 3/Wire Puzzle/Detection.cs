@@ -1,49 +1,54 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Specialized;
 using UnityEngine;
-
-public class Detection: MonoBehaviour
+using UnityEngine.Events;
+public class Detection : MonoBehaviour
 {
-    [SerializeField] Material searchingMat, spottedMat;
+    [SerializeField] Color searchingColor = Color.green; // Light color when searching
+    [SerializeField] Color spottedColor = Color.red;    // Light color when spotting the player
+    public UnityEvent gameOverEvent;
 
-    string playerTag;
-    Transform lens;
+    private Light spotLight; // Reference to the Spotlight component
 
     void Start()
     {
-        lens.transform.parent.GetComponent<Transform>();
-        playerTag = GameObject.FindGameObjectWithTag("Player").tag;
-    }
+        // Get the Light component attached to this GameObject
+        spotLight = GetComponent<Light>();
+        if (spotLight == null || spotLight.type != LightType.Spot)
+        {
+            Debug.LogError("No Spot Light component found on this GameObject. Please attach this script to a spotlight.");
+            return;
+        }
 
+        // Set the initial spotlight color to searchingColor
+        spotLight.color = searchingColor;
+    }
     void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.tag == playerTag)
+        if (other.CompareTag("Player"))
         {
-            Vector3 direction = other.transform.position - lens.position;
+            Vector3 direction = other.transform.position - transform.position;
             RaycastHit hit;
 
-            if(Physics.Raycast(lens.transform.position, direction.normalized, out hit, 1000))
-            {
-                Debug.Log(hit.collider.name);
+            Debug.Log($"Trigger detected: {other.gameObject.name}, Tag: {other.tag}");
 
-                if (hit.collider.gameObject.tag == playerTag)
+
+            // Cast a ray from the spotlight toward the player
+            if (Physics.Raycast(transform.position, direction.normalized, out hit, 1000))
+            {
+                Debug.Log(hit.collider.tag);
+
+                if (hit.collider.CompareTag("PlayerCapsule"))
                 {
-                    lens.GetComponentInParent<MeshRenderer>().material = spottedMat;
+                    // Change the spotlight color to red (spotted)
+                    spotLight.color = spottedColor;
+                    gameOverEvent.Invoke();
                 }
                 else
                 {
-                    lens.GetComponentInParent<MeshRenderer>().material = searchingMat;
+                    // Change the spotlight color to green (searching)
+                    spotLight.color = searchingColor;
                 }
             }
-        }
-    }
-
-    void OnTriggerExit (Collider other)
-    {
-        if (other.transform.tag == playerTag)
-        {
-            lens.GetComponentInParent<MeshRenderer>().material = searchingMat;
         }
     }
 }
