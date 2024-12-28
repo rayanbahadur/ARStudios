@@ -9,5 +9,6 @@ public class TestScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) Vocals.instance.Speak(clip);
+        Debug.Log("Triggered");
     }
 }
