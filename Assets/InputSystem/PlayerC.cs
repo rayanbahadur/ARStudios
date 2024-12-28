@@ -53,9 +53,9 @@ public class PlayerC : MonoBehaviour
 
     private void OnCrouchPressed(InputAction.CallbackContext context)
     {
-        // Toggle crouch state only if not inside a vent or if crouching
-        if (!isInsideVent && !isCrouching)
+        if (!isInsideVent)
         {
+            // Allow free crouch/uncrouch outside the vent
             ToggleCrouch();
         }
     }
