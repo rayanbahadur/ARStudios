@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: 04506487f4141c4478c796ff65ef9c94
+guid: 6ed1f3867c5dd874691147656a974d33
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ventlight
+    second: {fileID: 2100000, guid: 08359707f8724e4419168f3de56a7818, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ventlightmetal
+    second: {fileID: 2100000, guid: 83b56510267778f4ebe77831392d5935, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ventmetalbaked
+    second: {fileID: 2100000, guid: ccfcea93d62a2df4e9620c3c5523a689, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -33,7 +48,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 1.2
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -88,7 +103,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 1.2
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

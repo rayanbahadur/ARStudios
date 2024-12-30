@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 // Use this script for crawling or crouching
 public class PlayerC : MonoBehaviour
 {
@@ -11,17 +10,16 @@ public class PlayerC : MonoBehaviour
     public float crouchScaleY = 0.5f; // The Y scale when crouched
 
     private bool isCrouching = false; // Tracks if the player is currently crouching
+    private bool isInsideVent = false; // Tracks if the player is inside a vent
     private myControls inputActions; // Reference to Input Actions
 
     private void Awake()
     {
-        // Initialize the input actions
         inputActions = new myControls();
     }
 
     private void OnEnable()
     {
-        // Enable Input Action when the script is enabled
         inputActions.Player.Enable();
 
         // Subscribe to the Crouch action
@@ -35,10 +33,31 @@ public class PlayerC : MonoBehaviour
         inputActions.Player.Crouch.performed -= OnCrouchPressed;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        // Check if the player enters a vent
+        if (other.CompareTag("Vent"))
+        {
+            isInsideVent = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // Check if the player exits a vent
+        if (other.CompareTag("Vent"))
+        {
+            isInsideVent = false;
+        }
+    }
+
     private void OnCrouchPressed(InputAction.CallbackContext context)
     {
-        // Toggle crouch state
-        ToggleCrouch();
+        if (!isInsideVent)
+        {
+            // Allow free crouch/uncrouch outside the vent
+            ToggleCrouch();
+        }
     }
 
     private void ToggleCrouch()
