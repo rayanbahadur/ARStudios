@@ -22,7 +22,8 @@ public class LevelChange : MonoBehaviour
         {
             // Get the current scene index
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-
+            // Delete the checkpoint value
+            PlayerPrefs.DeleteKey("CheckpointData");
             // Check if there is a next level
             if (currentSceneIndex < SceneManager.sceneCountInBuildSettings)
             {
@@ -45,6 +46,6 @@ public class LevelChange : MonoBehaviour
         {
             player.gameObject.SetActive(false);
             endScreen.SetActive(true);
-        }
+        } 
     }
 }

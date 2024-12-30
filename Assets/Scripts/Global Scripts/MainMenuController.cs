@@ -27,6 +27,10 @@ public class MainMenuController : MonoBehaviour
     private int levelToLoad;
     [SerializeField] private Button[] levelButtons = null;
 
+    [Header("Continue Game")]
+    [SerializeField] private Button continueButton;
+    [SerializeField] private CheckpointLoader checkpointLoader;
+
 
 
 
@@ -63,7 +67,7 @@ public class MainMenuController : MonoBehaviour
             levelButtons[i].interactable = (i + 1) <= levelToLoad;
             int levelIndex = i + 1;
             levelButtons[i].onClick.RemoveAllListeners();
-            levelButtons[i].onClick.AddListener(() => SceneManager.LoadScene("Level " + levelIndex));
+            levelButtons[i].onClick.AddListener(() => SceneManager.LoadScene(levelIndex));
         }
 
     }
@@ -81,6 +85,31 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
+    public void ContinueGame()
+    {
+        // check if CheckpointData playerprefs has value, if so load, if not, check SavedLevel playprefs then load the level, if none disable button
+        if (PlayerPrefs.HasKey("CheckpointData"))
+        {
+            if (checkpointLoader != null)
+            {
+                checkpointLoader.LoadCheckpoint();
+            }
+        }
+        else if (PlayerPrefs.HasKey("SavedLevel")){
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            if (currentSceneIndex < SceneManager.sceneCountInBuildSettings)
+            {
+                SceneManager.LoadScene(currentSceneIndex);
+            }
+        }
+        else
+        {
+            if (continueButton != null)
+            {
+                continueButton.interactable = false;
+            }
+        }
+    }
 
     public void SetDifficulty(string DifficultyValue) {
         PlayerPrefs.SetString("Difficulty", DifficultyValue);
