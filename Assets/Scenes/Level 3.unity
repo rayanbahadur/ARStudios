@@ -3892,6 +3892,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverUI
       objectReference: {fileID: 0}
+    - target: {fileID: 7099896196824969478, guid: b0b58608657e85940b19aa84c1dbf0bb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8008,11 +8012,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &1023597608 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7099896196824969478, guid: b0b58608657e85940b19aa84c1dbf0bb, type: 3}
-  m_PrefabInstance: {fileID: 446941131}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1023597609 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6986092227787607064, guid: b0b58608657e85940b19aa84c1dbf0bb, type: 3}
@@ -14387,7 +14386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b2751b45747a447add480d1b8175f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7264837946077040773}
+  player: {fileID: 0}
 --- !u!4 &1793112275
 Transform:
   m_ObjectHideFlags: 0
