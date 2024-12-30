@@ -27,6 +27,7 @@ TagManager:
   - Port
   - Screwdriver
   - Vent
+  - PlayerCapsule
   layers:
   - Default
   - TransparentFX
@@ -36,7 +37,7 @@ TagManager:
   - UI
   - Obstruction
   - ceiling
-  - 
+  - Post processing
   - 
   - 
   - 

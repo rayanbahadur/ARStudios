@@ -25,7 +25,10 @@ public class Vocals : MonoBehaviour
 
         source.PlayOneShot(clip.clip);
 
-        SubtitlesUI.instance.SetSubtitle(clip.subtitle, clip.clip.length);
+        if (PlayerPrefs.GetInt("Captions") == 1)
+        {
+            SubtitlesUI.instance.SetSubtitle(clip.subtitle, clip.clip.length);
+        }
     }
 }
 
