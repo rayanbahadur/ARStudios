@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.13742734, g: 0.020842403, b: 0.030167889, a: 1}
+  m_IndirectSpecularColor: {r: 0.13742729, g: 0.020842329, b: 0.030167792, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11510,6 +11510,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door_Wooden_Round_Right
       objectReference: {fileID: 0}
+    - target: {fileID: 9074594807983055082, guid: 15745f8b70e5d524183539fa272d90a3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9074594807983055083, guid: 15745f8b70e5d524183539fa272d90a3, type: 3}
       propertyPath: m_Convex
       value: 0
@@ -11531,10 +11535,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 9074594807983055082, guid: 15745f8b70e5d524183539fa272d90a3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 231264596}
+      addedObject: {fileID: 231264600}
     - targetCorrespondingSourceObject: {fileID: 9074594807983055082, guid: 15745f8b70e5d524183539fa272d90a3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 231264600}
+      addedObject: {fileID: 231264604}
   m_SourcePrefab: {fileID: 100100000, guid: 15745f8b70e5d524183539fa272d90a3, type: 3}
 --- !u!4 &231264594 stripped
 Transform:
@@ -11546,22 +11550,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9074594807983055082, guid: 15745f8b70e5d524183539fa272d90a3, type: 3}
   m_PrefabInstance: {fileID: 231264593}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &231264596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231264595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b23b8e910492d54f8c1da3b02a25473, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorMessage: {fileID: 822187495}
-  openAngle: 85
-  openSpeed: 1
-  realitySwitch: {fileID: 1707071230}
 --- !u!65 &231264600
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11583,6 +11571,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.3448642, y: 2.1738925, z: 0.73448455}
   m_Center: {x: 0.6446914, y: 1.1131961, z: -0.15171355}
+--- !u!114 &231264604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231264595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b23b8e910492d54f8c1da3b02a25473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorMessage: {fileID: 822187495}
+  openAngle: 85
+  openSpeed: 1
+  realitySwitch: {fileID: 1707071230}
 --- !u!1 &242136200
 GameObject:
   m_ObjectHideFlags: 0
@@ -58151,6 +58155,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door_Wooden_Round_Right (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9074594807983055082, guid: 15745f8b70e5d524183539fa272d90a3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9074594807983055083, guid: 15745f8b70e5d524183539fa272d90a3, type: 3}
       propertyPath: m_Convex
       value: 0
@@ -60248,6 +60256,8 @@ MonoBehaviour:
   - 
   hintInterval: 30
   hintDisplayTime: 5
+  hardHintVal: 1
+  mediumHintVal: 3
 --- !u!114 &1894257090
 MonoBehaviour:
   m_ObjectHideFlags: 0
