@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-
 public class TopDownCamera : MonoBehaviour
 {
     [SerializeField] GameObject player;          // The player GameObject
