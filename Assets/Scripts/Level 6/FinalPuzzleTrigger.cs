@@ -1,6 +1,5 @@
 using StarterAssets;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
@@ -78,6 +77,7 @@ public class FinalPuzzleTrigger : MonoBehaviour
             {
                 playerCamera.enabled = false; // Disable the player's camera
                 cutsceneCamera.enabled = true; // Enable the cutscene camera
+                cutsceneCamera.gameObject.SetActive(true); // Ensure the cutscene camera is active
             }
 
             if (cutsceneDirector != null)
@@ -108,6 +108,7 @@ public class FinalPuzzleTrigger : MonoBehaviour
         if (cutsceneCamera != null && playerCamera != null)
         {
             cutsceneCamera.enabled = false; // Disable the cutscene camera
+            cutsceneCamera.gameObject.SetActive(false); // Ensure the cutscene camera is inactive
             playerCamera.enabled = true; // Re-enable the player's camera
         }
 

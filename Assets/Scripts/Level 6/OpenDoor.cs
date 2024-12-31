@@ -39,7 +39,6 @@ public class OpenDoor : MonoBehaviour
         if (isOpen)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, openRotation, Time.deltaTime * openSpeed);
-            Debug.Log($"Door rotation updated to: {transform.rotation.eulerAngles}");
         }
     }
 
