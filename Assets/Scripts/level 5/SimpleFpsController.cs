@@ -55,6 +55,7 @@ public class SimpleFpsController : MonoBehaviour
         transform.Rotate(Vector3.up, mouseX);
     }
 
+
     /// <summary>
     /// WASD movement by directly modifying transform.position (horizontal only).
     /// Rigidbody still handles vertical motion (gravity, jump).
