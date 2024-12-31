@@ -1,34 +1,28 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StorageRoomAssignment : MonoBehaviour
 {
-    [Header("Storage Rooms Variations")]
-    [SerializeField] private GameObject easyRoom;
-    [SerializeField] private GameObject mediumRoom;
-    [SerializeField] private GameObject hardRoom;
-
-    // Start is called before the first frame update
-    void Start()
+    [System.Serializable]
+    public class RoomConfig
     {
-        string difficulty = PlayerPrefs.GetString("Difficulty", "Medium");
-        if (difficulty == "Hard")
+        public GameObject room;    // The room GameObject
+        public GameObject manager; // The corresponding manager GameObject
+    }
+
+    [Header("Storage Room Configurations")]
+    [SerializeField] private List<RoomConfig> roomConfigs; // A list of configurations for each difficulty
+    private void Start()
+    {
+        // Get the current difficulty
+        string difficulty = PlayerPrefs.GetString("Difficulty", "Easy");
+
+        // Activate the correct room and manager based on difficulty
+        foreach (var config in roomConfigs)
         {
-            hardRoom.SetActive(true);
-            easyRoom.SetActive(false);
-            mediumRoom.SetActive(false);
-        }
-        else if(difficulty == "Easy"){
-            hardRoom.SetActive(false);
-            easyRoom.SetActive(true);
-            mediumRoom.SetActive(false);
-        }
-        else
-        {
-            hardRoom.SetActive(false);
-            easyRoom.SetActive(false);
-            mediumRoom.SetActive(true);
+            bool isActive = string.Equals(config.manager.name, difficulty, System.StringComparison.OrdinalIgnoreCase);
+            config.room.SetActive(isActive);
+            config.manager.SetActive(isActive);
         }
     }
 }

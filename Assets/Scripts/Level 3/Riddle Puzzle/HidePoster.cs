@@ -47,6 +47,18 @@ public class HidePoster : MonoBehaviour
 
     private void OnMouseClick(InputAction.CallbackContext context)
     {
+        if (Mouse.current == null)
+        {
+            Debug.Log("Mouse input is not detected. Ensure your Input System is set up correctly.");
+            return;
+        }
+
+        if (Camera.main == null)
+        {
+            Debug.Log("No camera tagged as 'MainCamera' in the scene. Ensure you have a camera tagged 'MainCamera'.");
+            return;
+        }
+
         // Create a ray from the camera through the mouse position
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
@@ -57,6 +69,7 @@ public class HidePoster : MonoBehaviour
             if (hit.collider.gameObject == poster)
             {
                 poster.SetActive(false); // Hide the poster
+                this.enabled = false;
             }
         }
     }
