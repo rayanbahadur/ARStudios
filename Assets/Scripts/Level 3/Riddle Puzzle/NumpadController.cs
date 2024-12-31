@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using StarterAssets;
 using UnityEngine.UI;
 using UnityEngine.Playables;
+using System.Collections;
 
 /// <summary>
 /// Handles interactions with a numpad UI for unlocking a lockbox in the game. 
@@ -33,6 +34,12 @@ public class NumpadController : MonoBehaviour
     private AudioSource audioSource; // Audio source for sound effects
 
     private int[] correctNumbers; // Array holding the correct code sequence
+
+    [Header("Numpad Visuals")]
+    [SerializeField] private Image numpadBackground; // Background of the numpad UI
+    private Color defaultBackgroundColor = Color.black; // Default color of the background
+    private Color wrongCodeColor = Color.red; // Flash color for wrong code
+    private float flashDuration = 0.5f; // Duration of the flash effect
 
     private void Awake()
     {
@@ -106,6 +113,7 @@ public class NumpadController : MonoBehaviour
             if (inputField.text[i].ToString() != correctNumbers[i].ToString())
             {
                 Debug.Log("Incorrect code!");
+                StartCoroutine(FlashBackground()); // Trigger the flash effect
                 ClearInput(); // Clear the input if the code is wrong
                 return;
             }
@@ -167,4 +175,19 @@ public class NumpadController : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(null);
         }
     }
+    private IEnumerator FlashBackground()
+    {
+        if (numpadBackground != null)
+        {
+            // Change the background color to the wrong code color
+            numpadBackground.color = wrongCodeColor;
+
+            // Wait for the duration of the flash
+            yield return new WaitForSeconds(flashDuration);
+
+            // Revert the background color to the default
+            numpadBackground.color = defaultBackgroundColor;
+        }
+    }
+
 }
