@@ -105,24 +105,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    //private void DisplayItemInHand(Item item)
-    //{
-    //    // Destroy the current item in hand if there is one
-    //    if (currentHandItem != null)
-    //    {
-    //        Destroy(currentHandItem);
-    //        Debug.Log("Current hand item destroyed.");
-    //    }
-
-    //    // Instantiate the new item and set it as a child of the hand position
-    //    currentHandItem = Instantiate(item.itemPrefab, HandPosition);
-
-    //    // Reset local position, rotation, and scale
-    //    currentHandItem.transform.localPosition = Vector3.zero;
-    //    currentHandItem.transform.localRotation = Quaternion.identity;
-    //    Debug.Log($"Item displayed in hand: {item.itemName}");
-    //}
-
     private void DisplayItemInHand(Item item)
     {
         // Destroy the current item in hand if there is one
@@ -138,14 +120,26 @@ public class Inventory : MonoBehaviour
         // Set the parent to HandPosition
         currentHandItem.transform.SetParent(HandPosition, false);
 
-        // Reset local position, rotation, and scale
-        currentHandItem.transform.localPosition = Vector3.zero;
-        currentHandItem.transform.localRotation = Quaternion.identity;
+        // Check if the item is a RedPotion
+        if (item.itemName == "RedPotion" || item.itemName == "BluePotion")
+        {
+            // Assign different local position and rotation for RedPotion
+            currentHandItem.transform.localPosition = new Vector3(0.00300000003f, -0.130999997f, 0.0359999985f);
+            currentHandItem.transform.localRotation = Quaternion.Euler(88.0161438f, 179.999725f, 179.999725f);
+        }
+        else
+        {
+            // Reset local position, rotation, and scale for other items
+            currentHandItem.transform.localPosition = Vector3.zero;
+            currentHandItem.transform.localRotation = Quaternion.identity;
+        }
 
         // Ensure the item is visible
         currentHandItem.SetActive(true);
 
         Debug.Log($"Item displayed in hand: {item.itemName}");
+
+        
     }
 
 }
