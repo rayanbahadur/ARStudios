@@ -73,15 +73,7 @@ public class PlayerEvents : MonoBehaviour
         if (firstPersonController != null)
         {
             firstPersonController.enabled = false; // Disable the FirstPersonController script
-            StarterAssetsInputs inputs = firstPersonController.GetComponent<StarterAssetsInputs>();
-            if (inputs != null)
-            {
-                inputs.move = Vector2.zero;
-                inputs.look = Vector2.zero;
-                inputs.sprint = false;
-                inputs.jump = false;
-            }
-            Debug.Log("FirstPersonController disabled during Timeline and inputs cleared.");
+            Debug.Log("FirstPersonController disabled during Timeline.");
         }
         else
         {
@@ -95,11 +87,6 @@ public class PlayerEvents : MonoBehaviour
         if (firstPersonController != null)
         {
             firstPersonController.enabled = true; // Re-enable the FirstPersonController script
-            StarterAssetsInputs inputs = firstPersonController.GetComponent<StarterAssetsInputs>();
-            if (inputs != null)
-            {
-                inputs.move = Vector2.zero; // Reset inputs to prevent residual movement
-            }
             Debug.Log("FirstPersonController enabled after Timeline.");
         }
         else

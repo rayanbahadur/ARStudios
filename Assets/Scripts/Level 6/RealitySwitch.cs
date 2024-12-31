@@ -39,11 +39,14 @@ public class RealitySwitch : MonoBehaviour
         normalReality.SetActive(true);      // Enable Normal Reality objects
         fracturedReality.SetActive(false); // Disable Fractured Reality objects
 
-        // Show the initial prompt
-        if (promptText != null)
+        // Show the initial prompt only if the player camera is active
+        if (playerCamera.gameObject.activeInHierarchy)
         {
-            promptText.text = "Press Z to switch between realities!";
-            promptText.gameObject.SetActive(true);
+            ShowInitialPrompt();
+        }
+        else
+        {
+            StartCoroutine(WaitForPlayerCamera());
         }
 
         if (keyText != null)
@@ -61,6 +64,27 @@ public class RealitySwitch : MonoBehaviour
         if (blackoutImage != null)
         {
             blackoutImage.color = new Color(0, 0, 0, 0);
+        }
+    }
+
+    private IEnumerator WaitForPlayerCamera()
+    {
+        // Wait until the player camera becomes active
+        while (!playerCamera.gameObject.activeInHierarchy)
+        {
+            yield return null;
+        }
+
+        // Show the initial prompt once the player camera is active
+        ShowInitialPrompt();
+    }
+
+    private void ShowInitialPrompt()
+    {
+        if (promptText != null)
+        {
+            promptText.text = "Press Z to switch between realities!";
+            promptText.gameObject.SetActive(true);
         }
     }
 
