@@ -7,7 +7,7 @@ public class SimpleFpsController : MonoBehaviour
     public float moveSpeed = 5f;
 
     [Header("Look Settings")]
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 200f;
     public Transform cameraTransform; // Assign your MainCamera here in Inspector
 
     [Header("Jump Settings")]
