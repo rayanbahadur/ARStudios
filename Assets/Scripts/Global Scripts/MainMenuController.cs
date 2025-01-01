@@ -30,12 +30,18 @@ public class MainMenuController : MonoBehaviour
     [Header("Continue Game")]
     [SerializeField] private Button continueButton;
     [SerializeField] private CheckpointLoader checkpointLoader;
+    [SerializeField] private GameObject player;
 
 
 
 
     private void Start()
     {
+        if (player != null)
+        {
+            player.SetActive(false);
+        }
+
         // Load saved settings or set default values
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
         soundEffectsSlider.value = PlayerPrefs.GetFloat("SoundEffectVolume", 0.5f);

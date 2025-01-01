@@ -1180,6 +1180,7 @@ MonoBehaviour:
   - {fileID: 194671876}
   continueButton: {fileID: 1031060470}
   checkpointLoader: {fileID: 1260270952}
+  player: {fileID: 650954085}
 --- !u!4 &390184220
 Transform:
   m_ObjectHideFlags: 0
@@ -1829,6 +1830,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594707812}
   m_CullTransparentMesh: 1
+--- !u!1 &650954085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2170595328195300066, guid: 97dfd4b789a45d34397dcf4390674095, type: 3}
+  m_PrefabInstance: {fileID: 1263569773}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &664089869
 GameObject:
   m_ObjectHideFlags: 0
@@ -2343,11 +2349,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786882833}
   m_CullTransparentMesh: 1
---- !u!4 &796992454 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3680927783975786951, guid: 97dfd4b789a45d34397dcf4390674095, type: 3}
-  m_PrefabInstance: {fileID: 1263569773}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &879389822
 GameObject:
   m_ObjectHideFlags: 0
@@ -5155,7 +5156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b2751b45747a447add480d1b8175f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 796992454}
+  player: {fileID: 0}
 --- !u!4 &1260270953
 Transform:
   m_ObjectHideFlags: 0
@@ -5184,6 +5185,14 @@ PrefabInstance:
       value: PlayerN
       objectReference: {fileID: 0}
     - target: {fileID: 56546699085321683, guid: 97dfd4b789a45d34397dcf4390674095, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170595328195300066, guid: 97dfd4b789a45d34397dcf4390674095, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170595328195300066, guid: 97dfd4b789a45d34397dcf4390674095, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
