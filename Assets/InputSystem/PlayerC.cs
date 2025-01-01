@@ -1,3 +1,4 @@
+using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,11 +14,19 @@ public class PlayerC : MonoBehaviour
     private bool isInsideVent = false; // Tracks if the player is inside a vent
     private myControls inputActions; // Reference to Input Actions
 
+    private FirstPersonController firstPersonController; // Reference to the FirstPersonController script
+    private float defaultJumpValue;
+
     private void Awake()
     {
         inputActions = new myControls();
     }
 
+    private void Start()
+    {
+        firstPersonController = targetObject.GetComponent<FirstPersonController>();
+        defaultJumpValue = firstPersonController.JumpHeight;
+    }
     private void OnEnable()
     {
         inputActions.Player.Enable();
@@ -39,6 +48,7 @@ public class PlayerC : MonoBehaviour
         if (other.CompareTag("Vent"))
         {
             isInsideVent = true;
+            firstPersonController.JumpHeight = 0;
         }
     }
 
@@ -48,6 +58,7 @@ public class PlayerC : MonoBehaviour
         if (other.CompareTag("Vent"))
         {
             isInsideVent = false;
+            firstPersonController.JumpHeight = defaultJumpValue;
         }
     }
 
