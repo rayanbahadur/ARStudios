@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class CutsceneManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _AI;
+    [SerializeField] private GameObject AI;
     [SerializeField] private AudioSource audioSourceSE;
-    [SerializeField] private AudioSource audioSourceM;
+    [SerializeField] private GameObject EndGameUI;
 
     void Start()
     {
         audioSourceSE.volume = PlayerPrefs.GetFloat("SoundEffectVolume",1.0f);
-        audioSourceM.volume = PlayerPrefs.GetFloat("MusicVolume", 1.0f);
+        EndGameUI.SetActive(false);
     }
     public void RevealAI()
     {
-        _AI.SetActive(true);
+        AI.SetActive(true);
+    }
+
+    public void RevealEndGameUI()
+    {
+        EndGameUI.SetActive(true);
     }
 }
