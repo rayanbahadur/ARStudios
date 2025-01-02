@@ -19079,6 +19079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 992926349}
+  gameManager: {fileID: 1023597610}
 --- !u!4 &36980950378977170
 Transform:
   m_ObjectHideFlags: 0
@@ -19696,7 +19697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.074
+      value: -13.12
       objectReference: {fileID: 0}
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19704,7 +19705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.126
+      value: 4.28
       objectReference: {fileID: 0}
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_LocalRotation.w
@@ -21012,6 +21013,7 @@ MonoBehaviour:
   unlockLockbox: {fileID: 1400259355}
   poster: {fileID: 3677942797040768403}
   ventMessage: {fileID: 534200281}
+  screwdriver: {fileID: 11400000, guid: ebb650834c6497d40b0e6922f5e76072, type: 2}
   interactionPrompt: {fileID: 589983941}
   interactionText: {fileID: 589983943}
   outline: {fileID: 5397971388144424477}
