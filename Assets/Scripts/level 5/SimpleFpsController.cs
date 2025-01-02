@@ -7,7 +7,7 @@ public class SimpleFpsController : MonoBehaviour
     public float moveSpeed = 5f;
 
     [Header("Look Settings")]
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 200f;
     public Transform cameraTransform; // Assign your MainCamera here in Inspector
 
     [Header("Jump Settings")]
@@ -33,6 +33,15 @@ public class SimpleFpsController : MonoBehaviour
         LookAround();
         Move();
         Jump();
+        for (int i = 1; i <= 7; i++)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha0 + i))
+            {
+                int slotIndex = i;
+                Debug.Log($"Key {i} pressed. Selecting slot {slotIndex}.");
+                Inventory.Instance.SelectSlot(slotIndex);
+            }
+        }
         // Optionally: FlipOrientation(); // see example below
     }
 
@@ -54,6 +63,7 @@ public class SimpleFpsController : MonoBehaviour
         // Horizontal turn (player body)
         transform.Rotate(Vector3.up, mouseX);
     }
+
 
     /// <summary>
     /// WASD movement by directly modifying transform.position (horizontal only).
