@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         // Reload the current active scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    
+
     public void RestartFromCheckpoint()
     {
         if (checkpointLoader != null)

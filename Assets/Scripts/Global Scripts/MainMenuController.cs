@@ -27,9 +27,6 @@ public class MainMenuController : MonoBehaviour
     private int levelToLoad;
     [SerializeField] private Button[] levelButtons = null;
 
-    [Header("Continue Game")]
-    [SerializeField] private Button continueButton;
-    [SerializeField] private CheckpointLoader checkpointLoader;
     [SerializeField] private GameObject player;
 
 
@@ -88,32 +85,6 @@ public class MainMenuController : MonoBehaviour
             PlayerPrefs.SetString("SavedLevel", currentSceneIndex.ToString());
             // Load the next level
             SceneManager.LoadScene(currentSceneIndex);
-        }
-    }
-
-    public void ContinueGame()
-    {
-        // check if CheckpointData playerprefs has value, if so load, if not, check SavedLevel playprefs then load the level, if none disable button
-        if (PlayerPrefs.HasKey("CheckpointData"))
-        {
-            if (checkpointLoader != null)
-            {
-                checkpointLoader.LoadCheckpoint();
-            }
-        }
-        else if (PlayerPrefs.HasKey("SavedLevel")){
-            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            if (currentSceneIndex < SceneManager.sceneCountInBuildSettings)
-            {
-                SceneManager.LoadScene(currentSceneIndex);
-            }
-        }
-        else
-        {
-            if (continueButton != null)
-            {
-                continueButton.interactable = false;
-            }
         }
     }
 
