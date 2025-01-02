@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public GameObject Crosshair; // Reference to the Crosshair GameObject
     [Header("Timer")]
     public TimerScript timerScript;
+    [Header("Restart Game")]
+    public CheckpointLoader checkpointLoader;
+
     private void Start()
     {
         Time.timeScale = 1; // Resume the game
@@ -41,6 +44,21 @@ public class GameManager : MonoBehaviour
         if (Crosshair != null)
         {
             Crosshair.SetActive(false);
+        }
+    }
+
+    public void RestartGame()
+    {
+        UnityEngine.Debug.Log("RestartGame called."); // Add debug log to verify method call
+        // Reload the current active scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void RestartFromCheckpoint()
+    {
+        if (checkpointLoader != null)
+        {
+            checkpointLoader.LoadCheckpoint();
         }
     }
 }
