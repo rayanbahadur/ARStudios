@@ -127,7 +127,7 @@ public class NumpadController : MonoBehaviour
     {
         ToggleNumpadUI(false);
 
-        float soundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", 1.0f);
+        float soundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", 0.8f);
 
         // Play the unlock sound
         if (audioSource != null)
