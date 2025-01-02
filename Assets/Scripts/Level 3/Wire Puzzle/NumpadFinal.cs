@@ -4,24 +4,29 @@ using UnityEngine;
 public class NumpadFinal : MonoBehaviour
 {
     [Header("Dependencies")]
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject camera;
-    [SerializeField] private GameObject mainCanvas;
     [SerializeField] private Outline outline;
+    [SerializeField] private Item keycard;
+    [SerializeField] AudioObject clip;
+    [SerializeField] private Animator doorAnimator;
+    [SerializeField] private GameObject backLight;
 
     private myControls inputActions;
+
+    private bool isKeycardInHand =>
+        Inventory.Instance != null &&
+        Inventory.Instance.currentHandItem != null &&
+        Inventory.Instance.currentHandItem.CompareTag("Keycard"); // Checks if the player has a keycard equipped
 
     private void Awake()
     {
         inputActions = new myControls(); // Initialize input actions
         inputActions.Player.Enable();
     }
+    
     private void Start()
     {
-        player.SetActive(true);
-        camera.SetActive(false);
+        outline.enabled = false;
     }
-
     private void OnTriggerEnter(Collider other)
     {
         outline.enabled = true;
@@ -31,8 +36,19 @@ public class NumpadFinal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (inputActions.Player.ActionKey.triggered) {
-                ToggleCamera();
+            if (inputActions.Player.LMouseClick.triggered) {
+                if (isKeycardInHand)
+                {
+                    backLight.SetActive(false);
+                    doorAnimator.SetTrigger("Open");
+                    Inventory.Instance.Remove(keycard);
+                    Inventory.Instance.SelectSlot(1);
+                    this.enabled = false;
+                }
+                else
+                {
+                    Vocals.instance.Speak(clip);
+                }
             }
         }
     }
@@ -40,15 +56,5 @@ public class NumpadFinal : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         outline.enabled = false;
-    }
-
-    private void ToggleCamera()
-    {
-        bool active = !player.activeSelf;
-        player.SetActive(active);
-        camera.SetActive(!active);
-        mainCanvas.SetActive(active);
-        Cursor.visible = !active;
-        Cursor.lockState = !active ? CursorLockMode.None : CursorLockMode.Locked;
     }
 }

@@ -18,6 +18,7 @@ public class Detection : MonoBehaviour
     public AudioSource deathAudioSource; // Public AudioSource to assign from the scene
 
     private Light spotLight; // Reference to the Spotlight component
+    private bool isRespawning = false;
 
     void Start()
     {
@@ -52,7 +53,6 @@ public class Detection : MonoBehaviour
                     // Change the spotlight color to red (spotted)
                     spotLight.color = spottedColor;
                     StartCoroutine(HandleRespawn(other.gameObject));
-                    spotLight.color = searchingColor;
                 }
                 else
                 {
@@ -65,27 +65,31 @@ public class Detection : MonoBehaviour
 
     private IEnumerator HandleRespawn(GameObject player)
     {
+        isRespawning = true; // Prevent re-triggering
+
         if (fadeImage != null)
         {
             fadeImage.gameObject.SetActive(true); // Activate the fade image
 
-            // Play the death sound
+            // Start playing the sound
             if (deathSound != null && deathAudioSource != null)
             {
                 float soundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", 0.8f);
                 deathAudioSource.volume = soundEffectVolume;
-                deathAudioSource.PlayOneShot(deathSound);
+
+                deathAudioSource.clip = deathSound;
+                deathAudioSource.Play();
             }
 
-            // Fade in
-            yield return StartCoroutine(Fade(0, 1));
+            // Start the fade-in effect while the sound plays
+            yield return StartCoroutine(FadeWhileSoundPlays(0, 1, fadeDuration));
 
             // Respawn the player at the last checkpoint
             Vector3 checkpointPosition = CheckpointManager.Instance.GetLastCheckpointPosition();
             player.transform.position = checkpointPosition;
             Debug.Log("Player respawned at: " + checkpointPosition);
 
-            // Fade out
+            // Start the fade-out effect
             yield return StartCoroutine(Fade(1, 0));
 
             fadeImage.gameObject.SetActive(false); // Deactivate the fade image
@@ -94,6 +98,9 @@ public class Detection : MonoBehaviour
         {
             Debug.LogWarning("FadeImage reference is missing.");
         }
+
+        spotLight.color = searchingColor; // Reset the spotlight color
+        isRespawning = false; // Allow re-triggering after respawn is complete
     }
 
     // Coroutine to handle the fade effect
@@ -122,4 +129,24 @@ public class Detection : MonoBehaviour
             fadeImage.color = color;
         }
     }
+    private IEnumerator FadeWhileSoundPlays(float startAlpha, float endAlpha, float fadeTime)
+    {
+        float elapsedTime = 0;
+        float soundDuration = deathSound.length;
+
+        // Use the shorter duration of fade or sound to sync the effect
+        float duration = Mathf.Min(fadeTime, soundDuration);
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / duration);
+            SetAlpha(alpha);
+            yield return null;
+        }
+
+        // Ensure the final alpha is set correctly
+        SetAlpha(endAlpha);
+    }
+
 }
