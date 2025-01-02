@@ -6,7 +6,12 @@ public class SlidingPuzzleManager : MonoBehaviour
     public GameObject hatch; // Reference to the hatch GameObject
 
     private bool puzzleCompleted = false;
+    private AudioSource audioSource;
 
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     void Update()
     {
         if (!puzzleCompleted && CheckAllTilesOccupied())
@@ -32,6 +37,16 @@ public class SlidingPuzzleManager : MonoBehaviour
     private void OpenHatch()
     {
         Debug.Log("Puzzle Completed! Opening hatch...");
+
+        float soundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", 1.0f);
+
+        // Play the unlock sound
+        if (audioSource != null)
+        {
+            audioSource.volume = soundEffectVolume;
+            audioSource.Play();
+        }
+
         hatch.SetActive(false);
     }
 }

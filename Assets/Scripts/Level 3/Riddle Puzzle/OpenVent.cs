@@ -75,7 +75,7 @@ public class OpenVent : MonoBehaviour
             if (!isScrewdriverInHand)
             {
                 // Show interaction prompt if the screwdriver is not equipped
-                interactionText.text = "Screwed Shut";
+                interactionText.text = "Screwed Shut, Need to Unscrew";
                 interactionPrompt.SetActive(true);
             }
         }

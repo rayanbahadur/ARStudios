@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TopDownCamera : MonoBehaviour
 {
     [SerializeField] GameObject player;          // The player GameObject
     [SerializeField] GameObject topdownCamera;   // The top-down camera GameObject
+
+    [Header("Interaction Settings")]
+    [SerializeField] private GameObject interactionPrompt;
+    [SerializeField] private TextMeshProUGUI interactionText; // Text for the interaction prompt
 
     private myControls inputActions;
     private bool isPlayerInTrigger = false;      // Tracks if the player is in the trigger
@@ -36,14 +41,16 @@ public class TopDownCamera : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerInTrigger = true;
+            interactionText.text = "Press 'E' to Toggle Top-Down Camera";
+            interactionPrompt.SetActive(true);
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             isPlayerInTrigger = false;
+            interactionPrompt.SetActive(false);
         }
     }
 
