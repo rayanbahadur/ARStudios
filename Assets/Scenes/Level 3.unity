@@ -9580,6 +9580,10 @@ MonoBehaviour:
   targetObject: {fileID: 992926348}
   defaultScaleY: 0.9
   crouchScaleY: 0.2
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 503
+  raycastOffset: 0.1
 --- !u!114 &992926356
 MonoBehaviour:
   m_ObjectHideFlags: 0
