@@ -1,0 +1,302 @@
+fileFormatVersion: 2
+guid: 722a769b492e63240b64142033cb2217
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 8209d7dbe49e821409fa69754de17e01, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: anchorgrey
+    second: {fileID: 2100000, guid: e1492d7f3959889418bd3fcfc5c3b8ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cardboardbox
+    second: {fileID: 2100000, guid: ac0c3bc7927902c44b2c8d23765dbd42, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cardboardboxbig
+    second: {fileID: 2100000, guid: 12973547d5e292c4a9ec95f6ea75a85d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: doorframe
+    second: {fileID: 2100000, guid: 3985e7f1f9a71554a8dd9b278eb3b393, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: filingcabinetBaked
+    second: {fileID: 2100000, guid: 66407155f2d9eb046a292a4c5d5f4205, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fluorescentbulblightBaked
+    second: {fileID: 2100000, guid: 5368da87f69150d4683b762798b3ab35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fluorescentbulbplasticBaked
+    second: {fileID: 2100000, guid: 36dd972b6dfa10d4192aff497a58ba27, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: keypad
+    second: {fileID: 2100000, guid: a76770407be7c884c90a0d09a3587e89, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: keypadcaps
+    second: {fileID: 2100000, guid: f7daf1f248c6949499804a1ae238b246, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: keypadscan
+    second: {fileID: 2100000, guid: 35a43099bd653bc4c860429e9ab9feb3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: securitycamerablack
+    second: {fileID: 2100000, guid: e07917f4eba3f2f4b8ec6a2e81a74223, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: securitycamerablackshiny
+    second: {fileID: 2100000, guid: 91bcb2652a496f748b34035ba267e6f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: securitycameraemission
+    second: {fileID: 2100000, guid: 46981e399036ad0499be33673238b989, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: securitycameraglass
+    second: {fileID: 2100000, guid: 8b9a3930235575d4791a998adc300976, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: securitycameragrey
+    second: {fileID: 2100000, guid: 8735227f1f0570e4282b7ff71ae17cec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: securitycamerawhite
+    second: {fileID: 2100000, guid: 6ce383cff37a78940acf92d406fb83f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: securitycorridorBaked
+    second: {fileID: 2100000, guid: 90ff582484314f8479e31f02ab43389a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: storagedoorBaked
+    second: {fileID: 2100000, guid: daabdfde526a6a94792cf8ea34388c65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: toolcabinetBaked
+    second: {fileID: 2100000, guid: ddd945f53cfcaf94e9bab45cfa3026f5, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 71Q8MYE274L._AC_SL1500_ copy
+    second: {fileID: 2800000, guid: 9ebf30732bc81f148945ea3935a7ae39, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: cardboardbox
+    second: {fileID: 2800000, guid: 64dfca538f388b642bb998628ca40973, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: cardboardbox2 copy
+    second: {fileID: 2800000, guid: 58d860d31664503458ee100805f2f99f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: filingcabinetDiffuse
+    second: {fileID: 2800000, guid: 7cc0c040957efd64e91aa284d3171bee, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: filingcabinetMetallic
+    second: {fileID: 2800000, guid: 99820c10963009b4f97042f0e0118f37, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: filingcabinetNormal
+    second: {fileID: 2800000, guid: aa4d30db06ef0cf48ab6dd7ff8936e4b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: filingcabinetRoughness
+    second: {fileID: 2800000, guid: 9bf481f87ea61d444987744b08cd24ba, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: fluorescentbulbDiffuse
+    second: {fileID: 2800000, guid: 7ca2a7569d011ab409721e56f07400de, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: fluorescentbulbEmission
+    second: {fileID: 2800000, guid: 4b78d64cb59b06f42ac7fc190def9a0a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: securitycorridorDiffuse
+    second: {fileID: 2800000, guid: a76cd35830f57254abb580b5f5b215ac, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: securitycorridorRoughness
+    second: {fileID: 2800000, guid: eb715a1abd9f147458be0479b2118b4f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: storagedoorDiffuse
+    second: {fileID: 2800000, guid: da2a0cb98d85f3a49b6bdbfe9190653f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: storagedoorMetallic
+    second: {fileID: 2800000, guid: 0bd6fc04299a8174e9b3963eb81ae49c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: storagedoorNormal
+    second: {fileID: 2800000, guid: a69efd204f5fc774aabc29568ed34cb3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: storagedoorRoughness
+    second: {fileID: 2800000, guid: 5e6dff10c488f4140b467f978c09ed1f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: toolcabinetDiffuse
+    second: {fileID: 2800000, guid: 35543a20231120549bb366a23970e075, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: toolcabinetMetallic
+    second: {fileID: 2800000, guid: c116121c4b8abe54e8daaf05b20ec8bc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: toolcabinetNormal
+    second: {fileID: 2800000, guid: 32813f1e8d8a119408fc5f4c1b514ccc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: toolcabinetRoughness
+    second: {fileID: 2800000, guid: faa220e1ee52a1c48ace5ec8612dc11e, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1.2
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1.2
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

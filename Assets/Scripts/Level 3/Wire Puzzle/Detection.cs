@@ -85,9 +85,6 @@ public class Detection : MonoBehaviour
             player.transform.position = checkpointPosition;
             Debug.Log("Player respawned at: " + checkpointPosition);
 
-            // Reset all levers
-            LeverManager.Instance.ResetLevers();
-
             // Fade out
             yield return StartCoroutine(Fade(1, 0));
 

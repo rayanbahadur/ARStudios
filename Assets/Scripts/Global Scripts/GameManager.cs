@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
     public GameObject Crosshair; // Reference to the Crosshair GameObject
     [Header("Timer")]
     public TimerScript timerScript;
-    [Header("Restart Game")]
-    public CheckpointLoader checkpointLoader;
+    //[Header("Restart Game")]
+    //public CheckpointLoader checkpointLoader;
 
     private void Start()
     {
@@ -54,11 +54,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void RestartFromCheckpoint()
-    {
-        if (checkpointLoader != null)
-        {
-            checkpointLoader.LoadCheckpoint();
-        }
-    }
+    //public void RestartFromCheckpoint()
+    //{
+    //    if (checkpointLoader != null)
+    //    {
+    //        checkpointLoader.LoadCheckpoint();
+    //    }
+    //}
 }

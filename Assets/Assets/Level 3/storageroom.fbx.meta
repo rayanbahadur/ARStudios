@@ -103,107 +103,107 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: cardboardbox
-    second: {fileID: 2800000, guid: 18cffca071a6c6845a455cbaa1a1bf6b, type: 3}
+    second: {fileID: 2800000, guid: 4ec18a9c25b64a149acc158880560e71, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: fluorescentbulbDiffuse
-    second: {fileID: 2800000, guid: 6111b9d7f42578b41ab4cb4d147a4171, type: 3}
+    second: {fileID: 2800000, guid: 2696727a94975424fae973e883c9de84, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: fluorescentbulbEmission
-    second: {fileID: 2800000, guid: 332b8ccef5a137146a70166ca2560693, type: 3}
+    second: {fileID: 2800000, guid: c079f25a0006f2547bc50d8e6d53ddec, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storagecrate1Diffuse
-    second: {fileID: 2800000, guid: 5ae07c787145fd944811fac1c3745476, type: 3}
+    second: {fileID: 2800000, guid: 64f4699d9361d5f48aea9e1605914560, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storagecrate1Normal
-    second: {fileID: 2800000, guid: d21cfaaa1b60cf94ab795626af9abdfc, type: 3}
+    second: {fileID: 2800000, guid: 234250a16c8d46347ad85dc35af0daca, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storagecrate1Roughness
-    second: {fileID: 2800000, guid: f049b972464b8da409de98ec5d4aede3, type: 3}
+    second: {fileID: 2800000, guid: 6ae2d2218da4b2b48b91569a589fa836, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storagecrate2Diffuse
-    second: {fileID: 2800000, guid: a964e4eeb9423394cbbab89d125e8581, type: 3}
+    second: {fileID: 2800000, guid: 851fe149a19de2c4994d54ffc4245b42, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storagecrate3Diffuse
-    second: {fileID: 2800000, guid: 56881d9e78357b74aa8c892cc8d0c2b1, type: 3}
+    second: {fileID: 2800000, guid: 2d1de9c58bf25424ca1cbbaf5eeefee0, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storagecrate4Diffuse
-    second: {fileID: 2800000, guid: a1b3def5e28475f4aaf1580abb670da1, type: 3}
+    second: {fileID: 2800000, guid: 79bd72c034ff93042b3bafded5f75217, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storagecrate5Diffuse
-    second: {fileID: 2800000, guid: 91060310964a4534e8b8518706fdd5b9, type: 3}
+    second: {fileID: 2800000, guid: 01f13535d5702e34f95af6fa331da528, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storagecrate6Diffuse
-    second: {fileID: 2800000, guid: d738a32bba32cb34fb86e8289725efb5, type: 3}
+    second: {fileID: 2800000, guid: d560a210a11c8c24f8da84ea22f486ab, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storagecrate7Diffuse
-    second: {fileID: 2800000, guid: 08de1fec843d7244f9df2ba1af5115ab, type: 3}
+    second: {fileID: 2800000, guid: a92994ba39d72ea439f990114283654f, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storagecrate8Diffuse
-    second: {fileID: 2800000, guid: 157c6fd6b1870464cbe5b379d13e2e78, type: 3}
+    second: {fileID: 2800000, guid: c3d80e350ec103f4bba5fd7d7f62331e, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storagedoorDiffuse
-    second: {fileID: 2800000, guid: ebc743bd027082a45bd1093e2cb105a9, type: 3}
+    second: {fileID: 2800000, guid: 1272b5fd2472bb2449500789308805af, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storagedoorMetallic
-    second: {fileID: 2800000, guid: 1a3a47ac476222a498f8f42e67e3438d, type: 3}
+    second: {fileID: 2800000, guid: b1ef017503684444c99675fd356f33d1, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storagedoorNormal
-    second: {fileID: 2800000, guid: 4c0148cbe3d5c87418625e0ea40d2aa4, type: 3}
+    second: {fileID: 2800000, guid: 76abf7502229b5e4fbba9bbe72a31b5a, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storagedoorRoughness
-    second: {fileID: 2800000, guid: 2f635ac9970b10b45b2e2c5dce457d70, type: 3}
+    second: {fileID: 2800000, guid: f62651b9d0afbfe49a93224ddda7cf97, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storageroomDiffuse
-    second: {fileID: 2800000, guid: 9f85749c3f7dd3642bf0a862e856c959, type: 3}
+    second: {fileID: 2800000, guid: aeb6ad306a41df54089874779a1989cf, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storageroomNormal
-    second: {fileID: 2800000, guid: e043872375b86f64198b5c1a05397325, type: 3}
+    second: {fileID: 2800000, guid: c5500616449593146aed11901bba217d, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storageroomRoughness
-    second: {fileID: 2800000, guid: 3e77785705e98b24db690fb975fa6f45, type: 3}
+    second: {fileID: 2800000, guid: 6fe980bcd06a11346a525be6c219f09d, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: storageroomcode copy
-    second: {fileID: 2800000, guid: 65493edfdaf88f54c8c82a6f5485beef, type: 3}
+    second: {fileID: 2800000, guid: 6200aa1644b46744d8b6463f7ea2a1ac, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
