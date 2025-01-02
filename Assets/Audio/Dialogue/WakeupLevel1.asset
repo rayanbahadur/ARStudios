@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276d7e88b56ca414e886369c836476b3, type: 3}
+  m_Name: WakeupLevel1
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 3ca6ae935c02f044690067b34dcd9336, type: 3}
+  subtitle: "Where am I? Wait... am I in prison?! This can't be real. Wasn't I just\u2026
+    no, no, that doesn\u2019t make sense. I need to get out of here. Fast."

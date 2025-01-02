@@ -9,25 +9,18 @@ TagManager:
   - KeypadButton
   - Key
   - Fire
-  - BlackCrate
   - BlueCrate
-  - BrownCrate
   - RedCrate
-  - LBrownCrate
-  - WoodCrate
   - PurpleCrate
-  - BedCrate
-  - GreyCrate
-  - CellCrate
-  - MetalCrate
-  - CorridorCrate
-  - MatrixCrate
-  - VentCrate
-  - GlassCrate
   - Port
   - Screwdriver
   - Vent
   - PlayerCapsule
+  - GreenCrate
+  - YellowCrate
+  - CyanCrate
+  - LGreenCrate
+  - OrangeCrate
   layers:
   - Default
   - TransparentFX
