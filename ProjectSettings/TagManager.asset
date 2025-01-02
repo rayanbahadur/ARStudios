@@ -21,6 +21,7 @@ TagManager:
   - CyanCrate
   - LGreenCrate
   - OrangeCrate
+  - Keycard
   layers:
   - Default
   - TransparentFX
