@@ -10,7 +10,7 @@ public class MainMenuController : MonoBehaviour
     [Header("Music Settings")]
     [SerializeField] private TMP_Text musicTextValue = null;
     [SerializeField] private Slider musicSlider = null;
-    [SerializeField] private readonly float defaultAudio = 0.5f;
+    [SerializeField] private readonly float defaultAudio = 0.3f;
 
 
     [Header("Sound Effects Settings")]
@@ -40,8 +40,8 @@ public class MainMenuController : MonoBehaviour
         }
 
         // Load saved settings or set default values
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
-        soundEffectsSlider.value = PlayerPrefs.GetFloat("SoundEffectVolume", 0.5f);
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.3f);
+        soundEffectsSlider.value = PlayerPrefs.GetFloat("SoundEffectVolume", 0.7f);
         captionsToggle.isOn = PlayerPrefs.GetInt("Captions", 0) == 1;
 
         // Update UI and audio sources based on slider values
