@@ -2,20 +2,20 @@ using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// Use this script for crawling or crouching
 public class PlayerC : MonoBehaviour
 {
     public GameObject targetObject;
+    public float defaultScaleY = 1;
+    public float crouchScaleY = 0.5f;
+    public LayerMask obstacleLayer; // Layer mask for objects to check collision with
+    public float raycastOffset = 0.1f; // Small offset to prevent self-collision
 
-    public float defaultScaleY = 1; // The default Y scale when not crouched
-    public float crouchScaleY = 0.5f; // The Y scale when crouched
-
-    private bool isCrouching = false; // Tracks if the player is currently crouching
-    private bool isInsideVent = false; // Tracks if the player is inside a vent
-    private myControls inputActions; // Reference to Input Actions
-
-    private FirstPersonController firstPersonController; // Reference to the FirstPersonController script
+    private bool isCrouching = false;
+    private bool isInsideVent = false;
+    private myControls inputActions;
+    private FirstPersonController firstPersonController;
     private float defaultJumpValue;
+    private CharacterController characterController;
 
     private void Awake()
     {
@@ -25,26 +25,74 @@ public class PlayerC : MonoBehaviour
     private void Start()
     {
         firstPersonController = targetObject.GetComponent<FirstPersonController>();
+        characterController = targetObject.GetComponent<CharacterController>();
         defaultJumpValue = firstPersonController.JumpHeight;
     }
+
     private void OnEnable()
     {
         inputActions.Player.Enable();
-
-        // Subscribe to the Crouch action
         inputActions.Player.Crouch.performed += OnCrouchPressed;
     }
 
     private void OnDisable()
     {
-        // Disable Input Action and unsubscribe when the script is disabled
         inputActions.Player.Disable();
         inputActions.Player.Crouch.performed -= OnCrouchPressed;
     }
 
+    private bool CanStandUp()
+    {
+        // Calculate the height difference between standing and crouching
+        float heightDifference = (defaultScaleY - crouchScaleY) * characterController.height;
+
+        // Starting position for the raycast (current position plus a small offset)
+        Vector3 rayStart = transform.position + Vector3.up * (characterController.height * crouchScaleY + raycastOffset);
+
+        // Check if there's enough space above the player
+        bool hitSomething = Physics.Raycast(rayStart, Vector3.up, heightDifference, obstacleLayer);
+
+        // For debugging - shows the raycast in the scene view
+        Debug.DrawRay(rayStart, Vector3.up * heightDifference, hitSomething ? Color.red : Color.green, 0.1f);
+
+        return !hitSomething;
+    }
+
+    private void OnCrouchPressed(InputAction.CallbackContext context)
+    {
+        if (!isInsideVent)
+        {
+            if (isCrouching)
+            {
+                // Only allow standing up if there's enough space
+                if (CanStandUp())
+                {
+                    ToggleCrouch();
+                }
+                else
+                {
+                    Debug.Log("Can't stand up - obstacle above!");
+                }
+            }
+            else
+            {
+                // Can always crouch down
+                ToggleCrouch();
+            }
+        }
+    }
+
+    private void ToggleCrouch()
+    {
+        isCrouching = !isCrouching;
+        Vector3 newScale = targetObject.transform.localScale;
+        newScale.y = isCrouching ? crouchScaleY : defaultScaleY;
+        targetObject.transform.localScale = newScale;
+    }
+
+    // OnTriggerEnter and OnTriggerExit remain the same
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the player enters a vent
         if (other.CompareTag("Vent"))
         {
             isInsideVent = true;
@@ -54,32 +102,10 @@ public class PlayerC : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        // Check if the player exits a vent
         if (other.CompareTag("Vent"))
         {
             isInsideVent = false;
             firstPersonController.JumpHeight = defaultJumpValue;
         }
-    }
-
-    private void OnCrouchPressed(InputAction.CallbackContext context)
-    {
-        if (!isInsideVent)
-        {
-            // Allow free crouch/uncrouch outside the vent
-            ToggleCrouch();
-        }
-    }
-
-    private void ToggleCrouch()
-    {
-        // Toggle crouch status
-        isCrouching = !isCrouching;
-
-        // Adjust player scale based on crouch state
-        Vector3 newScale = targetObject.transform.localScale;
-        newScale.y = isCrouching ? crouchScaleY : defaultScaleY;
-
-        targetObject.transform.localScale = newScale;
     }
 }
