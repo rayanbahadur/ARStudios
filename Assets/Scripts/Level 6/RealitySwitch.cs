@@ -61,6 +61,7 @@ public class RealitySwitch : MonoBehaviour
         if (blackoutImage != null)
         {
             blackoutImage.color = new Color(0, 0, 0, 0);
+            blackoutImage.gameObject.SetActive(false); // Deactivate the blackout image initially
         }
     }
 
@@ -101,6 +102,12 @@ public class RealitySwitch : MonoBehaviour
         float halfDuration = transitionDuration / 2;
         float startWeight = fracturedPostProcess.weight;
         float endWeight = toFractured ? 1f : 0f;
+
+        // Activate the blackout image
+        if (blackoutImage != null)
+        {
+            blackoutImage.gameObject.SetActive(true);
+        }
 
         // Play the switch sound
         if (audioSource != null && switchSound != null)
@@ -147,6 +154,7 @@ public class RealitySwitch : MonoBehaviour
 
         // Ensure the blackout image is fully transparent
         blackoutImage.color = new Color(0, 0, 0, 0);
+        blackoutImage.gameObject.SetActive(false); // Deactivate the blackout image
         fracturedPostProcess.weight = endWeight;
     }
 
