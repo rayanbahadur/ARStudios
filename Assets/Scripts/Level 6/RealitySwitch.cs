@@ -63,6 +63,13 @@ public class RealitySwitch : MonoBehaviour
             blackoutImage.color = new Color(0, 0, 0, 0);
             blackoutImage.gameObject.SetActive(false); // Deactivate the blackout image initially
         }
+
+        // Retrieve and set the volume for the audio source
+        float soundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", 0.8f);
+        if (audioSource != null)
+        {
+            audioSource.volume = soundEffectVolume;
+        }
     }
 
     private void Update()
