@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [Header("Timer")]
     public TimerScript timerScript;
     [Header("Restart Game")]
-    public CheckpointLoader checkpointLoader;
+    //public CheckpointLoader checkpointLoader;
     [Header("Main Canvas")]
     public GameObject mainCanvas; // Reference to the main canvas
     [Header("Audio Sources")]
