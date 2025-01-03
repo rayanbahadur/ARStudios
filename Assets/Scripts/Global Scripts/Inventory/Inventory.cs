@@ -133,9 +133,9 @@ public class Inventory : MonoBehaviour
         currentHandItem.transform.SetParent(HandPosition, false);
 
         // Check if the item is a RedPotion or BluePotion
-        if (item.itemName == "RedPotion" || item.itemName == "BluePotion")
+        if (item.itemName == "RedPotion" || item.itemName == "BluePotion" || item.itemName == "PoisonCurePotion")
         {
-            // Assign different local position and rotation for RedPotion and BluePotion
+            // Assign different local position and rotation potions
             currentHandItem.transform.localPosition = new Vector3(0.00300000003f, -0.130999997f, 0.0359999985f);
             currentHandItem.transform.localRotation = Quaternion.Euler(88.0161438f, 179.999725f, 179.999725f);
         }
