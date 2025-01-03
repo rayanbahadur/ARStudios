@@ -49,23 +49,10 @@ public class CraftingSystem : MonoBehaviour
     {
         if (outputItem != null)
         {
-            // Remove items used in the crafting from the grid
-            for (int x = 0; x < GRID_SIZE; x++)
-            {
-                for (int y = 0; y < GRID_SIZE; y++)
-                {
-                    if (grid[x, y] != null)
-                    {
-                        Inventory.Instance.Remove(grid[x, y]);
-                        grid[x, y] = null;
-                    }
-                }
-            }
-
             // Add the crafted item to the inventory
             Inventory.Instance.Add(outputItem);
 
-            // Clear the grid
+            // Clear the crafting grid
             ClearGrid();
         }
     }
@@ -74,16 +61,17 @@ public class CraftingSystem : MonoBehaviour
     private void UpdateOutput()
     {
         outputItem = GetRecipeOutput(); // Get the output item based on the current grid configuration
+        onCraftingGridChanged.Invoke(); // Notify that the output item has changed
     }
 
     private Item GetRecipeOutput()
     {
         // Define recipes
-        var poisonCurePotion = Resources.Load<Item>("CraftedItems/PoisonCurePotion");
+        var poisonCurePotion = Resources.Load<Item>("CraftedItemsPrefabs/PoisonCurePotion");
 
         var poisonCureRecipe = new string[,] {
-            { null, "RedPotion", null },
-            { null, "BluePotion", null },
+            { "RedPotion", null, null }, // Red potion is at coordinates (1, 0),  grid[column, row]
+            { null, "BluePotion", null }, // Blue potion is at coordinates (1, 1)
             { null, null, null }
         };
 
@@ -95,16 +83,25 @@ public class CraftingSystem : MonoBehaviour
     private bool MatchRecipe(string[,] recipe)
     {
         // Check if the grid matches the recipe
-        for (int x = 0; x < recipe.GetLength(0); x++)
+        for (int x = 0; x < GRID_SIZE; x++)
         {
             // Check each cell in the recipe
-            for (int y = 0; y < recipe.GetLength(1); y++)
+            for (int y = 0; y < GRID_SIZE; y++)
             {
+                // Log the current grid and recipe cell being compared
+                string gridItemName = grid[x, y]?.itemName ?? "null";
+                string recipeItemName = recipe[x, y] ?? "null";
+                Debug.Log($"Comparing grid[{x}, {y}] ({gridItemName}) with recipe[{x}, {y}] ({recipeItemName})");
+
                 // If the recipe cell is not null and the grid cell is either null or does not match the recipe cell
                 if (recipe[x, y] != null && (grid[x, y] == null || grid[x, y].itemName != recipe[x, y]))
+                {
+                    Debug.Log($"Mismatch at grid[{x}, {y}]: grid item is {gridItemName}, recipe item is {recipeItemName}");
                     return false;
+                }
             }
         }
+        Debug.Log("Recipe matched successfully!");
         return true;
     }
 }

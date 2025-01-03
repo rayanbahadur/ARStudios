@@ -129,6 +129,9 @@ public class CraftingUIManager : MonoBehaviour
         // Handle output slot click logic here if needed
         // --- Should replace most recently placed item with output item ---
         // -- Then it should clear the UI and add the output item to the inventory --
+        if (craftingSystem.outputItem != null) {
+            craftingSystem.ClaimOutput();
+        }
 
     }
 
