@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "com.alexeyperov.unity-dependencies-hunter": {
-      "version": "https://github.com/AlexeyPerov/Unity-Dependencies-Hunter.git#upm",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "92e0961884470f472555ea271155061aa1a434d8"
-    },
     "com.unity.ai.navigation": {
       "version": "1.1.5",
       "depth": 0,
