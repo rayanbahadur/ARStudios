@@ -24,6 +24,12 @@ public class Death : MonoBehaviour
         {
             Debug.LogWarning("Death AudioSource is not assigned. Please assign an AudioSource in the Inspector.");
         }
+        else
+        {
+            // Retrieve and set the volume for the audio source
+            float soundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", 0.8f);
+            deathAudioSource.volume = soundEffectVolume;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

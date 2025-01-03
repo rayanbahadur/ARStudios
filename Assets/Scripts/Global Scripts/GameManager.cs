@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour
     public UnityEvent gameOverEvent; // UnityEvent to invoke on game over
     [Header("Timer")]
     public TimerScript timerScript;
-    [Header("Restart Game")]
-    //public CheckpointLoader checkpointLoader;
     [Header("Main Canvas")]
     public GameObject mainCanvas; // Reference to the main canvas
     [Header("Audio Sources")]
@@ -72,11 +70,4 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    //public void RestartFromCheckpoint()
-    //{
-    //    if (checkpointLoader != null)
-    //    {
-    //        checkpointLoader.LoadCheckpoint();
-    //    }
-    //}
 }
