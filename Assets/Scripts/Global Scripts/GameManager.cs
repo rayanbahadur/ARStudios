@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; // Required for scene management
 using UnityEngine.Events; // Needed for UnityEvent
@@ -9,13 +10,14 @@ public class GameManager : MonoBehaviour
     [Header("Game Over")]
     public GameObject gameOverUI; // Reference to the Game Over UI
     public UnityEvent gameOverEvent; // UnityEvent to invoke on game over
-    [Header("Interaction")]
-    public GameObject interactionPrompt;
-    public GameObject Crosshair; // Reference to the Crosshair GameObject
     [Header("Timer")]
     public TimerScript timerScript;
     [Header("Restart Game")]
     public CheckpointLoader checkpointLoader;
+    [Header("Main Canvas")]
+    public GameObject mainCanvas; // Reference to the main canvas
+    [Header("Audio Sources")]
+    public List<AudioSource> audioSources; // List of audio sources to disable
 
     private void Start()
     {
@@ -34,17 +36,33 @@ public class GameManager : MonoBehaviour
     // Method to handle game over logic
     public void HandleGameOver()
     {
+        UnityEngine.Debug.Log("HandleGameOver called."); // Debug log to verify method call
+
+        // Deactivate all items in the main canvas
+        if (mainCanvas != null)
+        {
+            foreach (Transform child in mainCanvas.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+
         gameOverUI.SetActive(true); // Activate the Game Over UI
-        interactionPrompt.SetActive(false);
+        UnityEngine.Debug.Log("GameOverUI activated."); // Debug log to verify activation
+
+        Time.timeScale = 0;
+
+        // Disable all audio sources
+        foreach (var audioSource in audioSources)
+        {
+            if (audioSource != null)
+            {
+                audioSource.enabled = false;
+            }
+        }
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None; // Unlock the cursor
-
-        // Disable the crosshair
-        if (Crosshair != null)
-        {
-            Crosshair.SetActive(false);
-        }
     }
 
     public void RestartGame()
@@ -53,7 +71,7 @@ public class GameManager : MonoBehaviour
         // Reload the current active scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    
+
     public void RestartFromCheckpoint()
     {
         if (checkpointLoader != null)

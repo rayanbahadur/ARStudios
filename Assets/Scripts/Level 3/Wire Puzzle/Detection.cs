@@ -1,11 +1,21 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 public class Detection : MonoBehaviour
 {
+    [Header("Detection Lights")]
     [SerializeField] Color searchingColor = Color.green; // Light color when searching
     [SerializeField] Color spottedColor = Color.red;    // Light color when spotting the player
-    public UnityEvent gameOverEvent;
+
+    [Header("Fade UI Settings")]
+    public Image fadeImage; // Reference to the Image component for fading
+    public float fadeDuration = 1.0f; // Duration of the fade effect
+
+    [Header("Audio Settings")]
+    public AudioClip deathSound; // Sound clip to play when the player dies
+    public AudioSource deathAudioSource; // Public AudioSource to assign from the scene
 
     private Light spotLight; // Reference to the Spotlight component
 
@@ -41,7 +51,8 @@ public class Detection : MonoBehaviour
                 {
                     // Change the spotlight color to red (spotted)
                     spotLight.color = spottedColor;
-                    gameOverEvent.Invoke();
+                    StartCoroutine(HandleRespawn(other.gameObject));
+                    spotLight.color = searchingColor;
                 }
                 else
                 {
@@ -49,6 +60,69 @@ public class Detection : MonoBehaviour
                     spotLight.color = searchingColor;
                 }
             }
+        }
+    }
+
+    private IEnumerator HandleRespawn(GameObject player)
+    {
+        if (fadeImage != null)
+        {
+            fadeImage.gameObject.SetActive(true); // Activate the fade image
+
+            // Play the death sound
+            if (deathSound != null && deathAudioSource != null)
+            {
+                float soundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", 0.8f);
+                deathAudioSource.volume = soundEffectVolume;
+                deathAudioSource.PlayOneShot(deathSound);
+            }
+
+            // Fade in
+            yield return StartCoroutine(Fade(0, 1));
+
+            // Respawn the player at the last checkpoint
+            Vector3 checkpointPosition = CheckpointManager.Instance.GetLastCheckpointPosition();
+            player.transform.position = checkpointPosition;
+            Debug.Log("Player respawned at: " + checkpointPosition);
+
+            // Reset all levers
+            LeverManager.Instance.ResetLevers();
+
+            // Fade out
+            yield return StartCoroutine(Fade(1, 0));
+
+            fadeImage.gameObject.SetActive(false); // Deactivate the fade image
+        }
+        else
+        {
+            Debug.LogWarning("FadeImage reference is missing.");
+        }
+    }
+
+    // Coroutine to handle the fade effect
+    private IEnumerator Fade(float startAlpha, float endAlpha)
+    {
+        float elapsedTime = 0;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
+            SetAlpha(alpha);
+            yield return null;
+        }
+
+        SetAlpha(endAlpha);
+    }
+
+    // Method to set the alpha value of the fade image
+    private void SetAlpha(float alpha)
+    {
+        if (fadeImage != null)
+        {
+            Color color = fadeImage.color;
+            color.a = alpha;
+            fadeImage.color = color;
         }
     }
 }

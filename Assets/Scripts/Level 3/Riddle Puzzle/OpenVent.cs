@@ -15,6 +15,7 @@ public class OpenVent : MonoBehaviour
     [SerializeField] private PlayableDirector unlockLockbox; // Playable Director for the vent animation
     [SerializeField] private GameObject poster; // The poster that must be deactivated to interact with the vent
     [SerializeField] private TMP_Text ventMessage; // Text message displayed after opening the vent
+    [SerializeField] private Item screwdriver;
 
     [Header("Interaction Settings")]
     [SerializeField] private GameObject interactionPrompt; // Prompt shown when player interacts with the vent
@@ -63,6 +64,9 @@ public class OpenVent : MonoBehaviour
         // Display the vent message
         ventMessage.gameObject.SetActive(true);
 
+        Inventory.Instance.Remove(screwdriver);
+        Inventory.Instance.SelectSlot(1);
+
         // Disable this script to prevent further interactions
         this.enabled = false;
     }
@@ -75,7 +79,7 @@ public class OpenVent : MonoBehaviour
             if (!isScrewdriverInHand)
             {
                 // Show interaction prompt if the screwdriver is not equipped
-                interactionText.text = "Screwed Shut";
+                interactionText.text = "Screwed Shut, Need to Unscrew";
                 interactionPrompt.SetActive(true);
             }
         }

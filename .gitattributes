@@ -2,3 +2,4 @@
 * text=auto
 *.fbx filter=lfs diff=lfs merge=lfs -text
 *.mat filter=lfs diff=lfs merge=lfs -text
+Build/Build/build.data filter=lfs diff=lfs merge=lfs -text

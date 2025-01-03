@@ -102,7 +102,7 @@ public class HintSystem : MonoBehaviour
     // Show the next hint in the array
     void ShowHint()
     {
-        if (currentHintIndex < maxHintsToShow)
+        if (currentHintIndex < hints.Length-1 && currentHintIndex < maxHintsToShow)
         {
             hint.text = hints[currentHintIndex];
             currentHintIndex++;
