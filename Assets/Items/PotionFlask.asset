@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdeac05fa8481684aaf11e37f9aec4c7, type: 3}
   m_Name: PotionFlask
   m_EditorClassIdentifier: 
-  itemName: 
-  icon: {fileID: 0}
-  itemPrefab: {fileID: 0}
+  itemName: PotionFlask
+  icon: {fileID: 21300000, guid: 8a080d9398a2d79458bd6abcd2415a6b, type: 3}
+  itemPrefab: {fileID: 196770, guid: 5d77920e991c410ab2bec909ec78a579, type: 3}
