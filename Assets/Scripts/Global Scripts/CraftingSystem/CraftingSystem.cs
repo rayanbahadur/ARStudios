@@ -29,6 +29,45 @@ public class CraftingSystem : MonoBehaviour
     {
         grid[x, y] = null; // Remove the item at the specified position
         onCraftingGridChanged?.Invoke(); // Notify that the crafting grid has changed
+        UpdateOutput(); // Update the output item
+    }
+
+    public void ClearGrid()
+    {
+        for (int x = 0; x < GRID_SIZE; x++)
+        {
+            for (int y = 0; y < GRID_SIZE; y++)
+            {
+                grid[x, y] = null;
+            }
+        }
+        onCraftingGridChanged?.Invoke();
+        UpdateOutput();
+    }
+
+    public void ClaimOutput()
+    {
+        if (outputItem != null)
+        {
+            // Remove items used in the crafting from the grid
+            for (int x = 0; x < GRID_SIZE; x++)
+            {
+                for (int y = 0; y < GRID_SIZE; y++)
+                {
+                    if (grid[x, y] != null)
+                    {
+                        Inventory.Instance.Remove(grid[x, y]);
+                        grid[x, y] = null;
+                    }
+                }
+            }
+
+            // Add the crafted item to the inventory
+            Inventory.Instance.Add(outputItem);
+
+            // Clear the grid
+            ClearGrid();
+        }
     }
 
     // Recipe Matching
@@ -40,13 +79,13 @@ public class CraftingSystem : MonoBehaviour
     private Item GetRecipeOutput()
     {
         // Define recipes
-        var poisonCurePotion = Resources.Load<Item>("CraftedItemsPrefabs/PoisonCurePotion");
+        var poisonCurePotion = Resources.Load<Item>("CraftedItems/PoisonCurePotion");
 
         var poisonCureRecipe = new string[,] {
             { null, "RedPotion", null },
             { null, "BluePotion", null },
             { null, null, null }
-        }; 
+        };
 
         if (MatchRecipe(poisonCureRecipe)) return poisonCurePotion;
 

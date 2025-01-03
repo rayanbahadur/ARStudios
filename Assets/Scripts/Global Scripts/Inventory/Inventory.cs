@@ -35,14 +35,27 @@ public class Inventory : MonoBehaviour
 
     public void Add(Item item)
     {
-        Items.Add(item);
-        ListItems();    
+        // Find the first null slot or add to the end if no null slots are found
+        int index = Items.IndexOf(null);
+        if (index != -1)
+        {
+            Items[index] = item;
+        }
+        else
+        {
+            Items.Add(item);
+        }
+        ListItems();
     }
 
-    public void Remove(Item item) 
+    public void Remove(Item item)
     {
-        Items.Remove(item);
-        ListItems();
+        int index = Items.IndexOf(item);
+        if (index != -1)
+        {
+            Items[index] = null; // Set the item to null instead of removing it
+            ListItems();
+        }
     }
 
     public void ListItems()
@@ -53,7 +66,7 @@ public class Inventory : MonoBehaviour
             var itemName = slot.Find("ItemName").GetComponent<Text>();
             var itemIcon = slot.Find("ItemIcon").GetComponent<Image>();
 
-            if (i < Items.Count)
+            if (i < Items.Count && Items[i] != null)
             {
                 Item item = Items[i];
                 itemName.text = item.itemName;
@@ -75,12 +88,11 @@ public class Inventory : MonoBehaviour
     {
         if (slotIndex >= 1 && slotIndex <= ItemContent.childCount)
         {
-            if (slotIndex <= Items.Count)
+            if (slotIndex <= Items.Count && Items[slotIndex - 1] != null)
             {
                 Item selectedItem = Items[slotIndex - 1];
                 Debug.Log($"Slot {slotIndex} selected with item: {selectedItem.itemName}");
                 DisplayItemInHand(selectedItem);
-
             }
             else
             {
@@ -94,7 +106,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void RemoveItemFromHand()
+    public void RemoveItemFromHand()
     {
         // Destroy the current item in hand if there is one
         if (currentHandItem != null)
@@ -120,10 +132,10 @@ public class Inventory : MonoBehaviour
         // Set the parent to HandPosition
         currentHandItem.transform.SetParent(HandPosition, false);
 
-        // Check if the item is a RedPotion
+        // Check if the item is a RedPotion or BluePotion
         if (item.itemName == "RedPotion" || item.itemName == "BluePotion")
         {
-            // Assign different local position and rotation for RedPotion
+            // Assign different local position and rotation for RedPotion and BluePotion
             currentHandItem.transform.localPosition = new Vector3(0.00300000003f, -0.130999997f, 0.0359999985f);
             currentHandItem.transform.localRotation = Quaternion.Euler(88.0161438f, 179.999725f, 179.999725f);
         }
@@ -138,8 +150,5 @@ public class Inventory : MonoBehaviour
         currentHandItem.SetActive(true);
 
         Debug.Log($"Item displayed in hand: {item.itemName}");
-
-        
     }
-
 }
