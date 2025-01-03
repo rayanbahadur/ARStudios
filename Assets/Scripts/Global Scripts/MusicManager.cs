@@ -46,4 +46,17 @@ public class MusicManager : MonoBehaviour
 
         PlayNextTrack();
     }
+
+    // Call this function to change the music
+    public void SetMusicTracks(AudioClip[] newTracks, bool playImmediately = false)
+    {
+        musicTracks = newTracks;
+        musicIndex = 0;
+
+        if (playImmediately && musicTracks.Length > 0)
+        {
+            StopAllCoroutines();
+            PlayNextTrack();
+        }
+    }
 }
