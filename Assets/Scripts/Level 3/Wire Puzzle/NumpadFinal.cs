@@ -6,9 +6,13 @@ public class NumpadFinal : MonoBehaviour
     [Header("Dependencies")]
     [SerializeField] private Outline outline;
     [SerializeField] private Item keycard;
+
+    [Header("Open Door")]
     [SerializeField] AudioObject clip;
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private GameObject backLight;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip unlock;
 
     private myControls inputActions;
 
@@ -37,8 +41,11 @@ public class NumpadFinal : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             if (inputActions.Player.LMouseClick.triggered) {
+                Debug.Log("Mouse Clicked");
                 if (isKeycardInHand)
                 {
+                    audioSource.clip = unlock;
+                    audioSource.Play();
                     backLight.SetActive(false);
                     doorAnimator.SetTrigger("Open");
                     Inventory.Instance.Remove(keycard);

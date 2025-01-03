@@ -15,7 +15,7 @@ public class CamRotation: MonoBehaviour
     [SerializeField] float pitch;
 
 
-    [SerializeField] float secondsToRot;
+    public float secondsToRot; // Accessed by the DifficultyAssignment script
     [SerializeField] float rotSwitchTime;
 
     void Start()
