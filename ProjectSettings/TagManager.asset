@@ -22,6 +22,7 @@ TagManager:
   - LGreenCrate
   - OrangeCrate
   - Keycard
+  - Sword
   layers:
   - Default
   - TransparentFX
