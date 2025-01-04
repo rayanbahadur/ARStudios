@@ -3794,9 +3794,9 @@ MonoBehaviour:
   - {fileID: 998878981}
   - {fileID: 1457333625}
   targetPoint: 0
-  patrolSpeed: 2
-  followSpeed: 2
-  rotationSpeed: 2
+  patrolSpeed: 1
+  followSpeed: 1
+  rotationSpeed: 3
   detectionRadius: 4
   stoppingDistance: 1.5
   player: {fileID: 2074119654}
