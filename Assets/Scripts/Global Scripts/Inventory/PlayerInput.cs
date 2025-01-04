@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CustomPlayerInput : MonoBehaviour
 {
+    public const int inventoryToolbarMaxSize = 7;
     void Update()
     {
-        for (int i = 1; i <= 7; i++)
+        for (int i = 1; i <= inventoryToolbarMaxSize; i++)
         {
             if (Input.GetKeyDown(KeyCode.Alpha0 + i))
             {
