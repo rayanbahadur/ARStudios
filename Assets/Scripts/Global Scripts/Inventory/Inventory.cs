@@ -146,6 +146,17 @@ public class Inventory : MonoBehaviour
             currentHandItem.transform.localRotation = Quaternion.identity;
         }
 
+        // Disable or remove Mesh Collider
+        MeshCollider meshCollider = currentHandItem.GetComponent<MeshCollider>();
+        if (meshCollider != null)
+        {
+            if (!meshCollider.convex)
+            {
+                Debug.Log("Disabling concave Mesh Collider.");
+                Destroy(meshCollider); // Remove the Mesh Collider completely
+            }
+        }
+
         // Ensure the item is visible
         currentHandItem.SetActive(true);
 

@@ -2855,6 +2855,14 @@ PrefabInstance:
       propertyPath: pickupRange
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8803797163598912494, guid: 3d115309a1aa3144ea82d4e03cc7b579, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8803797163598912494, guid: 3d115309a1aa3144ea82d4e03cc7b579, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6284,6 +6292,14 @@ PrefabInstance:
     - target: {fileID: 322969909244090201, guid: 086a93c843534fd458af9d6558789082, type: 3}
       propertyPath: m_Name
       value: Key_Rusty
+      objectReference: {fileID: 0}
+    - target: {fileID: 322969909244090206, guid: 086a93c843534fd458af9d6558789082, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 322969909244090206, guid: 086a93c843534fd458af9d6558789082, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 322969909244316537, guid: 086a93c843534fd458af9d6558789082, type: 3}
       propertyPath: m_LocalPosition.x
