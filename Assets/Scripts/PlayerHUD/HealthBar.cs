@@ -32,7 +32,14 @@ public class HealthBar : MonoBehaviour
     {
         slider.value = health;
 
-        fill.color = gradient.Evaluate(slider.normalizedValue);
+        if (isPoisoned)
+        {
+            fill.color = poisonGradient.Evaluate(slider.normalizedValue);
+        }
+        else
+        {
+            fill.color = gradient.Evaluate(slider.normalizedValue);
+        }
         healthText.text = "HEALTH: " + health;
     }
 
