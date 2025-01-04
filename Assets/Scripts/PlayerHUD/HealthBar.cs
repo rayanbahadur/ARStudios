@@ -13,7 +13,9 @@ public class HealthBar : MonoBehaviour
     public Image heartImage; 
     public Sprite poisonHeartSprite; 
     public Sprite normalHeartSprite; 
-    public Gradient poisonGradient; 
+    public Gradient poisonGradient;
+    public AudioSource audioSource; 
+    public AudioClip coughingSound;
 
     private bool isPoisoned = false; // Track the poison status
 
@@ -52,11 +54,29 @@ public class HealthBar : MonoBehaviour
         {
             fill.color = poisonGradient.Evaluate(slider.normalizedValue);
             heartImage.sprite = poisonHeartSprite;
+
+            float soundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", 0.8f);
+            // Play the coughing sound
+            if (audioSource != null)
+            {
+                audioSource.volume = soundEffectVolume;
+                audioSource.clip = coughingSound;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
+
         }
         else
         {
             fill.color = gradient.Evaluate(slider.normalizedValue);
             heartImage.sprite = normalHeartSprite;
+
+            // Stop the coughing sound
+            if (audioSource != null)
+            {
+                audioSource.loop = false; // Disable looping
+                audioSource.Stop();
+            }
         }
     }
 }
