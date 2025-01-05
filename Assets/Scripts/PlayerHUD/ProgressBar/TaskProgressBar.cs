@@ -10,6 +10,7 @@ public class TaskProgressBar : MonoBehaviour
     public Gradient gradient;
     public Image fill;
     public TextMeshProUGUI progressText;
+    public TextMeshProUGUI taskText;
 
 
     // Set the max progress of the player
@@ -28,5 +29,10 @@ public class TaskProgressBar : MonoBehaviour
         slider.value = progressPercentage;
         fill.color = gradient.Evaluate(slider.normalizedValue);
         progressText.text = progressPercentage + "%";
+    }
+
+    public void SetTaskText(string task)
+    {
+        taskText.text = task;
     }
 }

@@ -34,4 +34,10 @@ public class PlayerProgress : MonoBehaviour
         }
         taskProgressBar.SetProgress(currentProgress); // Update the task progress bar
     }
+
+    public void ResetProgress()
+    {
+        currentProgress = 0;
+        taskProgressBar.SetProgress(currentProgress); // Update the task progress bar
+    }
 }
