@@ -9,6 +9,7 @@ public class Lever : MonoBehaviour
     public bool isActivated = false; // Bool to check if the lever is activated
     public float activationDistance = 3f; // Maximum distance to activate the lever
     private Transform playerTransform; // Reference to the player's transform
+    [SerializeField] private PlayerProgress playerProgress; // Reference to the PlayerProgress script
 
     private void Start()
     {
@@ -29,6 +30,12 @@ public class Lever : MonoBehaviour
             // Rotate the lever handle
             leverHandle.localRotation = Quaternion.Euler(rotationAngle, 0, 0);
             isActivated = true;
+
+            // Add 8% to the task progress
+            if (playerProgress != null)
+            {
+                playerProgress.AddProgress(8);
+            }
 
             // Check if all levers are activated
             LeverManager.Instance.CheckAllLevers();
@@ -53,3 +60,4 @@ public class Lever : MonoBehaviour
         isActivated = false;
     }
 }
+

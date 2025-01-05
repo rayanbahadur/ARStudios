@@ -18,6 +18,11 @@ public class Death : MonoBehaviour
     public AudioClip deathSound; // Sound clip to play when the player dies
     public AudioSource deathAudioSource; // Public AudioSource to assign from the scene
 
+    [Header("Player Settings")]
+    public PlayerHealth playerHealth; // Reference to the PlayerHealth component
+
+    private bool diedToDemonLight = false; // Flag to track if the player died to the demon light
+
     private void Start()
     {
         if (deathAudioSource == null)
@@ -29,6 +34,11 @@ public class Death : MonoBehaviour
             // Retrieve and set the volume for the audio source
             float soundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", 0.8f);
             deathAudioSource.volume = soundEffectVolume;
+        }
+
+        if (playerHealth == null)
+        {
+            Debug.LogWarning("PlayerHealth is not assigned. Please assign a PlayerHealth component in the Inspector.");
         }
     }
 
@@ -45,6 +55,8 @@ public class Death : MonoBehaviour
             {
                 if (IsPlayerVisible(other.transform))
                 {
+                    diedToDemonLight = true; // Set the flag to true if the player dies to the demon light
+                    HandlePlayerDeath();
                     StartCoroutine(HandleRespawn(other.gameObject));
                     Debug.Log("Player was visible to the demon. Respawn triggered.");
                 }
@@ -55,7 +67,8 @@ public class Death : MonoBehaviour
             }
             else
             {
-                // Handle respawn for non-demon light triggers
+                diedToDemonLight = false; // Set the flag to false if the player dies to other causes
+                HandlePlayerDeath();
                 StartCoroutine(HandleRespawn(other.gameObject));
             }
         }
@@ -109,6 +122,16 @@ public class Death : MonoBehaviour
         return false; // Player is not visible
     }
 
+    // Method to handle player death
+    private void HandlePlayerDeath()
+    {
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(100); // Inflict 100 damage to the player
+            Debug.Log("Player health set to 0 due to death.");
+        }
+    }
+
     // Method to handle respawn logic with fade effect
     private IEnumerator HandleRespawn(GameObject player)
     {
@@ -130,8 +153,20 @@ public class Death : MonoBehaviour
             player.transform.position = checkpointPosition;
             Debug.Log("Player respawned at: " + checkpointPosition);
 
-            // Reset all levers
-            LeverManager.Instance.ResetLevers();
+            // Reset all levers only if the player died to the demon light
+            if (diedToDemonLight)
+            {
+                LeverManager.Instance.ResetLevers();
+                Debug.Log("Levers reset due to death by demon light.");
+            }
+
+            // Set player's health to max
+            if (playerHealth != null)
+            {
+                playerHealth.currentHealth = playerHealth.maxHealth;
+                playerHealth.healthBar.SetHealth(playerHealth.currentHealth); // Update the health bar
+                Debug.Log("Player health reset to max health: " + playerHealth.maxHealth);
+            }
 
             // Fade out
             yield return StartCoroutine(Fade(1, 0));
