@@ -38,11 +38,12 @@ public class DoorInteraction : MonoBehaviour
         if (other.CompareTag("Player") && !doorOpened)
         {
             isPlayerInside = true;
-            Debug.Log("Player has entered the trigger zone.");
+            //Debug.Log("Player has entered the trigger zone.");
 
             // Show the interaction prompt
             if (interactionPrompt != null)
             {
+                //Debug.Log("Displaying interaction prompt.");
                 interactionPrompt.text = interactionMessage;
                 interactionPrompt.gameObject.SetActive(true);
             }
