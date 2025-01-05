@@ -13,6 +13,9 @@ public class PaperInteraction : MonoBehaviour
     [SerializeField] private GameObject interactionPrompt;
     [SerializeField] private GameObject craftingUI;
     [SerializeField] private GameObject inventoryToolbar;
+    [SerializeField] private GameObject paperRecipeEasy;
+    [SerializeField] private GameObject paperRecipeMedium;
+    [SerializeField] private GameObject paperRecipeHard;
 
     private Transform playerTransform;
     private Camera playerCamera;
@@ -55,11 +58,41 @@ public class PaperInteraction : MonoBehaviour
 
         firstPersonController = FindObjectOfType<FirstPersonController>();
 
-        SetRecipeRiddleText("To cure the poison, you must combine:\n" +
-                            "A flask to hold the cure at the base,\n" +
-                            "A small blue potion to soothe the pain in the middle,\n" +
-                            "And a small red potion to heal the wound at the top.\n" +
-                            "Align them vertically in the second column.");
+        // Set the appropriate paper recipe and riddle text based on difficulty
+        string difficulty = PlayerPrefs.GetString("Difficulty", "Easy");
+        switch (difficulty)
+        {
+            case "Easy":
+                paperRecipeEasy.SetActive(true);
+                paperRecipeMedium.SetActive(false);
+                paperRecipeHard.SetActive(false);
+                SetRecipeRiddleText("To cure the poison, you must combine:\n" +
+                                    "A flask to hold the cure at the base,\n" +
+                                    "A small blue potion to soothe the pain in the middle,\n" +
+                                    "And a small red potion to heal the wound at the top.\n" +
+                                    "Align them vertically in the second column.");
+                break;
+            case "Medium":
+                paperRecipeEasy.SetActive(false);
+                paperRecipeMedium.SetActive(true);
+                paperRecipeHard.SetActive(false);
+                SetRecipeRiddleText("To cure the poison, you must combine:\n" +
+                                    "A flask to hold the cure at the bottom,\n" +
+                                    "A small blue potion to neutralize the poison in the middle,\n" +
+                                    "And a small red potion to heal the wound at the top.\n" +
+                                    "The organization resembles a stick, lying between 1 and 3.");
+                break;
+            case "Hard":
+                paperRecipeEasy.SetActive(false);
+                paperRecipeMedium.SetActive(false);
+                paperRecipeHard.SetActive(true);
+                SetRecipeRiddleText("To cure the poison, you must combine:\n" +
+                                    "A flask to hold the cure at the bottom,\n" +
+                                    "A rare blue herb to neutralize the poison in the middle,\n" +
+                                    "And a small red potion to heal the wound at the top.\n" +
+                                    "The column you seek is the only even prime number.");
+                break;
+        }
     }
 
     void Update()
