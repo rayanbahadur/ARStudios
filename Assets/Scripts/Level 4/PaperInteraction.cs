@@ -18,6 +18,8 @@ public class PaperInteraction : MonoBehaviour
     [SerializeField] private GameObject paperRecipeMedium;
     [SerializeField] private GameObject paperRecipeHard;
 
+    [SerializeField] private PlayerProgress playerProgress;
+
     private Transform playerTransform;
     private Camera playerCamera;
     private RectTransform crosshairRectTransform;
@@ -145,6 +147,12 @@ public class PaperInteraction : MonoBehaviour
         if (!isPaperUIActive)
         {
             EventSystem.current.SetSelectedGameObject(null);
+        }
+
+        if (playerProgress.currentProgress < 30)
+        {
+            playerProgress.SetProgress(30);
+            playerProgress.SetTaskText("Solve the riddle, find the ingredients, and craft the potion.");
         }
     }
 

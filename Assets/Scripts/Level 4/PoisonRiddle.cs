@@ -42,6 +42,8 @@ public class PoisonRiddle : MonoBehaviour
 
         // Initialize the next tick time
         nextTickTime = Time.time + tickRate;
+
+        playerProgress.SetTaskText("Find the recipe paper to cure the poison.");
     }
 
     void Update()
@@ -76,7 +78,5 @@ public class PoisonRiddle : MonoBehaviour
 
         // Set the player's progress to 100
         playerProgress.AddProgress(playerProgress.maxProgress - playerProgress.currentProgress);
-
-        Debug.Log("Poison cured and progress set to 100.");
     }
 }

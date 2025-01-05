@@ -36,6 +36,21 @@ public class PlayerProgress : MonoBehaviour
         taskProgressBar.SetProgress(currentProgress); // Update the task progress bar
     }
 
+    public void SetProgress(int progress)
+    {
+        currentProgress = progress;
+        if (currentProgress > maxProgress)
+        {
+            currentProgress = maxProgress;
+        }
+        taskProgressBar.SetProgress(currentProgress); // Update the task progress bar
+    }
+
+    public void SetTaskText(string task)
+    {
+        taskProgressBar.SetTaskText(task);
+    }
+
     public void ResetProgress()
     {
         currentProgress = 0;
