@@ -12,8 +12,11 @@ public class EnemyPatrol : MonoBehaviour
     public float detectionRadius = 5f; // Distance at which the enemy detects the player
     public float stoppingDistance = 1.5f; // Minimum distance to maintain from the player
     public Transform player; // Reference to the player
+    public int damage = 10; // Damage dealt to the player
+    public float attackCooldown = 1.0f; // Time between attacks
 
     private bool hasSpottedPlayer = false; // Tracks if the player has been spotted
+    private float lastAttackTime = 0f; // Tracks the time of the last attack
 
     void Update()
     {
@@ -21,13 +24,12 @@ public class EnemyPatrol : MonoBehaviour
         {
             // Check distance to the player
             float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-            //Debug.Log($"Distance to player: {distanceToPlayer}");
 
             // Spot the player if within detection radius
             if (distanceToPlayer <= detectionRadius)
             {
                 hasSpottedPlayer = true;
-                Debug.Log("Player spotted! Starting pursuit.");
+                //Debug.Log("Player spotted! Starting pursuit.");
             }
         }
 
@@ -43,8 +45,6 @@ public class EnemyPatrol : MonoBehaviour
 
     void Patrol()
     {
-        //Debug.Log($"Patrolling towards point {targetPoint}");
-
         // Move toward the target patrol point
         transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, patrolSpeed * Time.deltaTime);
 
@@ -63,7 +63,6 @@ public class EnemyPatrol : MonoBehaviour
     {
         // Check the distance to the player
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        //Debug.Log($"Following player. Distance to player: {distanceToPlayer}");
 
         // Only move if the enemy is farther than the stopping distance
         if (distanceToPlayer > stoppingDistance)
@@ -71,6 +70,12 @@ public class EnemyPatrol : MonoBehaviour
             // Keep the enemy's current Y position while moving toward the player
             Vector3 targetPosition = new Vector3(player.position.x, transform.position.y, player.position.z);
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, followSpeed * Time.deltaTime);
+        }
+        else
+        {
+            // Damage the player if within stopping distance
+            //Debug.Log("Player within attack range!");
+            DamagePlayer();
         }
 
         // Smoothly rotate to face the player
@@ -82,6 +87,26 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 
+    void DamagePlayer()
+    {
+        Debug.Log("Attacking player!");
+        Debug.Log($"Time since last attack: {Time.time - lastAttackTime}");
+        // Check if enough time has passed since the last attack
+        if (Time.time >= lastAttackTime + attackCooldown)
+        {
+            Debug.Log("In the if!");
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            Debug.Log(playerHealth);
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damage);
+                Debug.Log($"Player damaged by enemy. Damage dealt: {damage}");
+            }
+
+            lastAttackTime = Time.time; // Update the last attack time
+        }
+    }
+
     void IncrementPoint()
     {
         targetPoint++;
@@ -89,13 +114,10 @@ public class EnemyPatrol : MonoBehaviour
         {
             targetPoint = 0;
         }
-        //Debug.Log($"Switching to patrol point {targetPoint}");
     }
 
     IEnumerator RotateToTarget(Quaternion targetRotation)
     {
-        //Debug.Log("Rotating to next patrol target");
-
         while (Quaternion.Angle(transform.rotation, targetRotation) > 0.1f)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
@@ -104,3 +126,4 @@ public class EnemyPatrol : MonoBehaviour
         transform.rotation = targetRotation; // Snap to the target rotation at the end
     }
 }
+
