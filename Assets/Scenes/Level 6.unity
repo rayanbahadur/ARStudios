@@ -60508,6 +60508,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 322969909244090201, guid: 086a93c843534fd458af9d6558789082, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2123443526}
+    - targetCorrespondingSourceObject: {fileID: 322969909244090201, guid: 086a93c843534fd458af9d6558789082, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2123443531}
   m_SourcePrefab: {fileID: 100100000, guid: 086a93c843534fd458af9d6558789082, type: 3}
 --- !u!4 &1469640863 stripped
 Transform:
@@ -83011,6 +83014,9 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 1224489715}
+  gameOverEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2108419482 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 36e948af173868141a822ed806b581c0, type: 3}
@@ -83167,6 +83173,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item: {fileID: 11400000, guid: db6afde12e48a2144a91f3956fb7656b, type: 2}
   pickupRange: 20
+--- !u!114 &2123443531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123443525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.25, g: 1, b: 0.3597172, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &2123852093
 PrefabInstance:
   m_ObjectHideFlags: 0
