@@ -138,12 +138,30 @@ public class Inventory : MonoBehaviour
             // Assign different local position and rotation potions
             currentHandItem.transform.localPosition = new Vector3(0.00300000003f, -0.130999997f, 0.0359999985f);
             currentHandItem.transform.localRotation = Quaternion.Euler(88.0161438f, 179.999725f, 179.999725f);
+
+        }
+        else if (item.itemName == "Sword")
+        {
+            // Assign different local position and rotation for the sword
+            currentHandItem.transform.localPosition = new Vector3(0.003f, -0.131f, 0.036f);
+            currentHandItem.transform.localRotation = Quaternion.Euler(270f, 0f, 0f);
         }
         else
         {
             // Reset local position, rotation, and scale for other items
             currentHandItem.transform.localPosition = Vector3.zero;
             currentHandItem.transform.localRotation = Quaternion.identity;
+        }
+
+        // Disable or remove Mesh Collider
+        MeshCollider meshCollider = currentHandItem.GetComponent<MeshCollider>();
+        if (meshCollider != null)
+        {
+            if (!meshCollider.convex)
+            {
+                Debug.Log("Disabling concave Mesh Collider.");
+                Destroy(meshCollider); // Remove the Mesh Collider completely
+            }
         }
 
         // Ensure the item is visible
