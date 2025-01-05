@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -10,10 +11,13 @@ public class CraftingUIManager : MonoBehaviour
     public GameObject outputSlot; 
     public GameObject craftingUI;
     public GameObject paperRecipeUI;
+    public TextMeshProUGUI outputText;
 
-    public Button helpButton; // Reference to the HelpButton
-    public GameObject helpTextBackground; // Reference to the helpTextBackground
-    public TextMeshProUGUI helpButtonText; // Reference to the Text component of the HelpButton
+    // Help UI References
+    public Button helpButton; 
+    public GameObject helpTextBackground; 
+    public TextMeshProUGUI helpButtonText; 
+
 
     private Dictionary<string, Image> gridSlots;
     private Image outplotSlotGridImage; // Grid image component for the output slot
@@ -48,6 +52,7 @@ public class CraftingUIManager : MonoBehaviour
         outplotSlotGridImage = outputSlot.GetComponentInChildren<Image>();
         outputSlotItemImage = outputSlot.transform.Find("itemImage").GetComponent<Image>();
         outputSlotItemImage.enabled = false; // Hide the itemImage initially
+        outputText.enabled = false;
 
         // Add listener to the output slot button
         Button outputSlotButton = outplotSlotGridImage.GetComponent<Button>();
@@ -104,6 +109,7 @@ public class CraftingUIManager : MonoBehaviour
 
                 // Clear the crafting grid
                 craftingSystem.ClearGrid();
+                outputText.enabled = false;
                 selectedGridSlot = new Vector2Int(-1, -1); // Reset the selected grid slot
             }
         }
@@ -134,9 +140,7 @@ public class CraftingUIManager : MonoBehaviour
     {
         Debug.Log("Output slot clicked.");
         selectedGridSlot = new Vector2Int(-1, -1); // Reset the selected grid slot
-        // Handle output slot click logic here if needed
-        // --- Should replace most recently placed item with output item ---
-        // -- Then it should clear the UI and add the output item to the inventory --
+
         if (craftingSystem.outputItem != null) {
             craftingSystem.ClaimOutput();
         }
@@ -285,6 +289,11 @@ public class CraftingUIManager : MonoBehaviour
             outputSlotItemImage.sprite = craftingSystem.outputItem.icon;
             outputSlotItemImage.color = Color.white;
             outputSlotItemImage.enabled = true; // Show the itemImage
+
+            string modifiedItemName = Regex.Replace(craftingSystem.outputItem.itemName, "(\\B[A-Z])", " $1"); // Add spaces before capital letters
+            outputText.text = modifiedItemName;
+            outputText.enabled = true;
+
             Debug.Log($"Updated output slot with item {craftingSystem.outputItem.itemName}");
         }
         else
@@ -292,6 +301,7 @@ public class CraftingUIManager : MonoBehaviour
             outputSlotItemImage.sprite = null;
             outputSlotItemImage.color = Color.clear;
             outputSlotItemImage.enabled = false; // Hide the itemImage
+            outputText.enabled = false;
             Debug.Log("Cleared output slot");
         }
 
