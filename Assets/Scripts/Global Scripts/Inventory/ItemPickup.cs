@@ -73,10 +73,6 @@ public class ItemPickup : MonoBehaviour
             Inventory.Instance.Add(Item);
             Destroy(gameObject);
         }
-        else
-        {
-            Debug.Log("Item is too far to pick up or not looking at the item");
-        }
     }
 
     private bool IsLookingAtItem()

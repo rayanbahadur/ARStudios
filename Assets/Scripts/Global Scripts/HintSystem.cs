@@ -16,7 +16,7 @@ public class HintSystem : MonoBehaviour
     public int mediumHintVal = 3;
 
 
-    private int currentHintIndex = 0;  // Tracks which hint is currently being displayed
+    public int currentHintIndex = 0;  // Tracks which hint is currently being displayed
     private float hintTimer;  // Timer to control when the hint message shows
     private bool hintMessageVisible = false;  // Flag to check if the "Press H" message is showing
     private int maxHintsToShow; // Max hints based on difficulty

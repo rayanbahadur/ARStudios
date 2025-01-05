@@ -32,6 +32,8 @@ public class OpenVent : MonoBehaviour
         Inventory.Instance.currentHandItem != null &&
         Inventory.Instance.currentHandItem.CompareTag("Screwdriver"); // Checks if the player has a screwdriver equipped
 
+    private bool inTrigger = false;
+
     private void Awake()
     {
         inputActions = new myControls(); // Initialise input actions
@@ -46,8 +48,9 @@ public class OpenVent : MonoBehaviour
 
     private void Update()
     {
+        
         // Check conditions to open the vent and perform the action
-        if (isPosterDeactivated && isScrewdriverInHand && inputActions.Player.LMouseClick.triggered)
+        if (isPosterDeactivated && isScrewdriverInHand && inputActions.Player.ActionKey.triggered)
         {
             OpenVentAction();
         }
@@ -67,30 +70,44 @@ public class OpenVent : MonoBehaviour
         Inventory.Instance.Remove(screwdriver);
         Inventory.Instance.SelectSlot(1);
 
+        interactionPrompt.SetActive(false);
+        outline.enabled = false;
+
         // Disable this script to prevent further interactions
         this.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isPosterDeactivated)
+        if (other.CompareTag("Player"))
         {
-            outline.enabled = true; // Highlight the vent
-            if (!isScrewdriverInHand)
+            if (isPosterDeactivated)
             {
-                // Show interaction prompt if the screwdriver is not equipped
-                interactionText.text = "Screwed Shut, Need to Unscrew";
-                interactionPrompt.SetActive(true);
+                outline.enabled = true; // Highlight the vent
+
+                if (!isScrewdriverInHand)
+                {
+                    // Show interaction prompt if the screwdriver is not equipped
+                    interactionText.text = "Screwed Shut, Need to Unscrew";
+                    interactionPrompt.SetActive(true);
+                }
+                else if (isScrewdriverInHand)
+                {
+                    interactionText.text = "Press 'E' to Open Vent";
+                    interactionPrompt.SetActive(true);
+                }
             }
+            inTrigger = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // Hide interaction prompt when the player exits the trigger zone
-        if (interactionPrompt.activeSelf)
+        if (other.CompareTag("Player"))
         {
+            // Hide interaction prompt when the player exits the trigger zone
             interactionPrompt.SetActive(false);
+            inTrigger = false;
         }
     }
 }
