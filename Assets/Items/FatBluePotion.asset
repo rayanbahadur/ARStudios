@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FatBluePotion
   m_EditorClassIdentifier: 
   itemName: FatBluePotion
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 7953f23781b16f24b87c258ae85e7bbf, type: 3}
   itemPrefab: {fileID: 165094, guid: 26cc087b299f42a4a1923da599fe03cc, type: 3}
