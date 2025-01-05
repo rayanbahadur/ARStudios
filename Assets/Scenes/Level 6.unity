@@ -70392,13 +70392,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hint: {fileID: 1894257090}
   hints:
-  - 
-  - 
-  - 
+  - The key is on the floor
+  - An object may disappear if you switch realities
+  - Hide behind objects to avoid the demons gaze
   hintInterval: 30
   hintDisplayTime: 5
   hardHintVal: 1
   mediumHintVal: 3
+  currentHintIndex: 0
 --- !u!114 &1894257090
 MonoBehaviour:
   m_ObjectHideFlags: 0
