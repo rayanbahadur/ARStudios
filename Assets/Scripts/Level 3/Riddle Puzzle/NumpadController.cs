@@ -27,6 +27,7 @@ public class NumpadController : MonoBehaviour
     [Header("Dependencies")]
     [SerializeField] private RandomNumberGenerator numberGenerator; // Script to generate the correct number sequence
     [SerializeField] private GameObject screwdriver;
+    [SerializeField] private PlayerProgress playerProgress;
 
     private FirstPersonController firstPersonController; // Reference to the First Person Controller
     private myControls inputActions; // Input action map
@@ -42,6 +43,7 @@ public class NumpadController : MonoBehaviour
     private float flashDuration = 0.5f; // Duration of the flash effect
 
     private bool inRange = false;
+    private bool hasProgressBeenAdded = false;
 
     private void Awake()
     {
@@ -76,6 +78,11 @@ public class NumpadController : MonoBehaviour
         if (inputActions.Player.ActionKey.triggered && inRange)
         {
             ToggleNumpadUI(!numpadUI.activeSelf);
+            if (!hasProgressBeenAdded)
+            {
+                playerProgress.AddProgress(40);
+                hasProgressBeenAdded = true;
+            }
         }
     }
 
