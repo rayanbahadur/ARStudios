@@ -1421,8 +1421,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Left Mouse Click: Interact with
 
-    objects (outline appears without
-    prompt)
+    objects / Pick them up
 
 
 
