@@ -17,20 +17,7 @@ public static class RaycastOutlineUtility
             Debug.LogError("Crosshair RectTransform is not assigned.");
             return;
         }
-
-        if (item.name == "RecipePaperEasy")
-        {
-            Debug.Log("item name = " + item.name);
-        }
-        else if (item.name == "RecipePaperMedium")
-        {
-            Debug.Log("item name = " + item.name);
-        }
-        else if (item.name == "RecipePaperHard")
-        {
-            Debug.Log("item name = " + item.name);
-        }
-
+        
         Vector2 crosshairPosition = crosshairRectTransform.position; // Use the actual position of the crosshair
         Ray ray = playerCamera.ScreenPointToRay(crosshairPosition); // Cast ray from the crosshair position
         RaycastHit[] hits = Physics.RaycastAll(ray);
