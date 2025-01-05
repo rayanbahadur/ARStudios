@@ -8,13 +8,18 @@ public class TaskStartTrigger : MonoBehaviour
     [SerializeField] private string taskText;
     [SerializeField] private PlayerProgress playerProgressBar;
 
+    private bool hasProgressBeenAdded = false;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            progressBar.SetTaskText(taskText);
-            playerProgressBar.SetProgress(0);
+            if (!hasProgressBeenAdded)
+            {
+                progressBar.SetTaskText(taskText);
+                playerProgressBar.SetProgress(0);
+                hasProgressBeenAdded = true;
+            }
         }
     }
 }
