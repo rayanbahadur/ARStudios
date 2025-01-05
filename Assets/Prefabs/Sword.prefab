@@ -58,48 +58,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a072773f7e8ca864fb12bc30a7e79556, type: 3}
       propertyPath: m_TagString
-      value: Hammer
+      value: Sword
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a072773f7e8ca864fb12bc30a7e79556, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5376652326315540647}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a072773f7e8ca864fb12bc30a7e79556, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2008750870698325977}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a072773f7e8ca864fb12bc30a7e79556, type: 3}
---- !u!1 &101186260767216693 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a072773f7e8ca864fb12bc30a7e79556, type: 3}
-  m_PrefabInstance: {fileID: 983497276261607780}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5376652326315540647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 101186260767216693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28b93b22d28ee8b40aeb5b59cfb06e89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Item: {fileID: 11400000, guid: 6f6db1bee7552cb45aa4a05aa41a9dd3, type: 2}
---- !u!114 &2008750870698325977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 101186260767216693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0831cc1147ede484fb2e6e58265cbf41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Item: {fileID: 0}
-  pickupRange: 3.5

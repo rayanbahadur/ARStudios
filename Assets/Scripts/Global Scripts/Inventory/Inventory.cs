@@ -14,8 +14,6 @@ public class Inventory : MonoBehaviour
 
     public GameObject currentHandItem; // To keep track of the current item in hand
 
-    private bool isSwiping = false; // Track if the sword is currently swiping
-
     private void Awake()
     {
         Instance = this;
@@ -37,6 +35,7 @@ public class Inventory : MonoBehaviour
 
     public void Add(Item item)
     {
+        // Find the first null slot or add to the end if no null slots are found
         int index = Items.IndexOf(null);
         if (index != -1)
         {
@@ -109,6 +108,7 @@ public class Inventory : MonoBehaviour
 
     public void RemoveItemFromHand()
     {
+        // Destroy the current item in hand if there is one
         if (currentHandItem != null)
         {
             Destroy(currentHandItem);
@@ -119,91 +119,54 @@ public class Inventory : MonoBehaviour
 
     private void DisplayItemInHand(Item item)
     {
+        // Destroy the current item in hand if there is one
         if (currentHandItem != null)
         {
             Destroy(currentHandItem);
             Debug.Log("Current hand item destroyed.");
         }
 
+        // Instantiate the new item
         currentHandItem = Instantiate(item.itemPrefab);
+
+        // Set the parent to HandPosition
         currentHandItem.transform.SetParent(HandPosition, false);
 
-        if (item.itemName == "Sword")
+        // Check if the item is a RedPotion or BluePotion
+        if (item.itemName == "RedPotion" || item.itemName == "BluePotion" || item.itemName == "PoisonCurePotion" || item.itemName == "PotionFlask")
         {
-            currentHandItem.transform.localPosition = new Vector3(0.003f, -0.131f, -0.2f);
+            // Assign different local position and rotation potions
+            currentHandItem.transform.localPosition = new Vector3(0.00300000003f, -0.130999997f, 0.0359999985f);
+            currentHandItem.transform.localRotation = Quaternion.Euler(88.0161438f, 179.999725f, 179.999725f);
+
+        }
+        else if (item.itemName == "Sword")
+        {
+            // Assign different local position and rotation for the sword
+            currentHandItem.transform.localPosition = new Vector3(0.003f, -0.131f, 0.036f);
             currentHandItem.transform.localRotation = Quaternion.Euler(270f, 0f, 0f);
         }
         else
         {
+            // Reset local position, rotation, and scale for other items
             currentHandItem.transform.localPosition = Vector3.zero;
             currentHandItem.transform.localRotation = Quaternion.identity;
         }
 
+        // Disable or remove Mesh Collider
         MeshCollider meshCollider = currentHandItem.GetComponent<MeshCollider>();
-        if (meshCollider != null && !meshCollider.convex)
+        if (meshCollider != null)
         {
-            Destroy(meshCollider);
+            if (!meshCollider.convex)
+            {
+                Debug.Log("Disabling concave Mesh Collider.");
+                Destroy(meshCollider); // Remove the Mesh Collider completely
+            }
         }
 
+        // Ensure the item is visible
         currentHandItem.SetActive(true);
 
         Debug.Log($"Item displayed in hand: {item.itemName}");
     }
-
-    private void Update()
-    {
-        // Trigger sword swipe if the held item is a sword and the key is pressed
-        if (currentHandItem != null && Input.GetKeyDown(KeyCode.Q))
-        {
-            if (currentHandItem.name.Contains("Sword") && !isSwiping)
-            {
-                StartCoroutine(SwipeSword());
-            }
-        }
-    }
-
-    private System.Collections.IEnumerator SwipeSword()
-    {
-        isSwiping = true;
-
-        Transform swordTransform = currentHandItem.transform;
-
-        Quaternion initialRotation = swordTransform.localRotation;
-        Quaternion intermediateRotation = Quaternion.Euler(0f, 0f, 0f); // Step 1: Rotate to (0, 0, 0)
-        Quaternion targetRotation = Quaternion.Euler(0f, 0f, 80f);      // Step 2: Rotate to (0, 0, 80)
-
-        float time = 0f;
-        float swipeSpeed = 5f;
-
-        // Step 1: Rotate to (0, 0, 0)
-        while (time < 1f)
-        {
-            time += Time.deltaTime * swipeSpeed;
-            swordTransform.localRotation = Quaternion.Lerp(initialRotation, intermediateRotation, time);
-            yield return null;
-        }
-
-        time = 0f;
-
-        // Step 2: Rotate to (0, 0, 80)
-        while (time < 1f)
-        {
-            time += Time.deltaTime * swipeSpeed;
-            swordTransform.localRotation = Quaternion.Lerp(intermediateRotation, targetRotation, time);
-            yield return null;
-        }
-
-        time = 0f;
-
-        // Step 3: Return to the initial position
-        while (time < 1f)
-        {
-            time += Time.deltaTime * swipeSpeed;
-            swordTransform.localRotation = Quaternion.Lerp(targetRotation, initialRotation, time);
-            yield return null;
-        }
-
-        isSwiping = false;
-    }
-
 }

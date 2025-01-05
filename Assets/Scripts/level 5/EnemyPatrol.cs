@@ -21,7 +21,7 @@ public class EnemyPatrol : MonoBehaviour
         {
             // Check distance to the player
             float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-            Debug.Log($"Distance to player: {distanceToPlayer}");
+            //Debug.Log($"Distance to player: {distanceToPlayer}");
 
             // Spot the player if within detection radius
             if (distanceToPlayer <= detectionRadius)
@@ -43,7 +43,7 @@ public class EnemyPatrol : MonoBehaviour
 
     void Patrol()
     {
-        Debug.Log($"Patrolling towards point {targetPoint}");
+        //Debug.Log($"Patrolling towards point {targetPoint}");
 
         // Move toward the target patrol point
         transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, patrolSpeed * Time.deltaTime);
@@ -63,7 +63,7 @@ public class EnemyPatrol : MonoBehaviour
     {
         // Check the distance to the player
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        Debug.Log($"Following player. Distance to player: {distanceToPlayer}");
+        //Debug.Log($"Following player. Distance to player: {distanceToPlayer}");
 
         // Only move if the enemy is farther than the stopping distance
         if (distanceToPlayer > stoppingDistance)
@@ -89,12 +89,12 @@ public class EnemyPatrol : MonoBehaviour
         {
             targetPoint = 0;
         }
-        Debug.Log($"Switching to patrol point {targetPoint}");
+        //Debug.Log($"Switching to patrol point {targetPoint}");
     }
 
     IEnumerator RotateToTarget(Quaternion targetRotation)
     {
-        Debug.Log("Rotating to next patrol target");
+        //Debug.Log("Rotating to next patrol target");
 
         while (Quaternion.Angle(transform.rotation, targetRotation) > 0.1f)
         {
