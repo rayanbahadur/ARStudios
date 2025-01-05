@@ -14,7 +14,7 @@ public class HidePoster : MonoBehaviour
 
     // Input action map for player controls
     private myControls inputActions;
-
+    private bool inTrigger = false;
     private void Awake()
     {
         // Initialise input actions
@@ -33,6 +33,7 @@ public class HidePoster : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             outline.enabled = true; // Enable the highlight
+            inTrigger = true;
         }
     }
 
@@ -42,6 +43,7 @@ public class HidePoster : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             outline.enabled = false; // Disable the highlight
+            inTrigger = false;
         }
     }
 
@@ -70,6 +72,26 @@ public class HidePoster : MonoBehaviour
             {
                 poster.SetActive(false); // Hide the poster
                 this.enabled = false;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (inTrigger && inputActions.Player.ActionKey.triggered)
+        {
+            // Create a ray from the camera through the mouse position
+            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                // Check if the ray hit the poster object
+                if (hit.collider.gameObject == poster)
+                {
+                    poster.SetActive(false); // Hide the poster
+                    this.enabled = false;
+                }
             }
         }
     }

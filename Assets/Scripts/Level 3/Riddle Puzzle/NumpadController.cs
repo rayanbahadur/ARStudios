@@ -22,11 +22,11 @@ public class NumpadController : MonoBehaviour
     [SerializeField] private Outline outline; // Outline effect for highlighting interactable objects
 
     [Header("Success")]
-    [SerializeField] private Item item; // Item awarded upon success
     [SerializeField] private PlayableDirector unlockLockbox; // Timeline director for the unlock cutscene
 
     [Header("Dependencies")]
     [SerializeField] private RandomNumberGenerator numberGenerator; // Script to generate the correct number sequence
+    [SerializeField] private GameObject screwdriver;
 
     private FirstPersonController firstPersonController; // Reference to the First Person Controller
     private myControls inputActions; // Input action map
@@ -41,6 +41,8 @@ public class NumpadController : MonoBehaviour
     private Color wrongCodeColor = Color.red; // Flash color for wrong code
     private float flashDuration = 0.5f; // Duration of the flash effect
 
+    private bool inRange = false;
+
     private void Awake()
     {
         inputActions = new myControls(); // Initialise input actions
@@ -52,6 +54,7 @@ public class NumpadController : MonoBehaviour
         firstPersonController = FindFirstObjectByType<FirstPersonController>(); // Find the FirstPersonController in the scene
         correctNumbers = numberGenerator.GetGeneratedNumbers(); // Get the correct numbers from the generator
         audioSource = GetComponent<AudioSource>();
+        screwdriver.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,18 +65,17 @@ public class NumpadController : MonoBehaviour
             interactionText.text = "Press 'E' to open lockbox";
             interactionPrompt.SetActive(true);
             outline.enabled = true;
+            inRange = true;
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    void Update()
     {
         // Toggle the numpad UI when the player presses the action key
-        if (other.CompareTag("Player"))
+
+        if (inputActions.Player.ActionKey.triggered && inRange)
         {
-            if (inputActions.Player.ActionKey.triggered)
-            {
-                ToggleNumpadUI(!numpadUI.activeSelf);
-            }
+            ToggleNumpadUI(!numpadUI.activeSelf);
         }
     }
 
@@ -84,6 +86,7 @@ public class NumpadController : MonoBehaviour
         {
             interactionPrompt.SetActive(false);
             outline.enabled = false;
+            inRange = false;
         }
     }
 
@@ -125,6 +128,7 @@ public class NumpadController : MonoBehaviour
 
     private void UnlockBox()
     {
+        screwdriver.SetActive(true);
         ToggleNumpadUI(false);
 
         float soundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", 0.8f);
@@ -157,6 +161,7 @@ public class NumpadController : MonoBehaviour
 
         interactionPrompt.SetActive(false);
         outline.enabled = false;
+        this.enabled = false;
     }
 
     private void ToggleNumpadUI(bool state)
