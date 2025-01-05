@@ -26,6 +26,11 @@ public class TaskProgressBar : MonoBehaviour
     public void SetProgress(int progressPercentage)
     {
         StartCoroutine(AnimateProgress(progressPercentage));
+
+        if (slider.value == slider.maxValue)
+        {
+            taskText.text = "Level completed!";
+        }
     }
 
     private IEnumerator AnimateProgress(int targetProgress)

@@ -6,6 +6,7 @@ public class PoisonRiddle : MonoBehaviour
 {
     [SerializeField] private GameObject poisonSmoke;
     [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private PlayerProgress playerProgress;
     private float tickRate;
     private float nextTickTime;
 
@@ -55,7 +56,6 @@ public class PoisonRiddle : MonoBehaviour
             nextTickTime = Time.time + tickRate;
         }
 
-
         // Check if the player presses 'Q' to drink the potion
         if (Input.GetKeyDown(KeyCode.Q) && Inventory.Instance.currentHandItem != null && Inventory.Instance.currentHandItem.name.Contains("Potion_01"))
         {
@@ -74,6 +74,9 @@ public class PoisonRiddle : MonoBehaviour
         // Stop the tick damage
         enabled = false;
 
-        Debug.Log("Poison cured.");
+        // Set the player's progress to 100
+        playerProgress.AddProgress(playerProgress.maxProgress - playerProgress.currentProgress);
+
+        Debug.Log("Poison cured and progress set to 100.");
     }
 }
