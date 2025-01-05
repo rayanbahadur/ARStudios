@@ -4127,7 +4127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9067710755846427034, guid: b229a5664706d1547adedb0623afa9bb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -14.9
       objectReference: {fileID: 0}
     - target: {fileID: 9067710755846427034, guid: b229a5664706d1547adedb0623afa9bb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8944,6 +8944,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1776569092035419804, guid: df5906c41e974f949bdb47749f055e19, type: 3}
+      propertyPath: gravityChangeDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3425026784055847090, guid: df5906c41e974f949bdb47749f055e19, type: 3}
       propertyPath: m_Name
       value: GravityPlayer
