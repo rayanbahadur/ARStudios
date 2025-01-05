@@ -2207,7 +2207,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -573, y: 338}
+  m_AnchoredPosition: {x: -205, y: 188}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &252443232
@@ -3224,7 +3224,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 132158, guid: b29b15951e3f4f2f83b65c4b43aff9d2, type: 3}
       propertyPath: m_Name
-      value: Paper_05
+      value: RecipePaper
       objectReference: {fileID: 0}
     - target: {fileID: 432158, guid: b29b15951e3f4f2f83b65c4b43aff9d2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3324,6 +3324,7 @@ MonoBehaviour:
   recipeRiddleText: {fileID: 1998256462}
   interactionPrompt: {fileID: 1228889970}
   craftingUI: {fileID: 721605861}
+  inventoryToolbar: {fileID: 2050334529}
 --- !u!114 &448127342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15186,7 +15187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1955051226
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15196,7 +15197,7 @@ RectTransform:
   m_GameObject: {fileID: 1955051225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4413, y: 1.5504, z: 1}
+  m_LocalScale: {x: 2.0893106, y: 2.22315, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 222632374}
@@ -15206,7 +15207,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33, y: -90}
+  m_AnchoredPosition: {x: -33.777, y: -142}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1955928509 stripped
@@ -15622,8 +15623,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 26, y: 56}
-  m_SizeDelta: {x: 250, y: 350.326}
+  m_AnchoredPosition: {x: 11, y: 99.5}
+  m_SizeDelta: {x: 250, y: 232.7831}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1998256461
 CanvasRenderer:
@@ -15653,7 +15654,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "line 1\nline2 \nline 3\nline 4\nline 5\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2b194a162f75e3c4fb4f0b40fcd975cf, type: 2}
   m_sharedMaterial: {fileID: -1812170789394601826, guid: 2b194a162f75e3c4fb4f0b40fcd975cf, type: 2}
@@ -15662,7 +15663,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4283238656
   m_fontColor: {r: 0, g: 0.03529412, b: 0.3019608, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -15680,15 +15681,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 9.5
-  m_fontSizeBase: 9.5
+  m_fontSize: 10.5
+  m_fontSizeBase: 10.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 32
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -15841,6 +15842,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aadcb7fd3d069dd4ea515dab1bd7998a, type: 3}
+--- !u!1 &2050334529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2149748658405823856, guid: f4b5852440703ff4ebfb99fe970c5967, type: 3}
+  m_PrefabInstance: {fileID: 61126053}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2060097314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16253,7 +16259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2111314261
 MonoBehaviour:
   m_ObjectHideFlags: 0

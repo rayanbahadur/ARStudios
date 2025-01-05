@@ -12,6 +12,7 @@ public class PaperInteraction : MonoBehaviour
     [SerializeField] private TextMeshProUGUI recipeRiddleText;
     [SerializeField] private GameObject interactionPrompt;
     [SerializeField] private GameObject craftingUI;
+    [SerializeField] private GameObject inventoryToolbar;
 
     private Transform playerTransform;
     private Camera playerCamera;
@@ -53,13 +54,21 @@ public class PaperInteraction : MonoBehaviour
         }
 
         firstPersonController = FindObjectOfType<FirstPersonController>();
+
+        SetRecipeRiddleText("To cure the poison, you must combine:\n" +
+                            "A flask to hold the cure at the base,\n" +
+                            "A small blue potion to soothe the pain in the middle,\n" +
+                            "And a small red potion to heal the wound at the top.\n" +
+                            "Align them vertically in the second column.");
     }
 
     void Update()
     {
+        // Check for interaction input (E key) only if the player is in range and the UI is inactive
         float distanceToPlayer = Vector3.Distance(playerTransform.position, transform.position);
         if (distanceToPlayer <= interactionRange)
         {
+            // Check if the player is looking at the item and show the interaction prompt
             RaycastOutlineUtility.CheckIfPlayerIsLookingAtItem(playerCamera, crosshairRectTransform, gameObject, outline);
             if (outline.enabled)
             {
@@ -71,6 +80,7 @@ public class PaperInteraction : MonoBehaviour
             }
             else
             {
+                // Hide the interaction prompt if the player is not looking at the item
                 interactionPrompt.SetActive(false);
             }
         }
@@ -81,8 +91,10 @@ public class PaperInteraction : MonoBehaviour
         }
     }
 
+    // Show or hide the paper recipe UI
     private void TogglePaperUI()
     {
+        // Disable character movement, cursor, and inventory on show and vice versa on hide
         isPaperUIActive = !isPaperUIActive;
         paperRecipeUI.SetActive(isPaperUIActive);
         firstPersonController.enabled = !isPaperUIActive;
@@ -90,7 +102,8 @@ public class PaperInteraction : MonoBehaviour
         Cursor.visible = isPaperUIActive;
         outline.enabled = !isPaperUIActive;
         interactionPrompt.SetActive(!isPaperUIActive);
-        craftingUI.SetActive(false);
+        inventoryToolbar.SetActive(!isPaperUIActive);
+        craftingUI.SetActive(false); // Should always be hidden when the paper UI is active
 
         if (!isPaperUIActive)
         {
@@ -98,6 +111,7 @@ public class PaperInteraction : MonoBehaviour
         }
     }
 
+    // Set the text of the paper recipe riddle
     public void SetRecipeRiddleText(string text)
     {
         recipeRiddleText.text = text;

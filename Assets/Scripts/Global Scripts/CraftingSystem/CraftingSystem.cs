@@ -69,7 +69,7 @@ public class CraftingSystem : MonoBehaviour
         // Define recipes
         var poisonCurePotion = Resources.Load<Item>("CraftedItemsPrefabs/PoisonCurePotion");
 
-        var poisonCureRecipe = new string[,] { // grid[row, column]
+        var poisonCureRecipe = new string[,] { // grid[column, row]
             { null, null, null }, 
             { "PotionFlask", "BluePotion", "RedPotion" }, // Coordinates [1,0], [1,1], [1,2]
             { null, null, null }
