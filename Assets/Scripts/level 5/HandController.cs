@@ -19,7 +19,7 @@ public class HandController : MonoBehaviour
             // Check if the item's name matches "Sword(Clone)"
             if (currentItemTransform.name == "Sword(Clone)")
             {
-                // Trigger animation on E press
+                // Trigger animation on Q press
                 if (Input.GetKeyDown(KeyCode.Q) && !isAnimating)
                 {
                     StartCoroutine(AnimateSword());
@@ -97,8 +97,8 @@ public class HandController : MonoBehaviour
             ZombieHealth zombieHealth = hit.collider.GetComponent<ZombieHealth>();
             if (zombieHealth != null)
             {
-                zombieHealth.TakeDamage(swordDamage);
-                Debug.Log($"Zombie hit! Dealt {swordDamage} damage.");
+                zombieHealth.TakeDamage(Mathf.RoundToInt(swordDamage)); // Convert float to int
+                Debug.Log($"Zombie hit! Dealt {Mathf.RoundToInt(swordDamage)} damage.");
             }
         }
     }
