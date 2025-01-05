@@ -1,13 +1,37 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class HandController : MonoBehaviour
 {
     public Transform handTransform; // Reference to the hand's transform
+    public TextMeshProUGUI interactionPrompt; // Reference to the Interaction Prompt UI element
     private Transform currentItemTransform; // Transform of the current item in hand
     private bool isAnimating = false; // Prevent overlapping animations
     public float swordDamage = 25f; // Damage dealt by the sword
     public float raycastRange = 2f; // Range of the sword attack
+    public string keyTag = "Key"; // Tag assigned to the key
+    private PlayerProgress playerProgress; // Reference to the PlayerProgress script
+
+    void Start()
+    {
+        // Find the PlayerProgress component in the scene
+        playerProgress = FindObjectOfType<PlayerProgress>();
+        if (playerProgress == null)
+        {
+            Debug.LogError("PlayerProgress component not found in the scene!");
+        }
+
+        // Ensure the prompt is hidden initially
+        if (interactionPrompt != null)
+        {
+            interactionPrompt.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("Interaction Prompt not assigned!");
+        }
+    }
 
     void Update()
     {
@@ -19,6 +43,13 @@ public class HandController : MonoBehaviour
             // Check if the item's name matches "Sword(Clone)"
             if (currentItemTransform.name == "Sword(Clone)")
             {
+                // Display interaction prompt for the sword
+                if (interactionPrompt != null)
+                {
+                    interactionPrompt.text = "Press Q to attack";
+                    interactionPrompt.gameObject.SetActive(true);
+                }
+
                 // Trigger animation on Q press
                 if (Input.GetKeyDown(KeyCode.Q) && !isAnimating)
                 {
@@ -27,12 +58,35 @@ public class HandController : MonoBehaviour
             }
             else
             {
+                // Hide the prompt if the item is not a sword
+                if (interactionPrompt != null)
+                {
+                    interactionPrompt.gameObject.SetActive(false);
+                }
+
                 ResetItemPosition();
+            }
+
+            // Check if the held item is a key and set progress to 25% only if it's less than 75%
+            if (currentItemTransform.CompareTag(keyTag))
+            {
+                if (playerProgress != null && playerProgress.currentProgress < 25)
+                {
+                    playerProgress.SetProgress(25);
+                    playerProgress.SetTaskText("Key Claimed. Next: Unlock Door");
+                    Debug.Log("Progress set to 25% as the key is in hand and progress is below 75%.");
+                }
             }
         }
         else
         {
             currentItemTransform = null;
+
+            // Hide the prompt if no item is in hand
+            if (interactionPrompt != null)
+            {
+                interactionPrompt.gameObject.SetActive(false);
+            }
         }
     }
 
