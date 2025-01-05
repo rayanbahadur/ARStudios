@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 public class NumpadFinal : MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField] private Outline outline;
     [SerializeField] private Item keycard;
+    [SerializeField] private GameObject interactionPrompt; // Prompt displayed to the player for interaction
+    [SerializeField] private TextMeshProUGUI interactionText; // Text of the interaction prompt
 
     [Header("Open Door")]
     [SerializeField] AudioObject clip;
@@ -15,6 +18,7 @@ public class NumpadFinal : MonoBehaviour
     [SerializeField] private AudioClip unlock;
 
     private myControls inputActions;
+    private bool inRange = false;
 
     private bool isKeycardInHand =>
         Inventory.Instance != null &&
@@ -34,14 +38,16 @@ public class NumpadFinal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         outline.enabled = true;
+        inRange = true;
+        interactionText.text = "Press 'E' to Interact with Number Pad";
+        interactionPrompt.SetActive(true);
     }
 
-    private void OnTriggerStay(Collider other)
+    private void Update()
     {
-        if (other.CompareTag("Player"))
+        if (inRange)
         {
-            if (inputActions.Player.LMouseClick.triggered) {
-                Debug.Log("Mouse Clicked");
+            if (inputActions.Player.ActionKey.triggered) {
                 if (isKeycardInHand)
                 {
                     audioSource.clip = unlock;
@@ -50,6 +56,7 @@ public class NumpadFinal : MonoBehaviour
                     doorAnimator.SetTrigger("Open");
                     Inventory.Instance.Remove(keycard);
                     Inventory.Instance.SelectSlot(1);
+                    interactionPrompt.SetActive(false);
                     this.enabled = false;
                 }
                 else
@@ -63,5 +70,7 @@ public class NumpadFinal : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         outline.enabled = false;
+        inRange = false;
+        interactionPrompt.SetActive(false);
     }
 }

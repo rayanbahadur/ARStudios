@@ -13,6 +13,9 @@ public class GameControlUI : MonoBehaviour
     private myControls inputActions;
     private FirstPersonController firstPersonController;
 
+    private bool wasControllerEnabled;
+
+
     private void Awake()
     {
         inputActions = new myControls(); // Initialise input actions
@@ -34,9 +37,15 @@ public class GameControlUI : MonoBehaviour
 
     private void ToggleShowUI(bool activeState)
     {
+        if (activeState) // When showing the UI
+        {
+            // Store the current state of the FirstPersonController
+            wasControllerEnabled = firstPersonController.enabled;
+        }
+
         gameControlUI.SetActive(activeState);
         inventory.SetActive(!activeState);
-        firstPersonController.enabled = !activeState;
+        firstPersonController.enabled = activeState ? false : wasControllerEnabled;
 
         Cursor.visible = activeState;
         Cursor.lockState = activeState? CursorLockMode.None : CursorLockMode.Locked;

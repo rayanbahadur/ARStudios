@@ -12,7 +12,7 @@ public class RiddleAssigner : MonoBehaviour
     [Header("Interaction Settings")]
     [SerializeField] private GameObject interactionPrompt; // Prompt to show interaction availability
     [SerializeField] private TextMeshProUGUI interactionText; // Text field for interaction message
-    [SerializeField] private Outline outline; // Outline for highlighting interactable objects
+    [SerializeField] private float interactionRange = 2f;
 
     private string riddleContent; // Accumulated content of all riddles
     private string[][] riddles = new string[][]
@@ -51,8 +51,13 @@ public class RiddleAssigner : MonoBehaviour
         }
     };
 
-    private FirstPersonController firstPersonController; // Reference to the player's controller
-    private myControls inputActions; // Input action handler for player controls
+    private Transform playerTransform;
+    private Camera playerCamera;
+    private RectTransform crosshairRectTransform;
+    private Outline outline;
+    private bool isRiddleUIActive = false;
+    private FirstPersonController firstPersonController;
+    private myControls inputActions;
 
     private void Awake()
     {
@@ -62,22 +67,68 @@ public class RiddleAssigner : MonoBehaviour
 
     private void Start()
     {
-        InitializeFirstPersonController(); // Set up the first-person controller reference
-        GenerateRiddleContent(); // Generate the compiled riddle content
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerCamera = Camera.main;
+
+        GameObject crosshair = GameObject.Find("MainCanvas/Crosshair");
+        if (crosshair != null)
+        {
+            crosshairRectTransform = crosshair.GetComponent<RectTransform>();
+        }
+        else
+        {
+            Debug.LogError("Crosshair not found in the MainCanvas.");
+        }
+
+        outline = GetComponent<Outline>();
+        if (outline != null)
+        {
+            outline.enabled = false;
+        }
+        else
+        {
+            Debug.LogError("Outline component not found on the object.");
+        }
+
+        firstPersonController = FindObjectOfType<FirstPersonController>();
+        GenerateRiddleContent();
     }
 
-    private void InitializeFirstPersonController()
+    private void Update()
     {
-        // Locate the first-person controller in the scene
-        firstPersonController = FindFirstObjectByType<FirstPersonController>();
 
-        // Ensure the riddle text field is properly assigned
-        if (riddleText == null)
+        float distanceToPlayer = Vector3.Distance(playerTransform.position, transform.position);
+        if (distanceToPlayer <= interactionRange)
         {
-            Debug.LogError("Riddle TextMeshProUGUI is not assigned in the Inspector!");
+            RaycastOutlineUtility.CheckIfPlayerIsLookingAtItem(playerCamera, crosshairRectTransform, gameObject, outline);
+            if (outline.enabled)
+            {
+
+                if (inputActions.Player.ActionKey.triggered)
+                {
+                    interactionPrompt.SetActive(false);
+                    ToggleRiddleUI();
+                }
+            }
+        }
+        else
+        {
+            outline.enabled = false;
         }
     }
-
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Player"))
+        {
+            interactionText.text = "Press 'E' to Read the Page";
+            interactionPrompt.SetActive(true);
+        }
+    }
+    private void OnTriggerExit(Collider other) {
+        if (other.CompareTag("Player"))
+        {
+            interactionPrompt.SetActive(false);
+        }
+    }
     private void GenerateRiddleContent()
     {
         // Iterate through the riddle categories and compile their content
@@ -89,56 +140,19 @@ public class RiddleAssigner : MonoBehaviour
         // Assign the compiled riddles to the text field for display
         riddleText.text = riddleContent;
     }
-    private void ToggleRiddleUI(bool state)
+    private void ToggleRiddleUI()
     {
-        riddleUI.SetActive(state); // Show or hide the riddle UI
-        firstPersonController.enabled = !state; // Disable player movement when the UI is active
-        Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked; // Lock or unlock the cursor
-        Cursor.visible = state; // Show or hide the cursor
-        interactionPrompt.SetActive(!state);
-        outline.enabled = !state;
+        isRiddleUIActive = !isRiddleUIActive;
+        riddleUI.SetActive(isRiddleUIActive);
+        firstPersonController.enabled = !isRiddleUIActive;
+        Cursor.lockState = isRiddleUIActive ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = isRiddleUIActive;
+        outline.enabled = !isRiddleUIActive;
+        interactionPrompt.SetActive(!isRiddleUIActive);
 
-        // Clear UI selection when the riddle UI is closed
-        if (!state)
+        if (!isRiddleUIActive)
         {
             EventSystem.current.SetSelectedGameObject(null);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        // Show interaction prompt if the player enters the trigger zone and the UI is inactive
-        if (other.CompareTag("Player") && !riddleUI.activeSelf)
-        {
-            interactionText.text = $"Press 'E' to read page";
-            interactionPrompt.SetActive(true);
-            outline.enabled = true;
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        // Activate the riddle UI if the player stays in the trigger zone and presses the action key
-        if (other.CompareTag("Player") && inputActions.Player.ActionKey.triggered)
-        {
-            if (!riddleUI.activeSelf)
-            {
-                ToggleRiddleUI(true); // Show the riddle UI
-            }
-            else
-            {
-                ToggleRiddleUI(false); // Hide the riddle UI
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        // Hide interaction prompt when the player leaves the trigger zone
-        if (other.CompareTag("Player"))
-        {
-            interactionPrompt.SetActive(false);
-            outline.enabled = false;
         }
     }
 }
