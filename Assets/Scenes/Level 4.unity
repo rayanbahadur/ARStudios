@@ -2469,7 +2469,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -205, y: 188}
+  m_AnchoredPosition: {x: 75, y: 188}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &252443232
@@ -3148,6 +3148,7 @@ MonoBehaviour:
   paperRecipeEasy: {fileID: 335995433}
   paperRecipeMedium: {fileID: 1741967886}
   paperRecipeHard: {fileID: 343393856}
+  playerProgress: {fileID: 1305727421}
 --- !u!1001 &343393855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3294,6 +3295,7 @@ MonoBehaviour:
   paperRecipeEasy: {fileID: 335995433}
   paperRecipeMedium: {fileID: 1741967886}
   paperRecipeHard: {fileID: 343393856}
+  playerProgress: {fileID: 1305727421}
 --- !u!1001 &345523671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11693,6 +11695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poisonSmoke: {fileID: 955335519}
   playerHealth: {fileID: 1305727414}
+  playerProgress: {fileID: 1305727421}
 --- !u!1001 &1019268435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13229,7 +13232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1282869734
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16946,6 +16949,7 @@ MonoBehaviour:
   paperRecipeEasy: {fileID: 335995433}
   paperRecipeMedium: {fileID: 1741967886}
   paperRecipeHard: {fileID: 343393856}
+  playerProgress: {fileID: 1305727421}
 --- !u!1001 &1765923112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20652,26 +20656,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1422286577}
     m_Modifications:
-    - target: {fileID: 9214782138375060405, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
-      propertyPath: m_Name
-      value: TaskProgressBar
-      objectReference: {fileID: 0}
-    - target: {fileID: 5658143652379814404, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5658143652379814404, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7289828417844926092, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
-      propertyPath: heartImage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7289828417844926092, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
-      propertyPath: audioSource
-      value: 
-      objectReference: {fileID: 1305727419}
     - target: {fileID: 167088677605023556, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -20734,11 +20718,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 167088677605023556, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 208.26343
+      value: 208.2634
       objectReference: {fileID: 0}
     - target: {fileID: 167088677605023556, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -195
+      value: -111.1
       objectReference: {fileID: 0}
     - target: {fileID: 167088677605023556, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -20751,6 +20735,42 @@ PrefabInstance:
     - target: {fileID: 167088677605023556, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716473597680266353, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
+      propertyPath: m_margin.w
+      value: -4.312315
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716473597680266353, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
+      propertyPath: m_margin.x
+      value: -30.27494
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716473597680266353, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
+      propertyPath: m_margin.y
+      value: -1.8804016
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716473597680266353, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
+      propertyPath: m_margin.z
+      value: -37.943245
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716473597680266353, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658143652379814404, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658143652379814404, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7265060149619357608, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.98855
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214782138375060405, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
+      propertyPath: m_Name
+      value: TaskProgressBar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20765,6 +20785,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 449598070961154550, guid: 11ac557c7540ac848a28b3b1bf9d5b7a, type: 3}
+      propertyPath: playerProgress
+      value: 
+      objectReference: {fileID: 1305727421}
     - target: {fileID: 841770580569339702, guid: 11ac557c7540ac848a28b3b1bf9d5b7a, type: 3}
       propertyPath: craftingUI
       value: 
