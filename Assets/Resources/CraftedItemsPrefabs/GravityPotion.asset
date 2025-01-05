@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdeac05fa8481684aaf11e37f9aec4c7, type: 3}
   m_Name: GravityPotion
   m_EditorClassIdentifier: 
-  itemName: 
-  icon: {fileID: 0}
-  itemPrefab: {fileID: 0}
+  itemName: GravityPotion
+  icon: {fileID: 21300000, guid: 0d423d5d3165ebf4486b75bac9f4681e, type: 3}
+  itemPrefab: {fileID: 161476, guid: 95df6f7f30e343db95014a0a7537ce7d, type: 3}

@@ -75,7 +75,16 @@ public class CraftingSystem : MonoBehaviour
             { null, null, null }
         };
 
+        var gravityPotion = Resources.Load<Item>("CraftedItemsPrefabs/GravityPotion");
+
+        var gravityPotionRecipe = new string[,] {
+            { "BluePotion", null, null },
+            { null, "FatBluePotion", null },
+            { null, null, "PotionFlask" }
+        };
+
         if (MatchRecipe(poisonCureRecipe)) return poisonCurePotion;
+        if (MatchRecipe(gravityPotionRecipe)) return gravityPotion;
 
         return null;
     }
