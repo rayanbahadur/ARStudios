@@ -5,8 +5,9 @@ using UnityEngine;
 public class CheckpointManager : MonoBehaviour
 {
     public static CheckpointManager Instance { get; private set; }
-
-    private Vector3 lastCheckpointPosition;
+    
+    // Set to null by default
+    private Vector3 lastCheckpointPosition = Vector3.zero;
 
     private void Awake()
     {
