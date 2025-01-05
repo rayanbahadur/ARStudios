@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 4921758823849658695}
   - component: {fileID: 8826592655498885155}
   - component: {fileID: 7547110184926018267}
-  - component: {fileID: 2095175956215785679}
-  - component: {fileID: 8780461918631306202}
   m_Layer: 0
   m_Name: Screwdriver
   m_TagString: Screwdriver
@@ -131,30 +129,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2095175956215785679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6116181032295063589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28b93b22d28ee8b40aeb5b59cfb06e89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Item: {fileID: 11400000, guid: ebb650834c6497d40b0e6922f5e76072, type: 2}
---- !u!114 &8780461918631306202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6116181032295063589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0831cc1147ede484fb2e6e58265cbf41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Item: {fileID: 11400000, guid: ebb650834c6497d40b0e6922f5e76072, type: 2}
-  pickupRange: 5
