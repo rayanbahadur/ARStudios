@@ -18,6 +18,7 @@ public class HealthBar : MonoBehaviour
     public AudioClip coughingSound;
 
     private bool isPoisoned = false; // Track the poison status
+    private Coroutine currentHealthCoroutine;
 
     // Set the max health of the player
     public void SetMaxHealth(int health) 
@@ -29,11 +30,46 @@ public class HealthBar : MonoBehaviour
         healthText.text = "HEALTH: " + health;
     }
 
-    // Set the health of the player
+    // Set the health of the player with animation
     public void SetHealth(int health)
     {
-        slider.value = health;
+        if (!gameObject.activeInHierarchy)
+        {
+            return;
+        }
+        
+        if (currentHealthCoroutine != null)
+        {
+            StopCoroutine(currentHealthCoroutine);
+        }
+        currentHealthCoroutine = StartCoroutine(AnimateHealthChange(health));
+    }
 
+    private IEnumerator AnimateHealthChange(int targetHealth)
+    {
+        float startHealth = slider.value;
+        float elapsedTime = 0f;
+        float duration = 0.5f; // Duration of the animation
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float newHealth = Mathf.Lerp(startHealth, targetHealth, elapsedTime / duration);
+            slider.value = newHealth;
+
+            if (isPoisoned)
+            {
+                fill.color = poisonGradient.Evaluate(slider.normalizedValue);
+            }
+            else
+            {
+                fill.color = gradient.Evaluate(slider.normalizedValue);
+            }
+            healthText.text = "HEALTH: " + Mathf.RoundToInt(newHealth);
+            yield return null;
+        }
+
+        slider.value = targetHealth;
         if (isPoisoned)
         {
             fill.color = poisonGradient.Evaluate(slider.normalizedValue);
@@ -42,7 +78,7 @@ public class HealthBar : MonoBehaviour
         {
             fill.color = gradient.Evaluate(slider.normalizedValue);
         }
-        healthText.text = "HEALTH: " + health;
+        healthText.text = "HEALTH: " + targetHealth;
     }
 
     // Toggle poison effect
