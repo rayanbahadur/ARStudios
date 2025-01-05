@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class PoisonRiddle : MonoBehaviour
 {
@@ -10,9 +9,6 @@ public class PoisonRiddle : MonoBehaviour
     [SerializeField] private PlayerProgress playerProgress;
     private float tickRate;
     private float nextTickTime;
-
-    [Header("Controls Changed Text")]
-    public TextMeshProUGUI controlsChangedText;
 
     public static PoisonRiddle Instance;
 
@@ -48,17 +44,6 @@ public class PoisonRiddle : MonoBehaviour
         nextTickTime = Time.time + tickRate;
 
         playerProgress.SetTaskText("Find the recipe paper to cure the poison.");
-
-        // Show the controls changed text for 10 seconds
-        StartCoroutine(ShowControlsChangedText());
-
-    }
-
-    private IEnumerator ShowControlsChangedText()
-    {
-        controlsChangedText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(10f);
-        controlsChangedText.gameObject.SetActive(false);
     }
 
     void Update()
@@ -93,7 +78,5 @@ public class PoisonRiddle : MonoBehaviour
 
         // Set the player's progress to 100
         playerProgress.AddProgress(playerProgress.maxProgress - playerProgress.currentProgress);
-
-        LevelChange.Instance.loadNextLevel();
     }
 }
