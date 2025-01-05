@@ -10,6 +10,7 @@ public class CraftingSystem : MonoBehaviour
 
     public event Action onCraftingGridChanged; // Event to notify when the crafting grid has changed
     public Item outputItem; // The item that will be crafted
+    [SerializeField] private PlayerProgress playerProgress;
 
     public CraftingSystem()
     {
@@ -83,7 +84,16 @@ public class CraftingSystem : MonoBehaviour
             { null, null, "PotionFlask" }
         };
 
-        if (MatchRecipe(poisonCureRecipe)) return poisonCurePotion;
+        if (MatchRecipe(poisonCureRecipe))
+        {
+            if (playerProgress.currentProgress < 80)
+            {
+            playerProgress.SetProgress(80);
+            playerProgress.SetTaskText("Drink the potion to cure the poison.");
+            }
+            
+            return poisonCurePotion;
+        } 
         if (MatchRecipe(gravityPotionRecipe)) return gravityPotion;
 
         return null;
