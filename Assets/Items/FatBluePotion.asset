@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdeac05fa8481684aaf11e37f9aec4c7, type: 3}
+  m_Name: FatBluePotion
+  m_EditorClassIdentifier: 
+  itemName: FatBluePotion
+  icon: {fileID: 21300000, guid: 7953f23781b16f24b87c258ae85e7bbf, type: 3}
+  itemPrefab: {fileID: 165094, guid: 26cc087b299f42a4a1923da599fe03cc, type: 3}

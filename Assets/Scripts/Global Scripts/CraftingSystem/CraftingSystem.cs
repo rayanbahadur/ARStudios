@@ -10,6 +10,7 @@ public class CraftingSystem : MonoBehaviour
 
     public event Action onCraftingGridChanged; // Event to notify when the crafting grid has changed
     public Item outputItem; // The item that will be crafted
+    [SerializeField] private PlayerProgress playerProgress;
 
     public CraftingSystem()
     {
@@ -69,13 +70,31 @@ public class CraftingSystem : MonoBehaviour
         // Define recipes
         var poisonCurePotion = Resources.Load<Item>("CraftedItemsPrefabs/PoisonCurePotion");
 
-        var poisonCureRecipe = new string[,] { // grid[row, column]
+        var poisonCureRecipe = new string[,] { // grid[column, row]
             { null, null, null }, 
             { "PotionFlask", "BluePotion", "RedPotion" }, // Coordinates [1,0], [1,1], [1,2]
             { null, null, null }
         };
 
-        if (MatchRecipe(poisonCureRecipe)) return poisonCurePotion;
+        var gravityPotion = Resources.Load<Item>("CraftedItemsPrefabs/GravityPotion");
+
+        var gravityPotionRecipe = new string[,] {
+            { "BluePotion", null, null },
+            { null, "FatBluePotion", null },
+            { null, null, "PotionFlask" }
+        };
+
+        if (MatchRecipe(poisonCureRecipe))
+        {
+            if (playerProgress.currentProgress < 80)
+            {
+            playerProgress.SetProgress(80);
+            playerProgress.SetTaskText("Drink the potion to cure the poison.");
+            }
+            
+            return poisonCurePotion;
+        } 
+        if (MatchRecipe(gravityPotionRecipe)) return gravityPotion;
 
         return null;
     }

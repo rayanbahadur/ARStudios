@@ -17,7 +17,7 @@ public static class RaycastOutlineUtility
             Debug.LogError("Crosshair RectTransform is not assigned.");
             return;
         }
-
+        
         Vector2 crosshairPosition = crosshairRectTransform.position; // Use the actual position of the crosshair
         Ray ray = playerCamera.ScreenPointToRay(crosshairPosition); // Cast ray from the crosshair position
         RaycastHit[] hits = Physics.RaycastAll(ray);
