@@ -4888,7 +4888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: {fileID: 11400000, guid: 42337611d39a846429729603c7380dbf, type: 2}
-  pickupRange: 3.5
+  pickupRange: 50
 --- !u!114 &1205899084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8870,7 +8870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: {fileID: 11400000, guid: db6afde12e48a2144a91f3956fb7656b, type: 2}
-  pickupRange: 10
+  pickupRange: 30
 --- !u!114 &2127412427
 MonoBehaviour:
   m_ObjectHideFlags: 0
