@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CraftingUIManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class CraftingUIManager : MonoBehaviour
     public GameObject craftingUI;
     public GameObject paperRecipeUI;
 
+    public Button helpButton; // Reference to the HelpButton
+    public GameObject helpTextBackground; // Reference to the helpTextBackground
+    public TextMeshProUGUI helpButtonText; // Reference to the Text component of the HelpButton
 
     private Dictionary<string, Image> gridSlots;
     private Image outplotSlotGridImage; // Grid image component for the output slot
@@ -40,7 +44,6 @@ public class CraftingUIManager : MonoBehaviour
             }
         }
 
-
         // Get the output slot images
         outplotSlotGridImage = outputSlot.GetComponentInChildren<Image>();
         outputSlotItemImage = outputSlot.transform.Find("itemImage").GetComponent<Image>();
@@ -58,6 +61,9 @@ public class CraftingUIManager : MonoBehaviour
 
         // Hide the crafting UI initially
         craftingUI.SetActive(false);
+
+        // Add listener to the help button
+        helpButton.onClick.AddListener(OnHelpButtonClicked);
     }
 
     void OnDestroy()
@@ -137,6 +143,22 @@ public class CraftingUIManager : MonoBehaviour
 
     }
 
+    private void OnHelpButtonClicked()
+    {
+        // Toggle the help text background
+        helpTextBackground.SetActive(!helpTextBackground.activeSelf);
+
+        // Update the button text
+        if (helpTextBackground.activeSelf)
+        {
+            helpButtonText.text = "Close help ->";
+        }
+        else
+        {
+            helpButtonText.text = "Help";
+        }
+    }
+
     private void PlaceOrRemoveItem(int slotIndex)
     {
         int x = selectedGridSlot.x;
@@ -202,6 +224,7 @@ public class CraftingUIManager : MonoBehaviour
             Debug.Log($"Returned item {item.itemName} to the inventory");
         }
     }
+
     private void UpdateUI()
     {
         // Clear the placed items dictionary
