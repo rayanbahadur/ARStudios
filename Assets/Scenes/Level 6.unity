@@ -12619,8 +12619,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Find the Key
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 487febea4bd1e5e4fb9d0952a898b81a, type: 2}
-  m_sharedMaterial: {fileID: 8142034449458576621, guid: 487febea4bd1e5e4fb9d0952a898b81a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 79e31d6f9cfd3654bb5411884d111692, type: 2}
+  m_sharedMaterial: {fileID: -8412322500260692296, guid: 79e31d6f9cfd3654bb5411884d111692, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12644,8 +12644,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.4
-  m_fontSizeBase: 49.4
+  m_fontSize: 27
+  m_fontSizeBase: 27
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -37092,8 +37092,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Activate all the levers and \nbeware of the Demons Gaze"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 487febea4bd1e5e4fb9d0952a898b81a, type: 2}
-  m_sharedMaterial: {fileID: 8142034449458576621, guid: 487febea4bd1e5e4fb9d0952a898b81a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 79e31d6f9cfd3654bb5411884d111692, type: 2}
+  m_sharedMaterial: {fileID: -8412322500260692296, guid: 79e31d6f9cfd3654bb5411884d111692, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -37117,8 +37117,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.06
-  m_fontSizeBase: 44.06
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -43816,7 +43816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 167088677605023556, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -154
+      value: -127.6
       objectReference: {fileID: 0}
     - target: {fileID: 167088677605023556, guid: 8b7bd8b62ac13d943ac10f1d1f774b1a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -55836,6 +55836,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6149672025184150783, guid: b229a5664706d1547adedb0623afa9bb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -3.0635376
+      objectReference: {fileID: 0}
     - target: {fileID: 9067710755846427034, guid: b229a5664706d1547adedb0623afa9bb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -55846,27 +55850,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9067710755846427034, guid: b229a5664706d1547adedb0623afa9bb, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9067710755846427034, guid: b229a5664706d1547adedb0623afa9bb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9067710755846427034, guid: b229a5664706d1547adedb0623afa9bb, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9067710755846427034, guid: b229a5664706d1547adedb0623afa9bb, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9067710755846427034, guid: b229a5664706d1547adedb0623afa9bb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 260.5269
+      value: 260.52686
       objectReference: {fileID: 0}
     - target: {fileID: 9067710755846427034, guid: b229a5664706d1547adedb0623afa9bb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 40.2579
+      value: 40.257904
       objectReference: {fileID: 0}
     - target: {fileID: 9067710755846427034, guid: b229a5664706d1547adedb0623afa9bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55898,11 +55902,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9067710755846427034, guid: b229a5664706d1547adedb0623afa9bb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -748
+      value: 212
       objectReference: {fileID: 0}
     - target: {fileID: 9067710755846427034, guid: b229a5664706d1547adedb0623afa9bb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -447
+      value: 52.5
       objectReference: {fileID: 0}
     - target: {fileID: 9067710755846427034, guid: b229a5664706d1547adedb0623afa9bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -66776,8 +66780,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Find a way to the top of the staircase
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 487febea4bd1e5e4fb9d0952a898b81a, type: 2}
-  m_sharedMaterial: {fileID: 8142034449458576621, guid: 487febea4bd1e5e4fb9d0952a898b81a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 79e31d6f9cfd3654bb5411884d111692, type: 2}
+  m_sharedMaterial: {fileID: -8412322500260692296, guid: 79e31d6f9cfd3654bb5411884d111692, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -66801,8 +66805,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.4
-  m_fontSizeBase: 49.4
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -69487,8 +69491,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 487febea4bd1e5e4fb9d0952a898b81a, type: 2}
-  m_sharedMaterial: {fileID: 8142034449458576621, guid: 487febea4bd1e5e4fb9d0952a898b81a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 79e31d6f9cfd3654bb5411884d111692, type: 2}
+  m_sharedMaterial: {fileID: -8412322500260692296, guid: 79e31d6f9cfd3654bb5411884d111692, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -69512,8 +69516,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.4
-  m_fontSizeBase: 49.4
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
