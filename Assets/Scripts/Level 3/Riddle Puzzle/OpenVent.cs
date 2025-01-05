@@ -21,6 +21,8 @@ public class OpenVent : MonoBehaviour
     [SerializeField] private GameObject interactionPrompt; // Prompt shown when player interacts with the vent
     [SerializeField] private TextMeshProUGUI interactionText; // Text for the interaction prompt
     [SerializeField] private Outline outline; // Outline to highlight the vent when interactable
+    [SerializeField] private PlayerProgress playerProgress;
+
 
     private FirstPersonController firstPersonController; // Reference to the first-person controller
     private myControls inputActions; // Input actions for player interaction
@@ -33,6 +35,7 @@ public class OpenVent : MonoBehaviour
         Inventory.Instance.currentHandItem.CompareTag("Screwdriver"); // Checks if the player has a screwdriver equipped
 
     private bool inTrigger = false;
+    private bool hasProgressBeenAdded = false;
 
     private void Awake()
     {
@@ -53,6 +56,11 @@ public class OpenVent : MonoBehaviour
         if (isPosterDeactivated && isScrewdriverInHand && inputActions.Player.ActionKey.triggered)
         {
             OpenVentAction();
+            if (!hasProgressBeenAdded)
+            {
+                playerProgress.AddProgress(30);
+                hasProgressBeenAdded = true;
+            }
         }
     }
 

@@ -9,6 +9,7 @@ public class NumpadFinal : MonoBehaviour
     [SerializeField] private Item keycard;
     [SerializeField] private GameObject interactionPrompt; // Prompt displayed to the player for interaction
     [SerializeField] private TextMeshProUGUI interactionText; // Text of the interaction prompt
+    [SerializeField] private PlayerProgress playerProgress;
 
     [Header("Open Door")]
     [SerializeField] AudioObject clip;
@@ -19,6 +20,7 @@ public class NumpadFinal : MonoBehaviour
 
     private myControls inputActions;
     private bool inRange = false;
+    private bool hasProgressBeenAdded = false;
 
     private bool isKeycardInHand =>
         Inventory.Instance != null &&
@@ -48,6 +50,10 @@ public class NumpadFinal : MonoBehaviour
         if (inRange)
         {
             if (inputActions.Player.ActionKey.triggered) {
+                if (!hasProgressBeenAdded)
+                {
+                    playerProgress.AddProgress(60);
+                }
                 if (isKeycardInHand)
                 {
                     audioSource.clip = unlock;
@@ -57,6 +63,10 @@ public class NumpadFinal : MonoBehaviour
                     Inventory.Instance.Remove(keycard);
                     Inventory.Instance.SelectSlot(1);
                     interactionPrompt.SetActive(false);
+                    if (!hasProgressBeenAdded)
+                    {
+                        playerProgress.AddProgress(40);
+                    }
                     this.enabled = false;
                 }
                 else

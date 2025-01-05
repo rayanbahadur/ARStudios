@@ -13,6 +13,7 @@ public class RiddleAssigner : MonoBehaviour
     [SerializeField] private GameObject interactionPrompt; // Prompt to show interaction availability
     [SerializeField] private TextMeshProUGUI interactionText; // Text field for interaction message
     [SerializeField] private float interactionRange = 2f;
+    [SerializeField] private PlayerProgress playerProgress;
 
     private string riddleContent; // Accumulated content of all riddles
     private string[][] riddles = new string[][]
@@ -58,6 +59,7 @@ public class RiddleAssigner : MonoBehaviour
     private bool isRiddleUIActive = false;
     private FirstPersonController firstPersonController;
     private myControls inputActions;
+    private bool hasProgressBeenAdded = false; // Flag to track if progress has been added
 
     private void Awake()
     {
@@ -108,6 +110,11 @@ public class RiddleAssigner : MonoBehaviour
                 {
                     interactionPrompt.SetActive(false);
                     ToggleRiddleUI();
+                    if (!hasProgressBeenAdded)
+                    {
+                        playerProgress.AddProgress(30);
+                        hasProgressBeenAdded = true;
+                    }
                 }
             }
         }
