@@ -13,6 +13,7 @@ public class PlayerProgress : MonoBehaviour
     {
         currentProgress = 0;
         taskProgressBar.SetMaxProgress(maxProgress); // Initialize the task progress bar
+        taskProgressBar.SetProgress(currentProgress);
     }
 
     // Update is called once per frame
