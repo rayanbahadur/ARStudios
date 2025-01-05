@@ -1,10 +1,17 @@
 using UnityEngine;
+using TMPro; // For TextMeshPro support
 
 [RequireComponent(typeof(Rigidbody))]
 public class GravityFlipper : MonoBehaviour
 {
+    [Header("Gravity Settings")]
     public float gravityMagnitude = 9.81f; // Strength of gravity
     public float rotationSpeed = 5f;       // Speed of flipping
+
+    [Header("UI Elements")]
+    public TextMeshProUGUI interactionPromptChanges; // Displays remaining gravity changes
+    public TextMeshProUGUI interactionPromptTimer;   // Displays time left or action prompt
+
     private Rigidbody rb;
     private bool isUpsideDown = false;
     private float targetZRotation; // Target Z-axis rotation for smooth flipping
@@ -20,6 +27,19 @@ public class GravityFlipper : MonoBehaviour
 
         // Set difficulty parameters
         SetDifficultyParameters();
+
+        // Ensure both interaction prompts are active and initialized
+        if (interactionPromptChanges != null)
+        {
+            interactionPromptChanges.gameObject.SetActive(true);
+            UpdateInteractionPromptChanges();
+        }
+
+        if (interactionPromptTimer != null)
+        {
+            interactionPromptTimer.gameObject.SetActive(true);
+            UpdateInteractionPromptTimer();
+        }
     }
 
     void Update()
@@ -38,18 +58,30 @@ public class GravityFlipper : MonoBehaviour
                 // Allow reverting manually before the duration ends
                 RevertGravity();
             }
+
+            // Update both prompts
+            UpdateInteractionPromptChanges();
+            UpdateInteractionPromptTimer();
         }
 
         // Automatically revert gravity after the set duration
         if (isGravityChanged && Time.time >= gravityChangeStartTime + gravityChangeDuration)
         {
             RevertGravity();
+            UpdateInteractionPromptTimer();
         }
 
         // Smoothly rotate the Z-axis while preserving X and Y axes
         Quaternion currentRotation = transform.rotation;
         Quaternion targetRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, targetZRotation);
         transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, Time.deltaTime * rotationSpeed);
+
+        // Continuously update timer if gravity is flipped
+        if (isGravityChanged && interactionPromptTimer != null)
+        {
+            float timeLeft = gravityChangeStartTime + gravityChangeDuration - Time.time;
+            interactionPromptTimer.text = $"Gravity Reverting In: {timeLeft:F1}s";
+        }
     }
 
     void FixedUpdate()
@@ -62,13 +94,7 @@ public class GravityFlipper : MonoBehaviour
     void ToggleGravityDirection()
     {
         isUpsideDown = !isUpsideDown;
-
-        // Set target Z-axis rotation for flipping
         targetZRotation = isUpsideDown ? 180f : 0f;
-
-        Debug.Log(isUpsideDown
-            ? $"Gravity inverted: Walking on ceiling. Remaining changes: {remainingChanges}"
-            : $"Gravity normal: Walking on floor. Remaining changes: {remainingChanges}");
     }
 
     void RevertGravity()
@@ -76,7 +102,6 @@ public class GravityFlipper : MonoBehaviour
         isUpsideDown = false; // Reset to normal gravity
         targetZRotation = 0f; // Reset rotation
         isGravityChanged = false; // Allow further changes
-        Debug.Log("Gravity reverted to normal.");
     }
 
     void SetDifficultyParameters()
@@ -101,7 +126,23 @@ public class GravityFlipper : MonoBehaviour
                 remainingChanges = 15;
                 break;
         }
+    }
 
-        Debug.Log($"Difficulty set to {difficulty}. Duration: {gravityChangeDuration}s, Max Changes: {remainingChanges}");
+    void UpdateInteractionPromptChanges()
+    {
+        if (interactionPromptChanges != null)
+        {
+            interactionPromptChanges.text = $"Gravity changes Left: {remainingChanges}";
+        }
+    }
+
+    void UpdateInteractionPromptTimer()
+    {
+        if (interactionPromptTimer != null)
+        {
+            interactionPromptTimer.text = isGravityChanged
+                ? $"Gravity Reverting In: {(gravityChangeStartTime + gravityChangeDuration - Time.time):F1}s"
+                : "Press G to change gravity";
+        }
     }
 }
