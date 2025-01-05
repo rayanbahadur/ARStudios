@@ -8,6 +8,8 @@ public class CraftingUIManager : MonoBehaviour
     public GameObject gridContainer;
     public GameObject outputSlot; 
     public GameObject craftingUI;
+    public GameObject paperRecipeUI;
+
 
     private Dictionary<string, Image> gridSlots;
     private Image outplotSlotGridImage; // Grid image component for the output slot
@@ -67,7 +69,7 @@ public class CraftingUIManager : MonoBehaviour
     void Update()
     {
         // Toggle the crafting UI with the 'C' key
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && paperRecipeUI.activeSelf == false)
         {
             craftingUI.SetActive(!craftingUI.activeSelf);
 

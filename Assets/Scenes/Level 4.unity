@@ -3323,7 +3323,7 @@ MonoBehaviour:
   paperRecipeUI: {fileID: 1955051225}
   recipeRiddleText: {fileID: 1998256462}
   interactionPrompt: {fileID: 1228889970}
-  craftingUI: {fileID: 0}
+  craftingUI: {fileID: 721605861}
 --- !u!114 &448127342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16733,6 +16733,10 @@ PrefabInstance:
       propertyPath: gridContainer
       value: 
       objectReference: {fileID: 1596481545}
+    - target: {fileID: 841770580569339702, guid: 11ac557c7540ac848a28b3b1bf9d5b7a, type: 3}
+      propertyPath: paperRecipeUI
+      value: 
+      objectReference: {fileID: 1955051225}
     - target: {fileID: 7515279362755633536, guid: 11ac557c7540ac848a28b3b1bf9d5b7a, type: 3}
       propertyPath: m_Name
       value: CraftingSystem
