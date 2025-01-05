@@ -10,6 +10,7 @@ public class OpenDoor : MonoBehaviour
     public float openAngle = 70f; // Angle to open the door
     public float openSpeed = 2f; // Speed at which the door opens
     public RealitySwitch realitySwitch; // Reference to the RealitySwitch script
+    [SerializeField] private PlayerProgress playerProgress; // Reference to the PlayerProgress script
 
     private bool isOpen = false;
     private Quaternion closedRotation;
@@ -39,10 +40,8 @@ public class OpenDoor : MonoBehaviour
         if (isOpen)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, openRotation, Time.deltaTime * openSpeed);
-            Debug.Log($"Door rotation updated to: {transform.rotation.eulerAngles}");
         }
     }
-
 
     private void TryOpenDoor()
     {
@@ -56,6 +55,12 @@ public class OpenDoor : MonoBehaviour
                 Debug.Log("Door opened with the key.");
                 doorMessage.text = ""; // Clear the message
                 isPlayerInRange = false; // Make the trigger detection obsolete
+
+                // Set the progress bar to 20%
+                if (playerProgress != null)
+                {
+                    playerProgress.SetProgress(20);
+                }
             }
             else
             {

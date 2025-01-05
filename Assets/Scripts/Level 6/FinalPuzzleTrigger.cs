@@ -16,6 +16,7 @@ public class FinalPuzzleTrigger : MonoBehaviour
     public Camera playerCamera;   // Reference to the player's camera
     public GameObject playerCapsule; // Reference to the player capsule object
     public TextMeshProUGUI promptText; // Reference to the UI Text element for the prompt
+    [SerializeField] private PlayerProgress playerProgress; // Reference to the PlayerProgress script
 
     private bool isLowering = false;
     private bool hasBeenTriggered = false; // Flag to track if the trigger has been activated
@@ -99,6 +100,12 @@ public class FinalPuzzleTrigger : MonoBehaviour
             if (promptText != null)
             {
                 StartCoroutine(DisplayPromptText()); // Display the prompt text
+            }
+
+            // Add 10% to the task progress
+            if (playerProgress != null)
+            {
+                playerProgress.SetProgress(60);
             }
         }
     }
