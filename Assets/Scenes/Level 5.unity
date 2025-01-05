@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2076,7 +2076,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 385190767}
-  endScreen: {fileID: 0}
 --- !u!65 &347970344
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4868,8 +4867,8 @@ RectTransform:
   - {fileID: 980541321}
   - {fileID: 798332259}
   - {fileID: 2056044293}
-  - {fileID: 2116530471}
   - {fileID: 326302659}
+  - {fileID: 2116530471}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -13054,6 +13053,11 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 798332260}
+  gameOverUI: {fileID: 0}
+  mainCanvas: {fileID: 0}
+  audioSource: {fileID: 0}
+  dyingSound: {fileID: 0}
+  audioSources: []
 --- !u!114 &2074119663
 MonoBehaviour:
   m_ObjectHideFlags: 0
