@@ -4,10 +4,12 @@ public class SlidingPuzzleManager : MonoBehaviour
 {
     public TargetTile[] targetTiles; // Array of all the target tiles
     public GameObject hatch; // Reference to the hatch GameObject
+    [SerializeField] private PlayerProgress playerProgress;
+
 
     private bool puzzleCompleted = false;
     private AudioSource audioSource;
-
+    private bool hasProgressBeenAdded = false;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -48,5 +50,9 @@ public class SlidingPuzzleManager : MonoBehaviour
         }
 
         hatch.SetActive(false);
+        if (!hasProgressBeenAdded)
+        {
+            playerProgress.AddProgress(100);
+        }
     }
 }

@@ -88,6 +88,8 @@ public class PlayerC : MonoBehaviour
         Vector3 newScale = targetObject.transform.localScale;
         newScale.y = isCrouching ? crouchScaleY : defaultScaleY;
         targetObject.transform.localScale = newScale;
+
+        firstPersonController.JumpHeight = isCrouching ? 0 : defaultJumpValue;
     }
 
     // OnTriggerEnter and OnTriggerExit remain the same
