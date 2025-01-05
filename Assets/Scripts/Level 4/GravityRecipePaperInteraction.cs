@@ -23,10 +23,13 @@ public class GravityRecipePaperInteraction : MonoBehaviour
     private FirstPersonController firstPersonController;
     private myControls inputActions;
 
+    public static GravityRecipePaperInteraction Instance;
+
     void Awake()
     {
         inputActions = new myControls();
         inputActions.Player.Enable();
+        Instance = this;
     }
 
     void Start()
@@ -92,6 +95,11 @@ public class GravityRecipePaperInteraction : MonoBehaviour
             outline.enabled = false;
             interactionPrompt.SetActive(false);
         }
+
+        if (Input.GetKeyDown(KeyCode.Q) && Inventory.Instance.currentHandItem != null && Inventory.Instance.currentHandItem.name.Contains("Potion_02"))
+        {
+            Inventory.Instance.DrinkingAnimation("GravityPotion", "GravityPotion");
+        }
     }
 
     // Show or hide the paper recipe UI
@@ -120,5 +128,12 @@ public class GravityRecipePaperInteraction : MonoBehaviour
     public void SetRecipeRiddleText(string text)
     {
         gravityRecipeText.text = text;
+    }
+
+
+    public void ApplyGravityEffect()
+    {
+        // TODO
+        return;
     }
 }

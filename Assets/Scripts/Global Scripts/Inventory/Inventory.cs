@@ -189,10 +189,9 @@ public class Inventory : MonoBehaviour
             case "CurePoison":
                 PoisonRiddle.Instance.CurePoison();
                 break;
-            case "Gravity":
-                // ApplyGravityEffect();
+            case "GravityPotion":
+                GravityRecipePaperInteraction.Instance.ApplyGravityEffect();
                 break;
-            // Add more cases for other potion effects
         }
 
         // Wait for a short duration to simulate drinking time
