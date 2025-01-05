@@ -133,7 +133,7 @@ public class GravityRecipePaperInteraction : MonoBehaviour
 
     public void ApplyGravityEffect()
     {
-        // TODO
-        return;
+        // For gravity level, they can use the gravity potion to make any effect now
+        PlayerPrefs.SetString("GravityPotion", "Drank");
     }
 }

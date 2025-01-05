@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
         UnityEngine.Debug.Log("RestartGame called."); // Add debug log to verify method call
         // Reload the current active scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
     }
 
 }
