@@ -5,13 +5,11 @@ public class GravityFlipper : MonoBehaviour
 {
     public float gravityMagnitude = 9.81f; // Strength of gravity
     public float rotationSpeed = 5f;       // Speed of flipping
-    public int maxGravityChanges = 10;     // Maximum number of allowed gravity changes
-    public float gravityChangeDuration = 5f; // Duration for gravity inversion in seconds
-
     private Rigidbody rb;
     private bool isUpsideDown = false;
     private float targetZRotation; // Target Z-axis rotation for smooth flipping
     private int remainingChanges; // Counter for remaining gravity changes
+    private float gravityChangeDuration; // Duration for gravity inversion
     private float gravityChangeStartTime; // Time when the current gravity change started
     private bool isGravityChanged = false; // Tracks if gravity is currently flipped
 
@@ -19,14 +17,15 @@ public class GravityFlipper : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false; // Disable Unity's default gravity
-        remainingChanges = maxGravityChanges; // Initialize remaining changes
+
+        // Set difficulty parameters
+        SetDifficultyParameters();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.G) && remainingChanges > 0)
         {
-            // Toggle gravity direction and start the duration timer
             if (!isGravityChanged)
             {
                 ToggleGravityDirection();
@@ -41,7 +40,7 @@ public class GravityFlipper : MonoBehaviour
             }
         }
 
-        // Automatically revert gravity after 10 seconds
+        // Automatically revert gravity after the set duration
         if (isGravityChanged && Time.time >= gravityChangeStartTime + gravityChangeDuration)
         {
             RevertGravity();
@@ -78,5 +77,31 @@ public class GravityFlipper : MonoBehaviour
         targetZRotation = 0f; // Reset rotation
         isGravityChanged = false; // Allow further changes
         Debug.Log("Gravity reverted to normal.");
+    }
+
+    void SetDifficultyParameters()
+    {
+        string difficulty = PlayerPrefs.GetString("Difficulty", "Easy");
+        switch (difficulty)
+        {
+            case "Easy":
+                gravityChangeDuration = 10f;
+                remainingChanges = 15;
+                break;
+            case "Medium":
+                gravityChangeDuration = 7f;
+                remainingChanges = 10;
+                break;
+            case "Hard":
+                gravityChangeDuration = 5f;
+                remainingChanges = 7;
+                break;
+            default:
+                gravityChangeDuration = 10f; // Default to Easy
+                remainingChanges = 15;
+                break;
+        }
+
+        Debug.Log($"Difficulty set to {difficulty}. Duration: {gravityChangeDuration}s, Max Changes: {remainingChanges}");
     }
 }
