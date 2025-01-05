@@ -784,7 +784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 640742883688932446, guid: da24e7a4628852a47bbe15844a49d2e5, type: 3}
       propertyPath: m_text
-      value: Crafting
+      value: Open Crafting
       objectReference: {fileID: 0}
     - target: {fileID: 873555571420767853, guid: da24e7a4628852a47bbe15844a49d2e5, type: 3}
       propertyPath: m_AnchorMax.y
