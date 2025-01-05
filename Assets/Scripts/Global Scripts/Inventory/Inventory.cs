@@ -151,4 +151,64 @@ public class Inventory : MonoBehaviour
 
         Debug.Log($"Item displayed in hand: {item.itemName}");
     }
+
+
+    // @Params effect: The effect of the potion
+    // @Params itemName: The name of the potion item
+    public void DrinkingAnimation(string effect, string itemName)
+    {
+        if (currentHandItem != null)
+        {
+            StartCoroutine(AnimateDrinking(effect, itemName));
+        }
+    }
+
+    private IEnumerator AnimateDrinking(string effect, string itemName)
+    {
+        Transform itemTransform = currentHandItem.transform;
+        Vector3 initialPosition = itemTransform.localPosition;
+        Quaternion initialRotation = itemTransform.localRotation;
+        Vector3 targetPosition = new Vector3(-0.150999993f, -0.488999993f, 0.130999997f);
+        Quaternion targetRotation = Quaternion.Euler(86.301178f, 245.948456f, 327.900635f);
+
+        float time = 0f;
+        float animationSpeed = 2f;
+
+        // Move to the drinking position
+        while (time < 1f)
+        {
+            time += Time.deltaTime * animationSpeed;
+            itemTransform.localPosition = Vector3.Lerp(initialPosition, targetPosition, time);
+            itemTransform.localRotation = Quaternion.Lerp(initialRotation, targetRotation, time);
+            yield return null;
+        }
+
+        // Apply the effect
+        switch (effect)
+        {
+            case "CurePoison":
+                PoisonRiddle.Instance.CurePoison();
+                break;
+            case "Gravity":
+                // ApplyGravityEffect();
+                break;
+            // Add more cases for other potion effects
+        }
+
+        // Wait for a short duration to simulate drinking time
+        yield return new WaitForSeconds(1f);
+
+        // Remove item from inventory and hand
+        for (int i = 0; i < Items.Count; i++)
+        {
+            if (Items[i].itemName == itemName)
+            {
+                Remove(Items[i]);
+                break;
+            }
+        }
+        RemoveItemFromHand();
+
+        Debug.Log("Potion consumed: " + effect);
+    }
 }
