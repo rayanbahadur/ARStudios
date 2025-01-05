@@ -72,14 +72,25 @@ Enjoy the game! If you have any feedback or encounter any issues, feel free to r
 
 -  ### Alchemy Lab Level
 
--  ### Gravity Level
+- **Background Music**: [Dangerous Dungeon](https://soundcloud.com/game-music-collection/dangerous-dungeon-loop?in=game-music-collection/sets/dungeon-music-v1-5&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing)
 
-  
+-  ### Gravity Level
 
 -  ### Fractured Reality Level
 
-  
+   	- The dungeon rooms walls are self-created assets
+	- [Dungeon Assets](https://assetstore.unity.com/packages/3d/environments/dungeons/ultimate-low-poly-dungeon-143535)
+   	- [Demon Tree](https://assetstore.unity.com/packages/3d/characters/creatures/demon-tree-86461)
+   	- [Skybox](https://assetstore.unity.com/packages/2d/textures-materials/sky/customizable-skybox-174576)
+   	- [Fire effects](https://assetstore.unity.com/packages/vfx/particles/fire-explosions/free-fire-vfx-urp-266226)
 
+ -  **Background Music**: [Come Out and Play - Medieval Mode](https://www.darrencurtismusic.com/comeoutandplaydownload)
+
+ -  **Sound Effects:**
+
+	- Sound Effect by <a  href="https://freesound.org/people/Under7dude/sounds/163442/">Under7dude</a> from <a  href="https://freesound.org/">freesound</a>
+
+ 
 -  ### End Game Cut Scene
 
 	- [Spaceship Cockpit](https://skfb.ly/6GyRs)
