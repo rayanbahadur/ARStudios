@@ -13,10 +13,18 @@ public class CraftingUIManager : MonoBehaviour
     public GameObject paperRecipeUI;
     public TextMeshProUGUI outputText;
 
+
+    [Header("Help UI References")]
     // Help UI References
     public Button helpButton; 
     public GameObject helpTextBackground; 
     public TextMeshProUGUI helpButtonText; 
+
+    [Header("Player Audio Settings")]
+    public AudioSource audioSource; 
+    public AudioClip whooshSound;
+
+
 
 
     private Dictionary<string, Image> gridSlots;
@@ -82,6 +90,16 @@ public class CraftingUIManager : MonoBehaviour
         // Toggle the crafting UI with the 'C' key
         if (Input.GetKeyDown(KeyCode.C) && paperRecipeUI.activeSelf == false)
         {
+
+            float soundEffectVolume = PlayerPrefs.GetFloat("SoundEffectVolume", 0.8f);
+            if (audioSource != null && whooshSound != null)
+            {
+                audioSource.volume = soundEffectVolume;
+                audioSource.clip = whooshSound;
+                audioSource.loop = false;
+                audioSource.Play(); 
+            }
+            
             craftingUI.SetActive(!craftingUI.activeSelf);
 
             if (craftingUI.activeSelf)
