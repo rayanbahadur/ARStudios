@@ -18,6 +18,8 @@ public class Death : MonoBehaviour
     public AudioClip deathSound; // Sound clip to play when the player dies
     public AudioSource deathAudioSource; // Public AudioSource to assign from the scene
 
+    private bool diedToDemonLight = false; // Flag to track if the player died to the demon light
+
     private void Start()
     {
         if (deathAudioSource == null)
@@ -45,6 +47,7 @@ public class Death : MonoBehaviour
             {
                 if (IsPlayerVisible(other.transform))
                 {
+                    diedToDemonLight = true; // Set the flag to true if the player dies to the demon light
                     StartCoroutine(HandleRespawn(other.gameObject));
                     Debug.Log("Player was visible to the demon. Respawn triggered.");
                 }
@@ -55,6 +58,7 @@ public class Death : MonoBehaviour
             }
             else
             {
+                diedToDemonLight = false; // Set the flag to false if the player dies to other causes
                 // Handle respawn for non-demon light triggers
                 StartCoroutine(HandleRespawn(other.gameObject));
             }
@@ -130,8 +134,12 @@ public class Death : MonoBehaviour
             player.transform.position = checkpointPosition;
             Debug.Log("Player respawned at: " + checkpointPosition);
 
-            // Reset all levers
-            LeverManager.Instance.ResetLevers();
+            // Reset all levers only if the player died to the demon light
+            if (diedToDemonLight)
+            {
+                LeverManager.Instance.ResetLevers();
+                Debug.Log("Levers reset due to death by demon light.");
+            }
 
             // Fade out
             yield return StartCoroutine(Fade(1, 0));

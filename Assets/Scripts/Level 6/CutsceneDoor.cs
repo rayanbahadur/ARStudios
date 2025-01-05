@@ -9,8 +9,10 @@ public class CutsceneDoor : MonoBehaviour
     public float doorOpenAngle = 90f;   // Angle to open the door
     public float doorOpenDuration = 0.5f; // Duration to open the door
     public StaircaseText staircaseText; // Reference to the StaircaseText script
+    [SerializeField] private PlayerProgress playerProgress; // Reference to the PlayerProgress script
 
     private BoxCollider triggerCollider; // Reference to the door's box collider that serves as a trigger
+    private bool doorOpened = false; // Flag to track if the door has been opened
 
     private void Start()
     {
@@ -70,6 +72,12 @@ public class CutsceneDoor : MonoBehaviour
 
     private IEnumerator OpenDoor()
     {
+        // Check if the door has already been opened
+        if (doorOpened)
+        {
+            yield break;
+        }
+
         float timeElapsed = 0f;
         Quaternion initialRotation = transform.localRotation;
         Quaternion targetRotation = initialRotation * Quaternion.Euler(0, doorOpenAngle, 0);
@@ -88,6 +96,15 @@ public class CutsceneDoor : MonoBehaviour
         {
             triggerCollider.enabled = false;
         }
+
+        // Set the doorOpened flag to true
+        doorOpened = true;
+
+        // Add 30% to the task progress
+        if (playerProgress != null)
+        {
+            playerProgress.SetProgress(50);
+            Debug.Log("Task progress set to 50%");
+        }
     }
 }
-

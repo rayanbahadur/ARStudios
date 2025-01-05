@@ -9,6 +9,7 @@ public class LeverManager : MonoBehaviour
     public Transform gate; // Reference to the gate
     public float openHeight = 5f; // Height to move the gate upwards
     public float openSpeed = 2f; // Speed at which the gate opens
+    [SerializeField] private PlayerProgress playerProgress; // Reference to the PlayerProgress script
 
     private void Awake()
     {
@@ -57,5 +58,11 @@ public class LeverManager : MonoBehaviour
             lever.ResetLever();
         }
         Debug.Log("All levers have been reset.");
+
+        // Set the task progress back to 60%
+        if (playerProgress != null)
+        {
+            playerProgress.SetProgress(60);
+        }
     }
 }
