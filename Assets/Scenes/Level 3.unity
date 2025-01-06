@@ -7629,10 +7629,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotRight: 1
-  yaw: 90
+  yaw: 100
   pitch: 25
   secondsToRot: 2
-  rotSwitchTime: 1
+  rotSwitchTime: 2
 --- !u!64 &760148422
 MeshCollider:
   m_ObjectHideFlags: 0

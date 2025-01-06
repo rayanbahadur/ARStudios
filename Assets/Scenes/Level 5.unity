@@ -1564,6 +1564,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10818542, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
+      propertyPath: m_Range
+      value: 50000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 10818542, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
+      propertyPath: m_Intensity
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2004,7 +2012,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 385190767}
-  endScreen: {fileID: 0}
 --- !u!65 &347970344
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4072,6 +4079,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10818542, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
+      propertyPath: m_Range
+      value: 50000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 10818542, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
+      propertyPath: m_Intensity
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4169,6 +4184,14 @@ PrefabInstance:
     - target: {fileID: 418528, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10818542, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
+      propertyPath: m_Range
+      value: 50000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 10818542, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
+      propertyPath: m_Intensity
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4656,6 +4679,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10818542, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
+      propertyPath: m_Range
+      value: 500000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 10818542, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
+      propertyPath: m_Intensity
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4985,6 +5016,18 @@ PrefabInstance:
     - target: {fileID: 418528, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10818542, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
+      propertyPath: m_Range
+      value: 500000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 10818542, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
+      propertyPath: m_Intensity
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 19964788, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6693,6 +6736,14 @@ PrefabInstance:
     - target: {fileID: 418528, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10818542, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
+      propertyPath: m_Range
+      value: 50000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 10818542, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
+      propertyPath: m_Intensity
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12154,6 +12205,14 @@ PrefabInstance:
     - target: {fileID: 418528, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10818542, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
+      propertyPath: m_Range
+      value: 500000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 10818542, guid: aebf24aa57894961bfe5b60492dd5bdd, type: 3}
+      propertyPath: m_Intensity
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
