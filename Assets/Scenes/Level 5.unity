@@ -6049,7 +6049,7 @@ MonoBehaviour:
   hints:
   - Go over the obstacles!
   - Find the key in the shelf!
-  - 
+  - After killing that zombie the door in that room looks like a good idea..
   hintInterval: 30
   hintDisplayTime: 5
   hardHintVal: 1
