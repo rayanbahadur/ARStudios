@@ -172,9 +172,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hint: {fileID: 5008651}
   hints:
-  - 
-  - 
-  - 
+  - It could be a bucket... it could be a desk... it could even be besides the beast
+  - The cupboards and tables talk to you...
+  - A straight line of ingredients in the middle should do the trick?
   hintInterval: 30
   hintDisplayTime: 5
   hardHintVal: 1
@@ -202,8 +202,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 79e31d6f9cfd3654bb5411884d111692, type: 2}
+  m_sharedMaterial: {fileID: -8412322500260692296, guid: 79e31d6f9cfd3654bb5411884d111692, type: 2}
   m_fontSharedMaterials:
   - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
@@ -12591,6 +12591,7 @@ MonoBehaviour:
   poisonSmoke: {fileID: 955335519}
   playerHealth: {fileID: 1305727414}
   playerProgress: {fileID: 1305727421}
+  controlsChangedText: {fileID: 474271517}
 --- !u!1001 &1019268435
 PrefabInstance:
   m_ObjectHideFlags: 0
