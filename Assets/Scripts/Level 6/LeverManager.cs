@@ -47,6 +47,9 @@ public class LeverManager : MonoBehaviour
             gate.position = Vector3.MoveTowards(gate.position, targetPosition, openSpeed * Time.deltaTime);
             yield return null;
         }
+
+        playerProgress.SetTaskText("You have opened the gate. Proceed to the next area.");
+        
         Debug.Log("All levers activated. Gate opened!");
     }
 
