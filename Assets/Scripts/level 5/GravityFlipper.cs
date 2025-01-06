@@ -11,6 +11,7 @@ public class GravityFlipper : MonoBehaviour
     [Header("UI Elements")]
     public TextMeshProUGUI interactionPromptChanges; // Displays remaining gravity changes
     public TextMeshProUGUI interactionPromptTimer;   // Displays time left or action prompt
+    public TextMeshProUGUI interactionPromptPotion;  // Displays potion effect details
 
     private Rigidbody rb;
     private bool isUpsideDown = false;
@@ -19,31 +20,23 @@ public class GravityFlipper : MonoBehaviour
     private float gravityChangeDuration; // Duration for gravity inversion
     private float gravityChangeStartTime; // Time when the current gravity change started
     private bool isGravityChanged = false; // Tracks if gravity is currently flipped
+    private bool hasPotionEffect = false;  // Tracks if the potion effect is active
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false; // Disable Unity's default gravity
 
-        // Set difficulty parameters
+        // Initialize and display prompts
+        InitializePrompts();
+
+        // Set difficulty and potion parameters
         SetDifficultyParameters();
-
-        // Ensure both interaction prompts are active and initialized
-        if (interactionPromptChanges != null)
-        {
-            interactionPromptChanges.gameObject.SetActive(true);
-            UpdateInteractionPromptChanges();
-        }
-
-        if (interactionPromptTimer != null)
-        {
-            interactionPromptTimer.gameObject.SetActive(true);
-            UpdateInteractionPromptTimer();
-        }
     }
 
     void Update()
     {
+        // Handle gravity flipping
         if (Input.GetKeyDown(KeyCode.G) && remainingChanges > 0)
         {
             if (!isGravityChanged)
@@ -59,29 +52,29 @@ public class GravityFlipper : MonoBehaviour
                 RevertGravity();
             }
 
-            // Update both prompts
+            // Update UI prompts
             UpdateInteractionPromptChanges();
-            UpdateInteractionPromptTimer();
         }
 
-        // Automatically revert gravity after the set duration
-        if (isGravityChanged && Time.time >= gravityChangeStartTime + gravityChangeDuration)
+        // Continuously update timer if gravity is flipped
+        if (isGravityChanged)
         {
-            RevertGravity();
-            UpdateInteractionPromptTimer();
+            float timeLeft = Mathf.Max(0, gravityChangeStartTime + gravityChangeDuration - Time.time);
+
+            // Automatically revert gravity after the set duration
+            if (timeLeft <= 0)
+            {
+                RevertGravity();
+            }
+
+            // Update timer text
+            UpdateInteractionPromptTimer(timeLeft);
         }
 
         // Smoothly rotate the Z-axis while preserving X and Y axes
         Quaternion currentRotation = transform.rotation;
         Quaternion targetRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, targetZRotation);
         transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, Time.deltaTime * rotationSpeed);
-
-        // Continuously update timer if gravity is flipped
-        if (isGravityChanged && interactionPromptTimer != null)
-        {
-            float timeLeft = gravityChangeStartTime + gravityChangeDuration - Time.time;
-            interactionPromptTimer.text = $"Gravity Reverting In: {timeLeft:F1}s";
-        }
     }
 
     void FixedUpdate()
@@ -102,29 +95,76 @@ public class GravityFlipper : MonoBehaviour
         isUpsideDown = false; // Reset to normal gravity
         targetZRotation = 0f; // Reset rotation
         isGravityChanged = false; // Allow further changes
+        UpdateInteractionPromptTimer(0); // Reset timer text
     }
 
     void SetDifficultyParameters()
     {
         string difficulty = PlayerPrefs.GetString("Difficulty", "Easy");
-        switch (difficulty)
+        string gravityPotion = PlayerPrefs.GetString("GravityPotion", "Not Drank");
+
+        // Handle potion effect
+        if (gravityPotion == "Drank")
         {
-            case "Easy":
-                gravityChangeDuration = 10f;
-                remainingChanges = 15;
-                break;
-            case "Medium":
-                gravityChangeDuration = 7f;
-                remainingChanges = 10;
-                break;
-            case "Hard":
-                gravityChangeDuration = 5f;
-                remainingChanges = 7;
-                break;
-            default:
-                gravityChangeDuration = 10f; // Default to Easy
-                remainingChanges = 15;
-                break;
+            gravityChangeDuration = 13f;
+            remainingChanges = 16;
+            hasPotionEffect = true;
+
+            if (interactionPromptPotion != null)
+            {
+                interactionPromptPotion.text = "Gravity potion drank: Extra 3s and 16 changes!";
+                interactionPromptPotion.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            hasPotionEffect = false;
+            switch (difficulty)
+            {
+                case "Easy":
+                    gravityChangeDuration = 10f;
+                    remainingChanges = 15;
+                    break;
+                case "Medium":
+                    gravityChangeDuration = 7f;
+                    remainingChanges = 10;
+                    break;
+                case "Hard":
+                    gravityChangeDuration = 5f;
+                    remainingChanges = 7;
+                    break;
+                default:
+                    gravityChangeDuration = 10f; // Default to Easy
+                    remainingChanges = 15;
+                    break;
+            }
+
+            if (interactionPromptPotion != null)
+            {
+                interactionPromptPotion.text = ""; // Clear the potion prompt if no potion effect
+                interactionPromptPotion.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    void InitializePrompts()
+    {
+        if (interactionPromptChanges != null)
+        {
+            interactionPromptChanges.gameObject.SetActive(true);
+            UpdateInteractionPromptChanges();
+        }
+
+        if (interactionPromptTimer != null)
+        {
+            interactionPromptTimer.gameObject.SetActive(true);
+            UpdateInteractionPromptTimer(0); // Start with "Press G to change gravity"
+        }
+
+        if (interactionPromptPotion != null)
+        {
+            interactionPromptPotion.gameObject.SetActive(true);
+            interactionPromptPotion.text = ""; // Initialize with no text
         }
     }
 
@@ -136,12 +176,12 @@ public class GravityFlipper : MonoBehaviour
         }
     }
 
-    void UpdateInteractionPromptTimer()
+    void UpdateInteractionPromptTimer(float timeLeft)
     {
         if (interactionPromptTimer != null)
         {
-            interactionPromptTimer.text = isGravityChanged
-                ? $"Gravity Reverting In: {(gravityChangeStartTime + gravityChangeDuration - Time.time):F1}s"
+            interactionPromptTimer.text = isGravityChanged && timeLeft > 0
+                ? $"Gravity Reverting In: {timeLeft:F1}s"
                 : "Press G to change gravity";
         }
     }
