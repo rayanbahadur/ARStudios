@@ -78,5 +78,7 @@ public class PoisonRiddle : MonoBehaviour
 
         // Set the player's progress to 100
         playerProgress.AddProgress(playerProgress.maxProgress - playerProgress.currentProgress);
+
+        LevelChange.Instance.loadNextLevel();
     }
 }
