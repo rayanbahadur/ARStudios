@@ -59,4 +59,9 @@ public class MusicManager : MonoBehaviour
             PlayNextTrack();
         }
     }
+
+    public void applyVolumeNow()
+    {
+        audioSource.volume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+    }
 }
