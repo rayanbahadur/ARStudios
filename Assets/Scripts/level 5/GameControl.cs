@@ -75,7 +75,7 @@ public class GameControl : MonoBehaviour
         // Toggle UI and FPS controller state
         gameControlUI.SetActive(activeState);
         inventory.SetActive(!activeState);
-        fpsController.enabled = !activeState;
+        fpsController.enabled = !activeState ? false : wasControllerEnabled;
 
         // Show or hide the cursor
         Cursor.visible = activeState;

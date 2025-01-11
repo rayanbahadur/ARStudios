@@ -30,21 +30,6 @@ public class PlayerHealth : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth); // Initialize the health bar
     }
 
-    void Update()
-    {
-        // Test taking damage
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            TakeDamage(95);
-        }
-
-        // Test poison effect
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            healthBar.TogglePoisonEffect();
-        }
-    }
-
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -82,6 +67,7 @@ public class PlayerHealth : MonoBehaviour
             CheckpointManager.Instance != null && 
             CheckpointManager.Instance.GetLastCheckpointPosition() == Vector3.zero)
         {
+            Debug.Log("Activate game over state");
             gameOverState();
         }
         else 
@@ -102,7 +88,7 @@ public class PlayerHealth : MonoBehaviour
                 child.gameObject.SetActive(false);
             }
         }
-
+        Debug.Log("Game Over active");
         gameOverUI.SetActive(true);
         Time.timeScale = 0;
 

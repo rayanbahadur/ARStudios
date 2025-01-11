@@ -22,18 +22,20 @@ public class GravityFlipper : MonoBehaviour
     private bool isGravityChanged = false; // Tracks if gravity is currently flipped
     private bool hasPotionEffect = false;  // Tracks if the potion effect is active
 
+    [SerializeField] private PlayerHealth playerHealth;
+
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false; // Disable Unity's default gravity
 
-        // Initialize and display prompts
-        InitializePrompts();
-
         // Set difficulty and potion parameters
         SetDifficultyParameters();
-    }
 
+        // Initialize and display prompts
+        InitializePrompts();
+    }
     void Update()
     {
         // Handle gravity flipping
@@ -96,6 +98,13 @@ public class GravityFlipper : MonoBehaviour
         targetZRotation = 0f; // Reset rotation
         isGravityChanged = false; // Allow further changes
         UpdateInteractionPromptTimer(0); // Reset timer text
+        if (remainingChanges <= 0)
+        {
+            // Disable gravity change when no changes are left
+            interactionPromptTimer.text = "No gravity changes left - Game over!";
+            playerHealth.TakeDamage(100); // Kill the player
+
+        }
     }
 
     void SetDifficultyParameters()
