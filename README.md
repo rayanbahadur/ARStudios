@@ -19,7 +19,7 @@ Welcome to Fractured Reality! This game is hosted online and can be played direc
 
 1.  **Click on the link below** to open the game:
 
-[Play the Game](https://rayanbahadur.github.io/ARStudios/Build)
+~~[Play the Game](https://rayanbahadur.github.io/ARStudios/Build)~~ (No longer available to play online, download to play)
 
 2. Once the page loads, the game will initialize automatically. Please wait a few seconds for it to fully load.
 
